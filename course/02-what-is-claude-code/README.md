@@ -2,62 +2,48 @@
 
 > **Part 1 — Foundations** · ~15 min
 
-**In one sentence:** Claude Code is an AI agent that works *inside your project folder* — it reads your files, edits them, runs commands, and checks the results, in a loop, while you watch and steer.
+**In one sentence:** you chat, and the agent writes the code — Claude Code is an AI that works *inside your project folder*: it looks at your files, writes into them and checks the result, while you watch and steer.
 
 ---
 
 ## Where it runs
 
-Claude Code started as a command-line tool (you type `claude` in a terminal inside your project). Today you can also use it from the Claude desktop app, in VS Code / JetBrains, and on the web. Same agent, different windows. In this workshop we use whichever your laptop is set up with.
+Claude Code works in the Claude desktop app, in a code editor like VS Code, in a terminal, or on the web. Same agent, different windows. In this workshop we use whichever your laptop is set up with.
 
-## What happens in the background
+## What happens when you ask
 
-When you type a request, this is roughly what happens:
+You never type code yourself. **You are writing code through the chat** — the agent does the typing. When you send a message, roughly this happens:
 
 ```
-1. YOU         "Add a twist parameter to the vase."
-                     │
-2. CONTEXT     Claude Code gathers: your message + CLAUDE.md + the conversation so far
-               + descriptions of the tools and skills it has
-                     │
-3. MODEL       Claude thinks: "I should look at how parameters are defined."
-                     │
-4. TOOL CALL   Read  site/src/starts/shapes.ts              ← you may see this in the UI
-                     │
-5. RESULT      the file's content goes back into the context
-                     │
-6. MODEL       "Now I'll add a twist control and rotate the ribs…"
-                     │
-7. TOOL CALL   Edit  site/src/geometry/patterns.ts          ← you may be asked to approve
-                     │
-8. TOOL CALL   Bash  npm test                                ← it checks its own work
-                     │
-9. RESULT      "13 passed"  (or: "1 failed" → back to step 6)
-                     │
-10. ANSWER     "I added twist. Here is what changed and why…"
+1. You ask        "Make the vase twist as it goes up."
+2. It thinks      "I should see how the vase shape is made."
+3. It looks       opens the files in your folder that matter
+4. It writes      changes those files       ← this is where the code gets written
+5. It checks      tries it, looks for errors   (not happy? → back to 2)
+6. It tells you   "I added a twist slider. Here's what changed…"
 ```
 
-This is **the agent loop**: think → act → observe → repeat. Every step costs tokens (chapter 03) and every step is visible to you. **Read the steps, not just the final message.** That is where you learn what is happening.
+This is **the agent loop**: think → act → look → repeat. Every step uses tokens (chapter 03) and every step is visible to you. **Read the steps, not just the final message** — that's where you learn what's going on.
 
-## The tools it has
+## What it can do
 
-| Tool | What it does | Why you care |
-|---|---|---|
-| **Read / Glob / Grep** | Open and search files | It learns *your* project instead of guessing |
-| **Edit / Write** | Change or create files | This is where your code changes |
-| **Bash** | Run terminal commands (`npm test`, `git commit`) | It can install, build, test — powerful, so it asks first |
-| **Web search / fetch** | Look things up online | For documentation it wasn't trained on |
-| **Subagents** | Hand a sub-task to a fresh helper | Keeps the main conversation focused |
+| It can… | Why you care |
+|---|---|
+| **Look** at and search your files | It learns *your* project instead of guessing |
+| **Write** — change or create files | This is where your website gets built |
+| **Run** things — start the site, run checks | It can try its own work; it asks you first |
+| **Look things up** online | For documentation it wasn't trained on |
+| **Hand off** a sub-task to a helper | Keeps the main conversation focused |
 
-### Permissions
+### It asks first
 
-By default Claude Code **asks before** editing files or running commands. You can approve once, approve for the session, or say no and explain why. Saying no is a valid and useful answer.
+By default Claude Code **asks before** changing files or running anything. You can approve once, approve for the session, or say no and explain why. Saying no is a valid and useful answer.
 
 ## Modes worth knowing
 
-- **Plan mode** — Claude researches and proposes a plan but **changes nothing** until you approve. Use it for anything bigger than a small fix. (In the terminal: press `Shift+Tab` to cycle modes.)
-- **Interrupt** — press `Esc` to stop it mid-way if it is going in the wrong direction. Then redirect.
-- **Rewind** — you can go back to an earlier point in the conversation (and, with checkpoints, earlier file states). Combined with git, mistakes are cheap.
+- **Plan mode** — Claude thinks and proposes a plan but **changes nothing** until you approve. Use it for anything bigger than a small fix.
+- **Stop** — press `Esc` to stop it mid-way if it is going in the wrong direction. Then redirect.
+- **Rewind** — go back to an earlier point in the conversation, including earlier versions of the files. Mistakes are cheap.
 
 ## How you give it lasting knowledge
 
@@ -67,7 +53,7 @@ By default Claude Code **asks before** editing files or running commands. You ca
 | **PLAN.md** (convention, not a feature) | The plan you agreed on, in a file both of you can read | [`PLAN.md`](../../PLAN.md) |
 | **DESIGN.md** (convention) | The visual language | [`DESIGN.md`](../../DESIGN.md) |
 | **Skills** | Folders of know-how (a `SKILL.md` + optional scripts/references) that Claude loads *only when relevant* | [`.claude/skills/printability-review`](../../.claude/skills/printability-review/SKILL.md) |
-| **MCP servers** | Connections to outside tools: a browser, Figma, a database, even Rhino | Playwright MCP lets Claude open the site and look at it |
+| **Connectors (MCP)** | Connections to outside tools: a browser, Figma, a database, even Rhino | Playwright MCP lets Claude open the site and look at it |
 | **Hooks** | Scripts that run automatically at certain moments (e.g. format code after every edit) | Not used today |
 
 ## Skills, in more detail
@@ -110,10 +96,10 @@ Type `/` in Claude Code to see the full, current list. A few you will use:
 
 ## Key takeaways
 
-- Claude Code is an agent in a loop: think → use a tool → look at the result → repeat.
-- Watch the tool calls. That is "what happens in the background".
+- You chat; the agent writes the code — in a loop: think → act → look → repeat.
+- Watch the steps, not just the final answer.
 - Plan mode first, small steps, approve or refuse actions.
-- CLAUDE.md, skills and MCP are how you give it lasting knowledge and new abilities.
+- CLAUDE.md, skills and connectors are how you give it lasting knowledge and new abilities.
 
 ## Go deeper
 

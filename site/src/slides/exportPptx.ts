@@ -57,11 +57,8 @@ function title(slide: PSlide, text: string, y = 80) {
 async function addContent(slide: PSlide, s: Slide) {
   switch (s.kind) {
     case 'title': {
-      slide.addText(s.meta ?? '', { x: inch(96), y: inch(80), w: inch(800), h: inch(40), fontFace: BODY, fontSize: 12, color: C.muted, charSpacing: 2 })
-      slide.addText(s.title, { x: inch(96), y: inch(260), w: inch(760), h: inch(320), fontFace: DISPLAY, fontSize: pt(130), color: C.ink, valign: 'bottom', fit: 'shrink' })
-      slide.addText(s.subtitle, { x: inch(96), y: inch(600), w: inch(760), h: inch(140), fontFace: BODY, fontSize: pt(36), color: C.muted, valign: 'top' })
-      const img = await capture(s, '[data-export="vase"]')
-      if (img) slide.addImage({ data: img.data, x: inch(890), y: 0, w: inch(710), h: inch(900) })
+      slide.addText(s.title, { x: inch(112), y: inch(300), w: inch(1400), h: inch(320), fontFace: DISPLAY, fontSize: pt(150), color: C.ink, valign: 'bottom', fit: 'shrink' })
+      slide.addText(s.subtitle, { x: inch(112), y: inch(660), w: inch(1200), h: inch(80), fontFace: BODY, fontSize: pt(40), color: C.muted, valign: 'top' })
       return
     }
     case 'part':
@@ -134,7 +131,7 @@ async function addContent(slide: PSlide, s: Slide) {
       title(slide, s.title)
       for (let i = 0; i < s.images.length; i++) {
         const data = await urlToDataUrl(`${import.meta.env.BASE_URL}${s.images[i].src}`)
-        if (data) slide.addImage({ data, x: inch(96 + i * 724), y: inch(240), w: inch(684), h: inch(540), sizing: { type: 'cover', w: inch(684), h: inch(540) } })
+        if (data) slide.addImage({ data, x: inch(96 + i * 724), y: inch(240), w: inch(684), h: inch(540), sizing: { type: 'contain', w: inch(684), h: inch(540) } })
         slide.addText(s.images[i].label, { x: inch(96 + i * 724), y: inch(790), w: inch(684), h: inch(40), fontFace: MONO, fontSize: pt(22), color: C.muted })
       }
       return

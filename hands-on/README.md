@@ -1,31 +1,33 @@
 # Hands-on
 
-Time to build. You won't finish a whole website in 80 minutes — that's not the goal. The goal is to go through the loop a few times — **think → plan → build → check → commit** — and to make one thing that's yours.
+Time to build. You won't finish a whole website in 80 minutes — that's not the goal. The goal is to go through the loop a few times — **think → plan → build → check → note what changed** — and to make one thing that's yours.
 
 ## Choose your route
 
 | Route | Start here | Good if… |
 |---|---|---|
 | **A · From scratch** | An empty folder + one of the [starting points](starting-points/) | You want to experience planning from zero |
-| **B · Jump in at a stage** | `git checkout stage-03-viewer` (or any stage), then a [challenge card](challenge-cards.md) | You want to build features on something that already works |
+| **B · Jump in at a stage** | A stage folder from the instructor (e.g. *stage-03-viewer*), then a [challenge card](challenge-cards.md) | You want to build features on something that already works |
 | **C · Restyle** | `main` + the "Restyle it" card | You care most about the look and feel |
 
 ## Before you start
 
 - [ ] `node -v` shows 20 or higher
 - [ ] `claude` starts in the project folder
-- [ ] `cd site && npm install && npm run dev` shows the vase
+- [ ] Route B/C only: `cd site && npm install && npm run dev` shows the vase
 - [ ] You've read the [prompt cheat sheet](prompt-cheat-sheet.md)
 - [ ] You've got the [stack card](stack-card.md) ready to paste
 
-## Working on a stage without losing it
+## No Git needed
 
-```bash
-git checkout stage-04-printability       # go to that moment
-git switch -c my-experiment              # make your own branch from there
-# ... work, commit as often as you like ...
-git switch main                          # back to the finished demo at any time
-```
+Your project is simply **a folder on your laptop**. You don't need a GitHub account or Git today.
+
+- **Keeping track:** the chat itself is a log. Even better, ask Claude at the start: *"Keep a PROGRESS.md in this folder: after each step, write what I asked, what you changed and what we decided."*
+- **Undo:** Claude Code can rewind to an earlier point in the conversation. For extra safety, duplicate the folder before a big change.
+- **Starting from a stage (route B):** get the stage folder from the instructor, or download the repo as a ZIP.
+- **Your site is at `localhost`:** that link only works on your own laptop. Sharing it with others (building and hosting) is a next step for another day.
+
+*Already comfortable with Git?* Every stage is also a tag: `git checkout stage-04-printability`.
 
 ## Files in this folder
 

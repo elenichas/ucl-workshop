@@ -81,19 +81,11 @@ Our vase app is a **static site**: the server only hands over files. All the com
 - **Front end** — what runs in the browser. *Everything we build today.*
 - **Back end** — code on a server: accounts, payments, databases. *Not today.*
 
-### What is a repo?
+### Your project is a folder
 
-A **repository** (repo) is a project folder with a **history**. The tool that keeps the history is **git**; **GitHub** is a website that hosts repos online.
+A website project is simply **a folder of files** on your laptop. The agent writes into that folder; you look at the result in the browser at `localhost` (see [chapter 04](../04-setup-first-conversation/README.md)).
 
-| Term | Plain meaning |
-|---|---|
-| **Commit** | A saved snapshot with a message: "Add twist parameter". |
-| **Tag** | A name stuck on a commit: `stage-03-viewer`. |
-| **Branch** | A parallel line of work, so you can experiment without breaking `main`. |
-| **Push / pull** | Send your commits to GitHub / get others' commits from GitHub. |
-| **Clone** | Download a repo, with its history, to your laptop. |
-
-Think of commits as the numbered drawing revisions on a project: you can always go back to rev C.
+To keep track of what changed, today we use the chat itself and a `PROGRESS.md` file the agent updates after each step. Professionals use **Git** — a tool that saves numbered versions of the folder, like drawing revisions (rev A, rev B, rev C) — and **GitHub** to keep those versions online. Worth learning later; **not needed today**.
 
 ### The tech stack: layers of decisions
 
@@ -121,13 +113,13 @@ Most of the stack is **packages** — code written by others, downloaded by `npm
 
 - A model predicts text; an agent is a model in a loop with tools.
 - A website is HTML + CSS + JS that the browser runs; ours computes everything in the browser.
-- A repo is a folder with a history. Commits are revisions.
+- Your project is a folder. Keep a log of what changed (PROGRESS.md); Git can come later.
 - The stack is a design decision. Name it explicitly.
 
 ## Go deeper
 
 - MDN — [How the web works](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works)
-- GitHub — [About Git](https://docs.github.com/en/get-started/using-git/about-git)
+- GitHub — [About Git](https://docs.github.com/en/get-started/using-git/about-git) (for later)
 - Anthropic — [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
 
 ---

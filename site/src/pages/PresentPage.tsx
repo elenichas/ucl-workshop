@@ -138,7 +138,7 @@ export default function PresentPage() {
             <button type="button" onClick={() => setOverview(false)} className="rounded-sm border border-line p-2 hover:border-ink" aria-label="Close overview" autoFocus><X className="size-5" /></button>
           </div>
           <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {CHAPTERS.map((c) => (
+            {CHAPTERS.filter((c) => DECK.some((s) => s.chapter === c.slug)).map((c) => (
               <section key={c.slug}>
                 <h3 className="border-b border-ink pb-2 text-sm font-medium"><span className="font-mono text-clay">{c.number}</span> {c.title}</h3>
                 <ol className="mt-2">

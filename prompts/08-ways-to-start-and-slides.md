@@ -41,3 +41,14 @@ The deck went from **102 to 43 slides**:
 - What stayed: the ideas you'd want students to remember a week later — the agent loop, files over chat, plan before you build, the start decides the controls, "it looks right is not it is right", same vase on two printers, chosen vs unchosen design, did the test change or the code.
 
 A useful habit: **the website is the book, the slides are the talk.** Same source, different jobs.
+
+## And: "focus on what I'm teaching"
+
+> The presentation should emphasise creating the configurator: the logic, the inputs and outputs, how to think about it, and the prompts. AI and front-end are complementary — one slide each is enough.
+
+Down to **35 slides**, with the weight moved:
+- **Part 2 · Thinking before building** grew to 11 slides: inputs → process → outputs, "every parameter is a decision you give away", the start decides the controls, the system map, constraints as inputs, and the mapping exercise.
+- **Part 3 · Building it, prompt by prompt** now shows the **actual prompts** for each stage (algorithm, printability rules, adding a starting point) next to what they produced.
+- **Parts 1 and 4** became context: three slides on agents, the stack and files-over-chat; one table for all of craft and quality, plus the slop comparison.
+
+The lesson for students is the same one this whole log keeps repeating: a short, clear statement of what matters ("this is what I'm actually teaching") changed the result more than any amount of detail.

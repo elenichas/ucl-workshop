@@ -1,6 +1,6 @@
 # Challenge cards
 
-Pick one. Each has a suggested starting stage, a goal, and a first prompt. Use plan mode, build in small steps, commit when it works.
+Pick one. Each has a suggested starting stage, a goal, and a first prompt. Use plan mode, build in small steps, and ask the agent to note each working step in PROGRESS.md.
 
 **Levels:** 🟢 easy (15–20 min) · 🟡 medium (30–40 min) · 🔴 hard (60 min+)
 
@@ -74,7 +74,7 @@ Show the triangles. Then add a "Resolution" control and watch the mesh change.
    its layout, type, colour and tone (tokens in YAML at the top, then
    principles, then don'ts). No code.
 2. [You edit DESIGN.alt.md]
-3. On a new branch "restyle", apply DESIGN.alt.md to the landing page and
+3. In a copy of your folder, apply DESIGN.alt.md to the landing page and
    configurator. Keep all features working. Plan first.
 4. Critique the result against DESIGN.alt.md: 5 biggest gaps; fix the top 3.
 ```
@@ -132,7 +132,7 @@ A landing page where scrolling "prints" the vase from bottom to top, then reveal
 ## For every card
 
 - [ ] Plan first (plan mode or PLAN.md)
-- [ ] Small steps — commit when something works
-- [ ] `npm test` still green?
+- [ ] Small steps — note each working step in PROGRESS.md
+- [ ] Still works in the browser? (and `npm test`, if you have tests)
 - [ ] Did a test change, or the code? (agents sometimes "fix" tests)
 - [ ] Can you explain what changed, in your own words?

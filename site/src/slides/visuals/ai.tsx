@@ -60,12 +60,12 @@ export function ChatVsAgent({ step }: V) {
 
 // ---------------------------------------------------------------------------
 const LOOP = [
-  { k: 'Think', d: '“I should look at how parameters are defined.”' },
-  { k: 'Act', d: 'Read  site/src/design/design.ts' },
-  { k: 'Observe', d: 'The file comes back into the context' },
-  { k: 'Act', d: 'Edit  site/src/starts/shapes.ts' },
-  { k: 'Check', d: 'Bash  npm test  →  48 passed' },
-  { k: 'Answer', d: '“I added a lean parameter. Here is what changed…”' },
+  { k: 'You ask', d: '“Add a twist slider to the vase.”' },
+  { k: 'It thinks', d: '“First I need to see how the other sliders are made.”' },
+  { k: 'It looks', d: 'Opens and reads files in your project folder' },
+  { k: 'It writes', d: 'Writes new code into those files — this is where the code gets written' },
+  { k: 'It checks', d: 'Runs the project’s checks to see if anything broke — and fixes it' },
+  { k: 'It tells you', d: '“I added a twist slider. Here is what I changed…”' },
 ]
 export function AgentLoop({ step }: V) {
   return (
@@ -74,7 +74,7 @@ export function AgentLoop({ step }: V) {
         <circle cx="260" cy="260" r="190" className="fill-none stroke-line" strokeWidth="2" />
         <path id="ring" d="M260 70 A190 190 0 1 1 259.9 70" className="fill-none" />
         <circle r="12" className="fill-clay motion-dot"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#ring" /></animateMotion></circle>
-        {['Think', 'Act', 'Observe', 'Repeat'].map((w, i) => {
+        {['Think', 'Act', 'Look', 'Repeat'].map((w, i) => {
           const a = (i / 4) * Math.PI * 2 - Math.PI / 2
           const x = 260 + Math.cos(a) * 190, y = 260 + Math.sin(a) * 190
           return (
@@ -90,7 +90,7 @@ export function AgentLoop({ step }: V) {
         {LOOP.map((l, i) => (
           <Reveal key={i} step={step} at={i}>
             <li className={cn('flex gap-5 border-l-2 py-1 pl-5', step === i ? 'border-clay' : 'border-line')}>
-              <span className="w-28 shrink-0 font-mono text-[22px] text-clay">{l.k}</span>
+              <span className="w-44 shrink-0 font-mono text-[22px] text-clay">{l.k}</span>
               <span className="text-[24px] leading-snug">{l.d}</span>
             </li>
           </Reveal>
@@ -102,13 +102,13 @@ export function AgentLoop({ step }: V) {
 
 // ---------------------------------------------------------------------------
 const CC_STEPS = [
-  ['You', '“Add a twist parameter to the vase.”'],
-  ['Context', 'your message + CLAUDE.md + conversation + tool & skill descriptions'],
-  ['Model', 'decides it needs to look at the parameter definitions'],
-  ['Tool: Read', 'site/src/starts/shapes.ts → back into the context'],
-  ['Tool: Edit', 'changes the file — you may be asked to approve'],
-  ['Tool: Bash', 'npm test → “1 failed” → back to the model → fix → “48 passed”'],
-  ['Answer', 'what changed, and why — read it, then read the diff'],
+  ['You', '“Add a twist slider to the vase.”'],
+  ['It reads', 'your message, your project notes (CLAUDE.md) and the chat so far'],
+  ['It decides', 'it needs to look at how the sliders are made'],
+  ['It opens a file', 'and reads it'],
+  ['It writes code', 'into your project files — you may be asked to approve'],
+  ['It checks', 'runs the project’s tests → something broke → fixes it → all fine'],
+  ['It answers', 'what changed, and why — ask it to explain in plain words'],
 ]
 export function ClaudeCodeSteps({ step }: V) {
   return (
@@ -132,7 +132,7 @@ const FILES = [
   ['PLAN.md', 'What we agreed to build', 'goal · parameters · build order'],
   ['DESIGN.md', 'How it should look', 'tokens · principles · don’ts'],
   ['Skills', 'Know-how loaded when relevant', 'printability-review · design language'],
-  ['MCP', 'Connections to other tools', 'browser · Figma · Rhino'],
+  ['Connectors', 'Links to other tools (MCP)', 'a browser · Figma · Rhino'],
 ]
 export function KnowledgeFiles({ step }: V) {
   return (

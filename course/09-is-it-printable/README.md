@@ -1,6 +1,6 @@
 # 09 · Is it printable?
 
-> **Part 3 — Building the configurator** · ~10 min · code at tag `stage-04-printability`
+> **Part 3 — Building it, prompt by prompt** · ~10 min · demo stage `stage-04-printability`
 
 **In one sentence:** printability is a set of small, explainable rules that compare the vase with the printer and the material — and the app should say *why*, not just *no*.
 

@@ -9,9 +9,9 @@
 ## What we did, in one picture
 
 ```
-think ──► plan (PLAN.md, DESIGN.md) ──► build one step ──► check (look, test) ──► commit ──┐
-  ▲                                                                                       │
-  └──────────────────────────────── learn, update the plan ◄─────────────────────────────┘
+think ──► plan (PLAN.md, DESIGN.md) ──► build one step ──► check (look, test) ──► note it ──┐
+  ▲                                                                                        │
+  └──────────────────────────────── learn, update the plan ◄──────────────────────────────┘
 ```
 
 The agent was fast at the "build" box. Every other box was ours.
@@ -36,8 +36,8 @@ The agent was fast at the "build" box. Every other box was ours.
 ## Habits worth keeping
 
 1. **Plan first, in a file.** Approve narrowly.
-2. **Small steps; commit often.** Git makes mistakes cheap.
-3. **Read the tool calls**, not just the final message.
+2. **Small steps; keep track.** A PROGRESS.md and the rewind button make mistakes cheap.
+3. **Read the steps the agent takes**, not just the final message.
 4. **Ask for explanations.** "Explain what you changed and why, as if to a first-year student."
 5. **Test what's expensive to get wrong.**
 6. **Write repeated instructions down** — CLAUDE.md, a skill.

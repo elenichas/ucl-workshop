@@ -5,7 +5,7 @@ import { CHAPTERS, PARTS } from './course'
 export default function CoursePage() {
   return (
     <div className="mx-auto max-w-[1100px] px-4 py-12 md:px-6 md:py-20">
-      <p className="section-label">A 3-hour workshop · UCL</p>
+      <p className="section-label">Eleni Chasioti</p>
       <h1 className="mt-5 font-display text-6xl leading-[0.95] tracking-tight md:text-8xl">Prompt to Print</h1>
       <p className="mt-6 max-w-[56ch] text-lg leading-relaxed text-ink-muted">
         Building a parametric vase configurator with Claude Code. Nineteen short chapters on how AI agents and websites work,

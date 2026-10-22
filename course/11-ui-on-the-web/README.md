@@ -1,21 +1,34 @@
 # 11 · UI on the web
 
-> **Part 4 — Craft and quality** · ~10 min · code at tag `stage-06-craft`
+> **Part 4 — Craft and quality** · ~3 min · context
 
-**In one sentence:** the interface is architecture for attention — hierarchy, proportion and material apply on a screen just as they do in a building.
+**In one sentence:** first make it work, then make it good — build the working core with plain controls, and only then design the interface around it.
 
 ---
 
-## Compare two stages
+## First make it work, then make it good
 
-Check out `stage-05-exports` and then `stage-06-craft`. Same functionality. Completely different experience.
+We did **not** start with a beautiful interface. We built it in two moves:
 
-| Stage 5 (function) | Stage 6 (craft) |
+1. **It works.** The algorithm and a 3D view, with plain browser sliders. Ugly, but every number does something — and we can test the logic.
+2. **Designed around it.** Once the logic was stable, we designed the app around it: grouped steps, the vase given the most space, one accent colour, clear print verdicts.
+
+Why this order? If you design first, every change to the logic (a new parameter, a new way to start) means redesigning the screen. Design what you know works.
+
+| 1 · It works | 2 · Designed around it |
 |---|---|
 | Browser default sliders | Sliders with labels, exact values, units, help text |
-| Everything in one long column | Grouped: Shape · Surface · Make |
+| Everything in one long column | Grouped into steps: Shape · Surface · Make |
 | "FAIL Wall thickness —" | Icon + verdict + one sentence with numbers |
 | No hierarchy | The vase is the hero; controls are the workbench |
+
+When you get to step 2, a good prompt is:
+
+```text
+The configurator works. Now let's design the interface around it.
+Before changing anything: what should people see first, what can be
+grouped, and what can be hidden until it's needed?
+```
 
 ## Principles we used
 

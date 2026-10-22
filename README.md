@@ -34,7 +34,7 @@ Our case study is a web app where anyone can design their own 3D-printable vase:
 **Part 2 — Thinking before building**
 05 Starting systematically: from idea to plan · 06 Parameters: what do we control?
 
-**Part 3 — Building the configurator**
+**Part 3 — Building it, prompt by prompt**
 07 The algorithm · 08 The 3D viewer · 09 Is it printable? · 10 Exports
 
 **Part 4 — Craft and quality**
@@ -61,7 +61,7 @@ Open **Course → Present the course** (or *Present this chapter* on any chapter
 
 ## Follow the build step by step
 
-Every stage of the demo is saved as a **git tag**, so you can jump to the exact state of the website at the end of each chapter:
+Every stage of the demo is saved, so you can jump to the exact state of the website at the end of each chapter. **Students don't need Git:** the instructor hands out each stage as a plain folder (see [`hands-on/`](hands-on/README.md)). If you do use Git, each stage is a **tag**:
 
 | Tag | State of the app |
 |---|---|
