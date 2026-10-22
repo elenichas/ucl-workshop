@@ -9,7 +9,7 @@ import { buildDesign } from '@/geometry/buildDesign'
 import { runChecks, overall, type Verdict } from '@/checks/printability'
 import { getPrinter } from '@/config/printers'
 import { getMaterial } from '@/config/materials'
-import { Arrow, Box, G, Reveal } from './common'
+import { Arrow, G, Reveal } from './common'
 
 type V = { step: number }
 
@@ -160,11 +160,11 @@ export function IPO({ step }: V) {
     ['Outputs', ['Live 3D view', 'Print report + estimates', 'STL · OBJ · 3DM']],
   ] as const
   return (
-    <div className="grid h-full grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-6">
+    <div className="grid h-full grid-cols-[1fr_auto_1fr_auto_1fr] content-center items-center gap-6">
       {cols.map(([t, items], i) => (
         <div key={t} className="contents">
           <Reveal step={step} at={i}>
-            <div className={cn('border p-8', i === 1 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
+            <div className={cn('h-[500px] border p-8', i === 1 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
               <p className="font-display text-[76px] leading-none">{t}</p>
               <ul className="mt-6 grid gap-3">{items.map((x) => <li key={x} className="text-[29px] leading-snug">{x}</li>)}</ul>
             </div>
@@ -204,19 +204,38 @@ export function Algorithm({ step }: V) {
 
 // ---------------------------------------------------------------------------
 export function Winding({ step }: V) {
-  return (
-    <div className="grid h-full grid-cols-2 items-center gap-16">
-      <svg viewBox="0 0 600 420" className="w-full">
-        <defs><marker id="wa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10z" className="fill-clay" /></marker></defs>
-        <polygon points="120,340 480,340 300,80" className="fill-paper-raised stroke-ink" strokeWidth="3" />
-        {[['A', 100, 370], ['B', 490, 370], ['C', 300, 60]].map(([l, x, y]) => <text key={l as string} x={x as number} y={y as number} fontSize="34" className="fill-ink font-mono">{l}</text>)}
-        <G step={step} at={0}><path d="M170 320 H430" className="stroke-clay" strokeWidth="3" markerEnd="url(#wa)" /><path d="M440 310 L320 120" className="stroke-clay" strokeWidth="3" markerEnd="url(#wa)" /><text x="300" y="250" textAnchor="middle" fontSize="28" className="fill-ink">A → B → C</text></G>
-        <G step={step} at={1}><circle cx="300" cy="215" r="16" className="fill-ok" /><text x="300" y="400" textAnchor="middle" fontSize="26" className="fill-ok">front faces you: outside</text></G>
+  // A vase wall in section: the same outline twice, with arrows showing which way its surfaces face.
+  const wall = 'M70 40 C40 110 30 190 60 260 L60 300 L180 300 L180 260 C210 190 200 110 170 40'
+  const arrows = (out: boolean) =>
+    [[52, 90, -1], [38, 170, -1], [62, 250, -1], [188, 90, 1], [202, 170, 1], [178, 250, 1], [120, 300, 0]].map(([x, y, dx], i) => {
+      const dir = out ? 1 : -1
+      const [x2, y2] = dx === 0 ? [x, y + 34 * dir] : [x + dx * 34 * dir, y]
+      return <line key={i} x1={x} y1={y} x2={x2} y2={y2} className={out ? 'stroke-ok' : 'stroke-fail'} strokeWidth="4" markerEnd={out ? 'url(#wo)' : 'url(#wi)'} />
+    })
+  const panel = (out: boolean, label: string, sub: string) => (
+    <div>
+      <svg viewBox="-10 0 260 350" className="mx-auto h-[330px]">
+        <path d={wall} className="fill-paper-raised stroke-ink" strokeWidth="3" />
+        {arrows(out)}
       </svg>
+      <p className={cn('mt-2 text-center text-[28px] font-medium', out ? 'text-ok' : 'text-fail')}>{label}</p>
+      <p className="text-center text-[22px] text-ink-muted">{sub}</p>
+    </div>
+  )
+  return (
+    <div className="grid h-full grid-cols-[1.1fr_1fr] items-center gap-14">
+      <svg width="0" height="0" className="absolute"><defs>
+        <marker id="wo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" className="fill-ok" /></marker>
+        <marker id="wi" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" className="fill-fail" /></marker>
+      </defs></svg>
+      <div className="grid grid-cols-2 gap-6">
+        {panel(true, 'Correct', 'surfaces face outwards')}
+        <Reveal step={step} at={1}>{panel(false, 'Our first version', 'inside-out')}</Reveal>
+      </div>
       <div className="grid gap-6">
-        <p className="text-[30px] leading-snug">The <span className="text-clay">order of the corners</span> decides which side of a triangle is the front.</p>
-        <Reveal step={step} at={2}><p className="text-[26px] leading-snug">Our first version had the side walls <strong>inside-out</strong>. On screen: perfect. In a slicer: a broken file.</p></Reveal>
-        <Reveal step={step} at={3}><p className="border-l-2 border-clay pl-5 text-[26px] leading-snug">Two tests caught it in half a second: <span className="font-mono">watertight ✗</span> and <span className="font-mono">volume off by 12 % ✗</span>.</p></Reveal>
+        <p className="text-[30px] leading-snug">A 3D model is a skin of tiny triangles, and each one has an <span className="text-clay">outside</span> and an <span className="text-clay">inside</span>.</p>
+        <Reveal step={step} at={1}><p className="text-[27px] leading-snug">In our first version the walls were flipped. <strong>On screen it looked perfect.</strong> The printer software saw a broken file.</p></Reveal>
+        <Reveal step={step} at={2}><p className="border-l-2 border-clay pl-5 text-[26px] leading-snug">You can’t see this by eye — so ask the agent for checks: <span className="font-mono text-[23px] text-clay">“Is every vase a closed shape? Do its surfaces face outwards?”</span> They caught it in half a second.</p></Reveal>
       </div>
     </div>
   )
@@ -360,20 +379,30 @@ export function AxisSwap({ step }: V) {
 
 // ---------------------------------------------------------------------------
 export function FabPath({ step }: V) {
+  const stages = [
+    ['Vessel', 'the configurator', 'You design the vase. Until you download it, it’s just numbers in the browser.'],
+    ['STL file', 'the shape', 'The vase’s surface as thousands of tiny triangles, in millimetres. Only the shape — no colour, no layers. Every printer software can open it.'],
+    ['Slicer', 'PrusaSlicer, Cura, Bambu Studio…', 'Cuts the shape into thin horizontal layers and plans the nozzle’s path for each one. Here you pick layer height, speed, supports. It saves G-code.'],
+    ['Printer', 'the object', 'Reads the G-code line by line — “move here, push out this much material” — and builds the vase layer by layer.'],
+  ] as const
   return (
-    <div className="grid h-full content-center gap-10">
-      <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-center gap-4">
-        <Box title="Vessel" sub="in the browser" active />
-        <Arrow /><Reveal step={step} at={0}><Box title="STL" sub="triangles, mm" /></Reveal>
-        <Arrow /><Reveal step={step} at={1}><Box title="Slicer" sub="layers → G-code" /></Reveal>
-        <Arrow /><Reveal step={step} at={2}><Box title="Printer" sub="the object" /></Reveal>
+    <div className="grid h-full content-center gap-8">
+      <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-stretch gap-4">
+        {stages.map(([t, s, d], i) => (
+          <div key={t} className="contents">
+            {i > 0 && <Reveal step={step} at={i - 1} className="self-center"><Arrow /></Reveal>}
+            <Reveal step={step} at={Math.max(0, i - 1)} className="h-full">
+              <div className={cn('h-full border p-6', i === 0 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
+                <p className="text-[34px] font-medium">{t}</p>
+                <p className="font-mono text-[19px] text-clay">{s}</p>
+                <p className="mt-4 text-[22px] leading-snug text-ink-muted">{d}</p>
+              </div>
+            </Reveal>
+          </div>
+        ))}
       </div>
       <Reveal step={step} at={3}>
-        <div className="grid grid-cols-[1fr_auto_1fr_auto_2fr] items-center gap-4">
-          <span />
-          <Arrow /><Box title="3DM → Rhino" sub="add a stand, an array, a logo…" />
-          <Arrow /><p className="text-[28px] text-ink-muted">…then back to STL and the slicer. For clay: dry slowly, bisque fire, glaze, fire again — and remember the ~12 % shrinkage.</p>
-        </div>
+        <p className="text-[25px] leading-snug text-ink-muted"><span className="font-medium text-ink">Want to keep editing?</span> Download a <span className="font-mono">.3dm</span> for Rhino, add a stand or a logo, then export an STL again. <span className="font-medium text-ink">Clay:</span> dry slowly, fire — and expect about 12 % shrinkage.</p>
       </Reveal>
     </div>
   )

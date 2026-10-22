@@ -2,7 +2,7 @@ import PptxGenJS from 'pptxgenjs'
 import { createElement } from 'react'
 import { createRoot } from 'react-dom/client'
 import { toPng } from 'html-to-image'
-import { SlideView, SLIDE_W } from './SlideView'
+import { SlideView, SLIDE_W, vaseImage } from './SlideView'
 import { stepsOf, type Slide } from './types'
 import { contextOf } from './deck'
 
@@ -123,8 +123,8 @@ async function addContent(slide: PSlide, s: Slide) {
       slide.addText(s.title, { x: inch(96), y: inch(96), w: inch(560), h: inch(300), fontFace: DISPLAY, fontSize: pt(66), color: C.ink, valign: 'top', fit: 'shrink' })
       if (s.caption) slide.addText(s.caption, { x: inch(96), y: inch(420), w: inch(560), h: inch(140), fontFace: BODY, fontSize: pt(26), color: C.muted, valign: 'top' })
       slide.addText(s.designs.map((d) => ({ text: d.label, options: { bullet: true } })), { x: inch(96), y: inch(600), w: inch(560), h: inch(220), fontFace: BODY, fontSize: pt(26), color: C.muted, valign: 'bottom' })
-      const img = await capture(s, '[data-export="vase"]')
-      if (img) slide.addImage({ data: img.data, x: inch(690), y: 0, w: inch(910), h: inch(900) })
+      const data = await urlToDataUrl(`${import.meta.env.BASE_URL}${vaseImage(s.id, s.designs.length - 1)}`)
+      if (data) slide.addImage({ data, x: inch(690), y: 0, w: inch(910), h: inch(900), sizing: { type: 'contain', w: inch(910), h: inch(900) } })
       return
     }
     case 'images': {

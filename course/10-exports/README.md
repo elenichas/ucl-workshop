@@ -6,6 +6,17 @@
 
 ---
 
+## From screen to object, step by step
+
+| Step | What it is |
+|---|---|
+| **Vessel** — the configurator | You design the vase. Until you download it, it's just numbers in the browser. |
+| **STL file** — the shape | The vase's surface as thousands of tiny triangles, in millimetres. Only the shape — no colour, no layers. Every printer software can open it. |
+| **Slicer** — PrusaSlicer, Cura, Bambu Studio, or the clay printer's own software | Cuts the shape into thin horizontal layers and plans the path of the nozzle for each one. This is where you choose layer height, speed and supports. It saves a **G-code** file. |
+| **Printer** — the object | Reads the G-code line by line — "move here, push out this much material" — and builds the vase layer by layer. |
+
+Want to keep editing? Download a **3DM** for Rhino, add a stand or a logo, then export an STL again.
+
 ## Three formats, three audiences
 
 | Format | What it is | Who opens it |

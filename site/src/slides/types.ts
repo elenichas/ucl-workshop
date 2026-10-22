@@ -30,7 +30,7 @@ export type Slide = Base &
     | { kind: 'compare'; title: string; left: { label: string; points: string[] }; right: { label: string; points: string[] }; reveal?: boolean }
     | { kind: 'table'; title: string; head: string[]; rows: string[][]; reveal?: boolean }
     | { kind: 'code'; title: string; code: string; caption?: string; lang?: 'prompt' | 'code' | 'shell' }
-    | { kind: 'vase'; title: string; caption?: string; designs: { label: string; design: Design }[] }
+    | { kind: 'vase'; id: string; title: string; caption?: string; designs: { label: string; design: Design }[] }
     | { kind: 'images'; title: string; images: { src: string; label: string }[]; caption?: string }
   )
 
