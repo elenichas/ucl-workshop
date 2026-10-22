@@ -23,6 +23,7 @@ export type Slide = Base &
   (
     | { kind: 'title'; title: string; subtitle: string; meta?: string }
     | { kind: 'chapter'; number: string; title: string; part: string; summary: string }
+    | { kind: 'part'; number: number; title: string; question: string; chapters: { number: string; title: string }[] }
     | { kind: 'statement'; text: string; sub?: string }
     | { kind: 'bullets'; title: string; points: string[]; reveal?: boolean; aside?: string }
     | { kind: 'visual'; title: string; visual: VisualId; steps?: number; caption?: string }
@@ -50,6 +51,7 @@ export function titleOf(s: Slide): string {
   switch (s.kind) {
     case 'statement': return s.text
     case 'chapter': return `${s.number} · ${s.title}`
+    case 'part': return `Part ${s.number} · ${s.title}`
     default: return s.title
   }
 }

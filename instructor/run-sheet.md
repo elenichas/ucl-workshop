@@ -6,33 +6,30 @@ Legend: **▶ present** · **↷ flip through** (show one slide/table, 1 min) ·
 
 ## Timeline
 
-| Time | Block | Chapters | Mode |
-|---|---|---|---|
-| 0:00 | Welcome + live demo of the finished configurator | 00 | ▶ 5 min |
-| 0:05 | AI + web fundamentals | 01 | ▶ 12 min — the agent loop diagram, "a website is files", the stack table |
-| 0:17 | What is Claude Code | 02 | ▶ 12 min — the 10-step "background" diagram; skills in 2 min |
-| 0:29 | Tokens | 03 | ▶ 5 min — the context box + "A vs B" comparison |
-| 0:34 | Setup | 04 | ↷ 2 min (they do it during the break) |
-| 0:36 | **Starting systematically** ⭐ | 05 | ▶ 12 min — the five starting points; tell the "printer profiles came from a question" story (`prompts/01-interview.md`) |
-| 0:48 | Parameters | 06 | ↷ 3 min — "every parameter is a decision you give away" |
-| 0:51 | Algorithm | 07 | ▶ 6 min — Grasshopper analogy + the **inside-out vase** story |
-| 0:57 | Viewer + performance | 08 | ▶ 5 min — meshes not NURBS; the "when it's slow" table |
-| 1:02 | Printability + exports | 09, 10 | ↷ 4 min — same vase, PLA ✓ vs clay ✗, live in the app |
-| 1:06 | Craft: UI, responsive, a11y, 3D interaction | 11–14 | ↷ 4 min — show stage 5 vs stage 6 side by side; show it on your phone |
-| 1:10 | **Avoiding AI slop** | 15 | ▶ 6 min — the tells; DESIGN.md; the five families of repos |
-| 1:16 | Testing + shipping | 16, 17 | ↷ 3 min — run `npm test` live; the 3DM bug only a browser caught |
-| 1:19 | **Break + setup check** | — | 10 min |
-| 1:29 | **Hands-on** | `hands-on/` | 75 min — you walk around |
-| 2:44 | Show and tell | — | 10 min — 3–4 screens |
-| 2:54 | Reflection | 18 | 6 min — pick **two** discussion questions |
+The deck has **43 slides**: a dark divider opens each of the five parts, then 1–3 slides per chapter. Roughly one minute per slide, more on the starred ones.
 
-If you're running late, cut in this order: 14 → 13 → 12 → 10 → 06 → 17. Never cut 05.
+| Time | Block | Slides | Notes |
+|---|---|---|---|
+| 0:00 | Welcome — what we build, the one rule | 1–3 | 5 min. Click through the four vases. |
+| 0:05 | **Part 1 · Foundations** — agents, websites, the stack, Claude Code, tokens, first prompt | 4–13 | 20 min. The agent loop and "what happens in the background" are the core. |
+| 0:25 | **Part 2 · Thinking before building** ⭐ — starting systematically, parameters, the system map | 14–20 | 15 min. Tell the "printer profiles came from a question" story. Show **How it works** live in the app. |
+| 0:40 | **Part 3 · Building** — algorithm, viewer, printability, exports | 21–29 | 12 min. The inside-out vase; same vase PLA ✓ / clay ✗. |
+| 0:52 | **Part 4 · Craft and quality** — UI, phones, accessibility, 3D, AI slop, testing, shipping | 30–39 | 12 min. Most slides are one-liners — keep moving. |
+| 1:04 | **Part 5 · Reflection** (short version) | 40–41 | 3 min. Save the discussion for the end. |
+| 1:07 | **Break + setup check** | — | 10 min |
+| 1:17 | **Hands-on** | `hands-on/` | 85 min — you walk around |
+| 2:42 | Show and tell | — | 10 min — 3–4 screens |
+| 2:52 | Reflection discussion | 42–43 | 8 min — pick **two** questions |
+
+If you're running late: skip slides 32–34 and 39 (phones, accessibility, 3D, shipping) — the chapter pages cover them. Never skip Part 2.
 
 ## Presenting from the site
 
 **Course → Present the course.** Arrow keys / clicker: next reveal or slide · **O** overview (jump anywhere) · **N** speaker notes window (keep it on your laptop, share only the slides) · **F** full screen · **PowerPoint** button for a .pptx backup (takes about a minute; diagrams and 3D become images, notes are kept).
 
-Slide numbers for the key moments: system map 48–49 · inside-out vase ~55 · same vase two printers ~63. Use **O** rather than memorising.
+Key slides: five ways to start **16** · system map **19–20** · inside-out vase **24** · same vase, two printers **27** · AI slop **35**. Use **O** rather than memorising.
+
+The reading version of every chapter (on the site and on GitHub) is longer than the slides on purpose — point students there for details.
 
 ## Live demo checklist (before the session)
 

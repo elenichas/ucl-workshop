@@ -70,7 +70,7 @@ const LOOP = [
 export function AgentLoop({ step }: V) {
   return (
     <div className="grid h-full grid-cols-[1fr_1.1fr] items-center gap-16">
-      <svg viewBox="0 0 520 520" className="w-full">
+      <svg viewBox="0 0 520 520" className="mx-auto h-full max-h-[600px] w-full">
         <circle cx="260" cy="260" r="190" className="fill-none stroke-line" strokeWidth="2" />
         <path id="ring" d="M260 70 A190 190 0 1 1 259.9 70" className="fill-none" />
         <circle r="12" className="fill-clay motion-dot"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#ring" /></animateMotion></circle>

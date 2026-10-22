@@ -29,3 +29,15 @@ Claude proposed a plan, then asked three questions (carve now or later? one deck
 5. **The full system map didn't fit a slide** at a readable size. It became two slides: "what each start exposes" and "one shared pipeline".
 
 > Look, measure, then fix — for slides as much as for geometry.
+
+## Then: "it's too long"
+
+> The presentation looks like a proper presentation — but it's over 100 slides and I'll never have time. Keep the website course as it is, but cut the deck to 40–45 slides: two per chapter, three at most. Fewer details, fewer technical explanations, and make it obvious when we change part.
+
+The deck went from **102 to 43 slides**:
+- No more chapter title slides. Instead, a **dark divider** opens each of the five parts, with the question that part answers and the chapters in it.
+- Every content slide carries a small **"Part · chapter" label** and five tick marks showing where you are.
+- Technical tables (tools, skills, performance fixes, file formats, accessibility checklist) left the slides — they stay in the chapter pages.
+- What stayed: the ideas you'd want students to remember a week later — the agent loop, files over chat, plan before you build, the start decides the controls, "it looks right is not it is right", same vase on two printers, chosen vs unchosen design, did the test change or the code.
+
+A useful habit: **the website is the book, the slides are the talk.** Same source, different jobs.
