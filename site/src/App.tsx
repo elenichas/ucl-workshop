@@ -5,8 +5,10 @@ import { getPrinter, PRINTERS } from '@/config/printers'
 import { runChecks } from '@/checks/printability'
 import { useVase } from '@/state/useVase'
 import { VaseViewer } from '@/viewer/VaseViewer'
+import { buildVase } from '@/geometry/buildVase'
+import { download, to3DM, toOBJ, toSTL } from '@/export/formats'
 
-// Stage 4: printer + material profiles and printability checks.
+// Stage 5: exports — STL for slicers, OBJ for anything, 3DM for Rhino.
 export default function App() {
   const [params, setParams] = useState(DEFAULT_PARAMS)
   const [printerId, setPrinterId] = useState('fdm-desktop')
@@ -34,6 +36,11 @@ export default function App() {
               onChange={(e) => setParams({ ...params, [d.key]: Number(e.target.value) })} />
           </label>
         ))}
+        <div className="mt-4 flex gap-2">
+          <button onClick={() => download(toSTL(buildVase(params)), 'vase.stl')}>STL</button>
+          <button onClick={() => download(toOBJ(buildVase(params)), 'vase.obj')}>OBJ</button>
+          <button onClick={async () => download(await to3DM(buildVase(params), 'vase'), 'vase.3dm')}>3DM</button>
+        </div>
         <ul className="mt-4">
           {results.map((r) => <li key={r.id}><b>{r.verdict.toUpperCase()}</b> {r.title} — {r.detail}</li>)}
         </ul>
