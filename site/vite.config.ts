@@ -16,6 +16,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@course': path.resolve(__dirname, '../course'),
+      // see src/lib/ws-stub.ts
+      ws: path.resolve(__dirname, 'src/lib/ws-stub.ts'),
     },
   },
   server: {

@@ -1,0 +1,73 @@
+import { useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { CHAPTERS, resolveHref } from './course'
+
+export default function ChapterPage() {
+  const { slug } = useParams()
+  const index = CHAPTERS.findIndex((c) => c.slug === slug)
+  const chapter = CHAPTERS[index]
+  const prev = CHAPTERS[index - 1]
+  const next = CHAPTERS[index + 1]
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    if (chapter) document.title = `${chapter.number} · ${chapter.title} — Prompt to Print`
+  }, [chapter])
+
+  if (!chapter) {
+    return (
+      <div className="mx-auto max-w-[760px] px-4 py-20">
+        <p>Chapter not found. <Link className="underline" to="/course">Back to the course</Link></p>
+      </div>
+    )
+  }
+
+  // The chapter's own footer ("Next: …") is replaced by the navigation below.
+  const body = chapter.body.replace(/\n---\n\n\*\*(Next|Back to):\*\*[\s\S]*$/, '\n')
+
+  return (
+    <article className="mx-auto max-w-[760px] px-4 py-12 md:px-6 md:py-16">
+      <Link to="/course" className="section-label hover:text-ink">← All chapters</Link>
+      <div className="prose mt-8">
+        <Markdown
+          remarkPlugins={[remarkGfm]}
+          components={{
+            a: ({ href = '', children }) => {
+              const r = resolveHref(href, chapter.slug)
+              return r.to ? <Link to={r.to}>{children}</Link> : <a href={r.href} target="_blank" rel="noreferrer">{children}</a>
+            },
+            table: ({ children }) => (
+              <div className="table-wrap" tabIndex={0} role="region" aria-label="Table">
+                <table>{children}</table>
+              </div>
+            ),
+          }}
+        >
+          {body}
+        </Markdown>
+      </div>
+      <nav aria-label="Chapters" className="mt-16 grid gap-px border border-line bg-line sm:grid-cols-2">
+        {prev ? (
+          <Link to={`/course/${prev.slug}`} className="bg-paper p-5 hover:bg-paper-raised">
+            <span className="flex items-center gap-2 text-xs text-ink-muted"><ArrowLeft className="size-3" aria-hidden /> Previous</span>
+            <span className="mt-1 block font-display text-2xl">{prev.number} · {prev.title}</span>
+          </Link>
+        ) : <span className="hidden bg-paper sm:block" />}
+        {next ? (
+          <Link to={`/course/${next.slug}`} className="bg-paper p-5 text-right hover:bg-paper-raised">
+            <span className="flex items-center justify-end gap-2 text-xs text-ink-muted">Next <ArrowRight className="size-3" aria-hidden /></span>
+            <span className="mt-1 block font-display text-2xl">{next.number} · {next.title}</span>
+          </Link>
+        ) : (
+          <Link to="/configure" className="bg-paper p-5 text-right hover:bg-paper-raised">
+            <span className="text-xs text-ink-muted">Now go and make one</span>
+            <span className="mt-1 block font-display text-2xl">Open the configurator →</span>
+          </Link>
+        )}
+      </nav>
+    </article>
+  )
+}
