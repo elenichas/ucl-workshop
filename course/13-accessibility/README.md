@@ -1,57 +1,45 @@
-# 13 · Accessibility
+# 13 · Accessibility: readable for everyone
 
-> **Part 4 — Craft and quality** · ~8 min
+> **Part 4 — Craft and quality** · ~3 min · context
 
-**In one sentence:** accessibility is the web's equivalent of step-free access — designed in from the start, it helps everyone; bolted on later, it's expensive and ugly.
+**In one sentence:** before anything fancy, make sure everyone can read and use your site — enough contrast, no tiny text, and it works without a mouse.
 
 ---
 
-## Who we're designing for
+This is not a full accessibility course. It's the **basics** every website should get right — and that AI-made sites often get wrong.
 
-- People who **can't use a mouse** (keyboard, switch devices)
-- People using a **screen reader** (blind or low-vision)
-- People with **colour blindness** (~1 in 12 men)
-- People with **motion sensitivity**
-- Everyone, on a sunny day, on a cracked phone screen, holding a coffee
+## The three basics
 
-## The checklist we applied
+### 1 · Contrast
+Text must stand out from its background. Light grey on cream looks elegant on your screen and disappears on a projector, a phone in the sun, or for someone with weaker eyesight.
 
-| Principle | In Vessel |
-|---|---|
-| **Every control has a label** | Each slider is linked to its label and has an `aria-label`; colour swatches are named ("Celadon glaze") |
-| **Keyboard works everywhere** | Tab to any control; sliders move with arrow keys, Page Up/Down, Home/End (Radix gives us this) |
-| **Focus is visible** | A clay-coloured outline shows where you are |
-| **Skip link** | First Tab press offers "Skip to content" |
-| **Colour is never the only signal** | Print status = icon + word + colour |
-| **Contrast** | Text and background colours chosen to pass WCAG AA (≥ 4.5 : 1 for body text) |
-| **Status changes are announced** | The print verdict uses `aria-live`, so a screen reader says "Will not print as designed" when it changes |
-| **Reduced motion** | If the OS says "reduce motion", animations are switched off |
-| **Real HTML elements** | Buttons are `<button>`, selects are `<select>` — they come with accessibility built in |
+The international guidelines (**WCAG**) ask for a contrast of at least **4.5 : 1** for normal text (3 : 1 for large headings). You don't have to calculate it yourself — any contrast checker will tell you, and so will the agent.
 
-## The hard one: describing a 3D object
+| | Contrast | |
+|---|---|---|
+| Near-black on cream | ~15 : 1 | ✓ easy to read |
+| Light grey on cream | ~1.5 : 1 | ✗ hard to read |
 
-A screen reader can't "see" a WebGL canvas. So the 3D view carries a **text description, generated from the parameters**:
+### 2 · Text size
+No tiny text. Body text around **16 px or more**; small labels not much below 12 px. If you have to squint at your own screen, it's too small.
 
-> "Amphora: a vase 180 mm tall and 136 mm at its widest, 18 ribs twisted 60°, in Bone PLA."
+### 3 · Usable without a mouse
+Some people use only a keyboard. Try it yourself: press **Tab** to move from control to control, arrows to move a slider, **Enter** to press a button. Can you reach everything? Can you see where you are?
 
-And all the important information — dimensions, weight, print verdict — is also in **text** elsewhere on the page. A blind user can design a vase, check it, and download it.
+## Going further
 
-This is a nice design question to discuss: *what is the essential information in a 3D model, if you can't see it?*
+Full accessibility goes further — for example, **screen readers** that read the page aloud for people who can't see it, which means every control needs a proper label. (A nice design question for a 3D tool: how would you describe a vase in words to someone who can't see it?)
 
-## How to check
+## You get a lot for free
 
-- **Keyboard only:** unplug the mouse. Can you change the height, pick clay, and download an STL?
-- **Screen reader:** VoiceOver (Mac: `Cmd + F5`) or NVDA (Windows, free).
-- **Automated:** Lighthouse in Chrome dev tools → Accessibility. Or ask Claude to run `axe` via Playwright.
-- **Contrast:** any contrast checker, or Google's DESIGN.md linter checks it from the tokens.
+Component libraries like **shadcn/ui** (built on Radix) already handle much of this: labels, keyboard support, focus outlines. If you use one, you're most of the way there.
 
-## Try it
+## Ask the agent to check
 
 ```text
-Do an accessibility review of the configurator page. Check keyboard
-navigation order, labels, contrast of every text colour against its
-background (light and dark mode), and what a screen reader would announce.
-Report problems as a table with severity. Don't fix yet.
+Check my site for accessibility basics: text contrast against its
+background, font sizes, and whether everything works with the
+keyboard only. List the problems first, before fixing anything.
 ```
 
 ---

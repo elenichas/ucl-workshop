@@ -2,7 +2,7 @@
 
 > **Part 1 — Foundations** · ~10 min (plus setup time during the hands-on)
 
-**In one sentence:** get the tools on your laptop, open the project, and have a first conversation where you *ask* rather than *order*.
+**In one sentence:** you start from an empty folder on your laptop, and your first conversation with the agent is about thinking, not building.
 
 ---
 
@@ -10,76 +10,81 @@
 
 | Tool | Why | Check it works |
 |---|---|---|
-| **Claude Code** (terminal, desktop app or VS Code) | The agent | `claude --version` |
-| **Node.js 20+** | Runs the build tools and the local server | `node -v` |
-| **git** | History, stages | `git --version` |
-| A **code editor** (VS Code recommended) | To read what the agent wrote | — |
-| A **GitHub account** | To get the repo and, later, publish | — |
+| **Claude Code** (desktop app, terminal or VS Code) | The agent | it opens and answers |
+| **Node.js 20+** | Runs the website on your laptop while you work | `node -v` |
+| A **code editor** (VS Code recommended) — optional | To peek at what the agent wrote | — |
 
-Installation instructions change; follow the official page: [Claude Code — quickstart](https://docs.claude.com/en/docs/claude-code/quickstart).
+That's it. **No GitHub account and no Git needed today.** Installation instructions change; follow the official page: [Claude Code — quickstart](https://docs.claude.com/en/docs/claude-code/quickstart).
 
-## Get the project
+## Your project is a folder
 
-```bash
-git clone <the repo link you were given>
-cd ucl-workshop/site
-npm install          # downloads the packages in package.json (takes a minute)
-npm run dev          # starts a local server — open the link it prints
-```
+Make an empty folder — `my-vase-configurator` — and open Claude Code in it. Everything the agent writes will land in that folder. That folder *is* your project.
 
-`npm run dev` gives you a URL like `http://localhost:5173`. **localhost** means "this computer": the site is running only on your laptop. Change a file and the page updates instantly.
+## Your first prompt: ask, don't order
 
-## Start Claude Code in the project
-
-Open a terminal in the `ucl-workshop` folder and type `claude` (or open the folder in the desktop app / VS Code extension).
-
-## Your first conversation: ask, don't order
-
-Good first prompts make Claude **explain** the project to you. This is cheap, safe (nothing changes), and you learn the codebase:
+You're starting from a blank canvas, so the first conversation is about **how to think** about the thing — not about building it:
 
 ```text
-I'm an architecture student and new to web development.
-Explain this project to me: what are the main folders, and how does a slider
-change end up as a new vase on screen? Keep it short and use an analogy
-from architecture or Grasshopper.
+I want to make a website where people can design their own
+3D-printable vase. I have never built a website.
+Before we build anything: how should I think about it?
+What are the inputs, the process and the outputs?
+Explain it with an analogy from architecture or Grasshopper.
+Don't write any code yet.
+```
+
+More good first questions:
+
+```text
+What would a first, very small version of this website include?
+What could I leave out for now?
 ```
 
 ```text
-Open site/src/geometry/buildVase.ts and explain the algorithm step by step,
-like a recipe. Don't change anything.
+What decisions do I need to make before we start
+(for example: which printers, which materials, how it should look)?
+Ask me about them one at a time.
 ```
 
-```text
-What would happen if I set the wall thickness to 0.2 mm? Trace it through
-the code: which files are involved and which check would complain?
+Nothing changes, nothing breaks, and you learn the shape of the problem. When you're ready, move on to [chapter 05](../05-starting-systematically/README.md) and turn the conversation into a plan.
+
+## The loop, once
+
+1. **Ask** — *"How should I think about a vase configurator?"*
+2. **Act** — *"Build step 1 of the plan, then stop."* (The agent writes code into your folder.)
+3. **Check** — look at it in the browser; ask *"what did you change, in plain words?"*
+4. **Note it** — *"Add what we just did to PROGRESS.md."*
+
+### Keeping track without Git
+
+- **The chat is a log.** You can scroll back and see every request and every change.
+- **Better: a progress file.** At the start, ask: *"Keep a PROGRESS.md in this folder. After each step, write what I asked, what you changed and what we decided."*
+- **Undo:** Claude Code can rewind the conversation to an earlier point. Before a big change, you can also simply duplicate the folder.
+
+(Professionals use Git for this — a history of saved versions. It's worth learning later; you don't need it today.)
+
+## Your site lives at localhost
+
+When the agent starts your website, you'll see a link like:
+
+```
+http://localhost:5173
 ```
 
-Notice what Claude does: which files it **reads**, in what order. That is it building a map of the project.
+**localhost means "this computer".** The page is running only on your laptop, only while that process runs. Perfect for designing and testing — and invisible to everyone else.
 
-## Your first change: tiny and checkable
+The classic beginner moment: proudly pasting `http://localhost:5173` into the group chat… and everyone replies *"This site can't be reached."* As the old joke goes: *there's no place like 127.0.0.1* (127.0.0.1 is localhost's address).
 
-```text
-Add a new preset called "Bud vase": tall and narrow, 220 mm high,
-50 mm base, 70 mm belly at 30%, 30 mm top, 12 ribs, no twist.
-Then tell me which file you changed.
-```
-
-Then:
-
-1. Look at the result in the browser.
-2. Look at the diff (what changed) — in VS Code's Source Control panel, or ask *"show me the diff"*.
-3. If you like it: *"commit this with a clear message"*.
-
-Congratulations: you have done the full loop — **ask → act → check → commit**.
+To give people a link they can open, the site has to be **built and put on a host** — see [chapter 17](../17-shipping/README.md). That's a next step, not for today.
 
 ## When things go wrong (they will)
 
 | Symptom | Try |
 |---|---|
-| Page is blank | Open the browser console (right-click → Inspect → Console), copy the red error to Claude |
-| `npm` command not found | Node.js isn't installed or the terminal needs restarting |
-| Claude is going in circles | `Esc`, then explain what you actually want; or `/clear` and start the task again with a better prompt |
-| You hate the change | `git checkout .` throws away uncommitted changes (ask Claude to do it if unsure) |
+| The page is blank | Tell the agent: *"The page is blank. Look at the browser's error messages and fix it."* |
+| `node` command not found | Node.js isn't installed, or the app needs restarting |
+| The agent is going in circles | Stop it, explain what you actually want — or start a fresh chat with a better prompt |
+| You hate the change | Ask it to undo, or rewind the conversation |
 
 ---
 

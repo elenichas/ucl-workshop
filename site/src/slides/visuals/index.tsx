@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react'
 import type { VisualId } from '../types'
 import { AgentLoop, ChatVsAgent, ClaudeCodeSteps, ContextWindow, KnowledgeFiles, SkillLoading, TokenCompare, Tokens } from './ai'
-import { Breakpoints, DeployFlow, FirstLoop, RepoTimeline, SlopVsDesigned, StackLayers, TestLevels, TypeSystem, WebRequest } from './web'
+import { A11yBasics, Breakpoints, BuildSteps, Hosting, TestWays, DeployFlow, FirstLoop, Localhost, RepoTimeline, SlopVsDesigned, StackLayers, TestLevels, TypeSystem, WebRequest } from './web'
 import { Algorithm, AxisSwap, CSG, FabPath, FiveStarts, IPO, MeshResolution, Overhang, PlanLoop, PrintCompare, SystemMapFlow, SystemMapVisual, WaysToStart, WhoDoesWhat, Winding } from './making'
 
 /** Every animated diagram, by id. Each takes the current reveal step. */
@@ -38,4 +38,9 @@ export const VISUALS: Record<VisualId, ComponentType<{ step: number }>> = {
   'deploy-flow': DeployFlow,
   'first-loop': FirstLoop,
   'who-does-what': WhoDoesWhat,
+  localhost: Localhost,
+  'build-steps': BuildSteps,
+  'a11y-basics': A11yBasics,
+  'test-ways': TestWays,
+  hosting: Hosting,
 }

@@ -15,7 +15,7 @@ type V = { step: number }
 
 // ---------------------------------------------------------------------------
 export function PlanLoop({ step }: V) {
-  const items = [['Idea', ''], ['Conversation', 'interview · map · moodboard'], ['PLAN.md', 'you read, edit, cross out'], ['Approve', '“step 1 only”'], ['Build one step', ''], ['Check', 'look · test'], ['Commit', 'update the plan']]
+  const items = [['Idea', ''], ['Conversation', 'interview · map · moodboard'], ['PLAN.md', 'you read, edit, cross out'], ['Approve', '“step 1 only”'], ['Build one step', ''], ['Check', 'look · test'], ['Note it', 'what changed · update the plan']]
   return (
     <div className="flex h-full flex-col justify-center">
       <div className="grid grid-cols-7 items-stretch gap-3">
@@ -32,7 +32,7 @@ export function PlanLoop({ step }: V) {
         <svg viewBox="0 0 1500 90" className="mt-2 w-full">
           <path d="M1390 5 V55 H660 V10" className="fill-none stroke-clay" strokeWidth="3" strokeDasharray="10 8" />
           <path d="M650 20 L660 5 L670 20" className="fill-none stroke-clay" strokeWidth="3" />
-          <text x="1025" y="88" textAnchor="middle" fontSize="30" className="fill-ink-muted">next step — small, checked, committed</text>
+          <text x="1025" y="88" textAnchor="middle" fontSize="30" className="fill-ink-muted">next step — small, checked, noted</text>
         </svg>
       </Reveal>
     </div>
@@ -381,7 +381,7 @@ export function FabPath({ step }: V) {
 
 // ---------------------------------------------------------------------------
 export function WhoDoesWhat({ step }: V) {
-  const items: [string, 'you' | 'agent'][] = [['Think', 'you'], ['Plan', 'you'], ['Build one step', 'agent'], ['Check', 'you'], ['Commit', 'you'], ['Learn · update the plan', 'you']]
+  const items: [string, 'you' | 'agent'][] = [['Think', 'you'], ['Plan', 'you'], ['Build one step', 'agent'], ['Check', 'you'], ['Keep track', 'you'], ['Learn · update the plan', 'you']]
   return (
     <div className="grid h-full grid-cols-6 items-center gap-4">
       {items.map(([t, who], i) => (

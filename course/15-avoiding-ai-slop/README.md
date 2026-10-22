@@ -79,8 +79,9 @@ A growing set of open-source repos exist to give agents better taste. They fall 
 
 ```text
 Copy the DESIGN.md for <a brand> from the awesome-design-md collection
-into our repo as DESIGN.alt.md. Restyle only the landing page with it,
-on a new git branch called "style-<brand>". Keep the configurator unchanged.
+into our project folder as DESIGN.alt.md. Restyle only the landing page
+with it. Keep the configurator unchanged.
+(Tip: duplicate your project folder first, so the original stays safe.)
 ```
 
 Then discuss: what does the vase app *become* in another brand's language? What did you borrow, and what is still yours?

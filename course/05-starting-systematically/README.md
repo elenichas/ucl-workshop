@@ -27,7 +27,7 @@ Every gap you leave, the model fills. **Planning is deciding which gaps you want
  approve  ──  "This plan is approved. Build step 1 only."
     │
     ▼
- build one step ─► check (look, test) ─► commit ─► update PLAN.md
+ build one step ─► check (look, test) ─► note it (PROGRESS.md, PLAN.md)
     │                                                    │
     └──────────────────── next step ◄────────────────────┘
 ```

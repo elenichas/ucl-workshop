@@ -59,16 +59,9 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
   switch (slide.kind) {
     case 'title':
       return (
-        <div className="grid h-full grid-cols-[1.2fr_1fr]">
-          <div className="flex flex-col justify-between p-24">
-            <p className="section-label !text-[20px]">{slide.meta}</p>
-            <div>
-              <h1 className="font-display text-[170px] leading-[0.88] tracking-tight">{slide.title}</h1>
-              <p className="mt-10 max-w-[24ch] text-[38px] leading-snug text-ink-muted">{slide.subtitle}</p>
-            </div>
-            <p className="font-mono text-[20px] text-ink-muted">→ press the right arrow</p>
-          </div>
-          <LiveVase presetDesigns={[{ label: '' }]} step={0} exporting={exporting} />
+        <div className="flex h-full flex-col justify-end p-28">
+          <h1 className="font-display text-[200px] leading-[0.88] tracking-tight">{slide.title}</h1>
+          <p className="mt-12 text-[40px] text-ink-muted">{slide.subtitle}</p>
         </div>
       )
     case 'part':
@@ -207,7 +200,7 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
           <div className="mt-10 grid flex-1 grid-cols-2 gap-10">
             {slide.images.map((im) => (
               <figure key={im.src} className="flex min-h-0 flex-col">
-                <img src={`${import.meta.env.BASE_URL}${im.src}`} alt={im.label} className="min-h-0 flex-1 border border-line object-cover object-left-top" />
+                <img src={`${import.meta.env.BASE_URL}${im.src}`} alt={im.label} className="min-h-0 w-full flex-1 border border-line bg-paper-raised object-contain" />
                 <figcaption className="mt-3 font-mono text-[22px] text-ink-muted">{im.label}</figcaption>
               </figure>
             ))}

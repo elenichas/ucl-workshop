@@ -50,7 +50,7 @@ The process is the point. The website is the excuse.
 |---|---|---|
 | 1 — Foundations | 00–04 | What are AI models, agents, websites? What is Claude Code doing? |
 | 2 — Thinking before building | 05–06 | How do I start? What exactly do I control? |
-| 3 — Building the configurator | 07–10 | Algorithm, 3D viewer, printability, exports |
+| 3 — Building it, prompt by prompt | 07–10 | Algorithm, 3D viewer, printability, exports |
 | 4 — Craft and quality | 11–17 | UI, responsiveness, accessibility, 3D interaction, avoiding AI slop, testing, shipping |
 | 5 — Reflection | 18 | What does it mean to work with an agent? |
 
@@ -58,7 +58,7 @@ We will not cover everything in three hours. That is fine — the repo stays wit
 
 ## How to follow along
 
-- **Read the code of each stage:** every chapter that builds something points to a git tag (`stage-03-viewer`…) — the state of the app at that moment.
+- **Look at each stage:** every chapter that builds something names a demo stage (`stage-03-viewer`…) — the state of the app at that moment. The instructor shares each stage as a plain folder; no Git needed.
 - **Read the real prompts:** [`prompts/`](../../prompts/) has the conversation behind each step, including the mistakes.
 - **Get your hands dirty:** [`hands-on/`](../../hands-on/) has starting-point prompts and challenge cards.
 

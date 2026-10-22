@@ -10,7 +10,7 @@ export type VisualId =
   | 'claude-code-steps' | 'knowledge-files' | 'skill-loading' | 'context-window' | 'token-compare'
   | 'plan-loop' | 'five-starts' | 'ways-to-start' | 'system-map' | 'system-map-flow' | 'ipo' | 'algorithm' | 'winding' | 'csg'
   | 'mesh-resolution' | 'print-compare' | 'overhang' | 'axis-swap' | 'fab-path' | 'type-system'
-  | 'breakpoints' | 'slop-vs-designed' | 'test-levels' | 'deploy-flow' | 'first-loop' | 'who-does-what'
+  | 'breakpoints' | 'slop-vs-designed' | 'test-levels' | 'deploy-flow' | 'first-loop' | 'who-does-what' | 'localhost' | 'build-steps' | 'a11y-basics' | 'test-ways' | 'hosting'
 
 interface Base {
   /** Speaker notes — shown in the notes window and copied into PowerPoint */

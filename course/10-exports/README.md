@@ -1,6 +1,6 @@
 # 10 · Exports: from screen to printer
 
-> **Part 3 — Building the configurator** · ~8 min · code at tag `stage-05-exports`
+> **Part 3 — Building it, prompt by prompt** · ~8 min · demo stage `stage-05-exports`
 
 **In one sentence:** a configurator is only useful if its output leaves the browser — as files that Rhino, slicers and fabrication labs understand.
 

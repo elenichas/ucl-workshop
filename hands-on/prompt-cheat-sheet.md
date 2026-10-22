@@ -45,7 +45,7 @@ Show me the diff and walk me through it.
 |---|---|
 | Stop it mid-way | `Esc` |
 | Plan without changes | Plan mode (`Shift+Tab` in the terminal) |
-| Undo uncommitted changes | *"Discard all uncommitted changes"* or `git checkout .` |
+| Undo a change | Rewind the conversation, or *"undo what you just changed"* |
 | Start a fresh conversation | `/clear` (decisions should be in files!) |
 | See what's using context | `/context` |
 | Make Claude remember a rule | Add a line to CLAUDE.md, or say *"add this to CLAUDE.md"* |
