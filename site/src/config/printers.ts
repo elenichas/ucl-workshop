@@ -23,6 +23,8 @@ export interface PrinterProfile {
   materials: string[]
   /** Typical speed of laying down material, in mm³ per second — for a rough time estimate */
   flowRate: number
+  /** Can it print more than one colour in one object (e.g. a colour gradient)? */
+  multiColor: boolean
 }
 
 export const PRINTERS: PrinterProfile[] = [
@@ -35,6 +37,18 @@ export const PRINTERS: PrinterProfile[] = [
     nozzle: 0.4,
     materials: ['pla', 'petg'],
     flowRate: 12,
+    multiColor: false,
+  },
+  {
+    id: 'fdm-multi',
+    name: 'Multi-colour plastic printer',
+    description: 'A desktop printer with a filament changer: it can switch colours layer by layer.',
+    technology: 'fdm',
+    build: { x: 256, y: 256, z: 256 },
+    nozzle: 0.4,
+    materials: ['pla', 'petg'],
+    flowRate: 10,
+    multiColor: true,
   },
   {
     id: 'fdm-large',
@@ -45,6 +59,7 @@ export const PRINTERS: PrinterProfile[] = [
     nozzle: 0.8,
     materials: ['pla', 'petg'],
     flowRate: 30,
+    multiColor: false,
   },
   {
     id: 'clay',
@@ -55,6 +70,7 @@ export const PRINTERS: PrinterProfile[] = [
     nozzle: 2.5,
     materials: ['stoneware', 'porcelain'],
     flowRate: 60,
+    multiColor: false,
   },
   {
     id: 'resin',
@@ -65,6 +81,7 @@ export const PRINTERS: PrinterProfile[] = [
     nozzle: 0.1,
     materials: ['resin'],
     flowRate: 8,
+    multiColor: false,
   },
 ]
 

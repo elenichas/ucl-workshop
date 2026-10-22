@@ -80,3 +80,12 @@ body {
 .prose th { text-align: left; font-weight: 600; padding: 0.6em 0.8em 0.6em 0; border-bottom: 1px solid var(--color-line); white-space: nowrap; }
 .prose td { padding: 0.6em 0.8em 0.6em 0; border-bottom: 1px solid var(--color-line); vertical-align: top; }
 .prose hr + h2 { border-top: 0; padding-top: 0; margin-top: 0; }
+
+/* The animated "flow" on the active row of the system map. */
+.flow-line {
+  background: repeating-linear-gradient(90deg, var(--color-clay) 0 6px, transparent 6px 10px) !important;
+  background-size: 20px 1px !important;
+  height: 2px !important;
+  animation: flow 0.9s linear infinite;
+}
+@keyframes flow { to { background-position: 20px 0; } }
