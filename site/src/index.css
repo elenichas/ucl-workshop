@@ -89,3 +89,15 @@ body {
   animation: flow 0.9s linear infinite;
 }
 @keyframes flow { to { background-position: 20px 0; } }
+
+/* ---- Presentation ---------------------------------------------------------- */
+.reveal, .reveal-svg { transition: opacity 320ms ease, transform 320ms ease; }
+.reveal[data-on="false"] { opacity: 0; transform: translateY(14px); }
+.reveal-svg[data-on="false"] { opacity: 0; }
+.reveal-row { transition: opacity 320ms ease; }
+.reveal-row[data-on="false"] { opacity: 0; }
+.slide-enter { animation: slide-in 260ms ease both; }
+@keyframes slide-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.export-host .reveal, .export-host .reveal-svg, .export-host .reveal-row, .export-host * { transition: none !important; animation: none !important; }
+.export-host .motion-dot { display: none; }
+@media (prefers-reduced-motion: reduce) { .motion-dot { display: none; } }

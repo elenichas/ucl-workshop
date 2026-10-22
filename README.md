@@ -20,7 +20,7 @@ Our case study is a web app where anyone can design their own 3D-printable vase:
 | [`hands-on/`](hands-on/) | Starting-point prompts, challenge cards, a prompt cheat sheet and the stack card. |
 | [`prompts/`](prompts/) | The real conversation behind the demo: every step, the prompt used and what we learned. |
 | [`resources/`](resources/) | Curated links: design repos, skills, 3D, web fundamentals. |
-| [`site/`](site/) | The demo website: the vase configurator **and** this course, readable in the browser. |
+| [`site/`](site/) | The demo website: the vase configurator, the course as readable pages, and the course **as a presentation** (with PowerPoint download). |
 | [`.claude/skills/`](.claude/skills/) | Custom skills written for this project (printability review, design language). |
 | [`CLAUDE.md`](CLAUDE.md) | The project instructions Claude Code reads every time it starts here. |
 | [`PLAN.md`](PLAN.md) | The approved plan for the demo app, written **before** any code. |
@@ -55,6 +55,10 @@ npm run dev      # starts a local server, open the link it prints
 
 Other commands: `npm test` (geometry and printability tests), `npm run build` (makes the publishable version in `site/dist`).
 
+## Presenting
+
+Open **Course → Present the course** (or *Present this chapter* on any chapter page). Arrow keys or a clicker move through slides and reveals. **F** full screen · **O** overview · **N** speaker notes in a second window · **PowerPoint** button downloads the whole deck as an editable .pptx (diagrams and 3D views as images, notes included).
+
 ## Follow the build step by step
 
 Every stage of the demo is saved as a **git tag**, so you can jump to the exact state of the website at the end of each chapter:
@@ -68,6 +72,8 @@ Every stage of the demo is saved as a **git tag**, so you can jump to the exact 
 | `stage-05-exports` | STL, OBJ and Rhino .3dm downloads |
 | `stage-06-craft` | Real UI, responsive layout, accessibility pass |
 | `stage-07-shipped` | Tests, course pages inside the site, deploy workflow |
+| `stage-08-ways-to-start` | Nine ways to start (shapes, draw, sketch, image, carve), pattern library, colours and finishes, the system map |
+| `stage-09-presentation` | Present mode with animated diagrams and live 3D, speaker notes, PowerPoint export |
 
 ```bash
 git checkout stage-03-viewer     # travel to that moment

@@ -9,7 +9,7 @@
 ## Inputs → process → output
 
 ```
-VaseParams                      buildVase()                          VaseMesh
+Design                          buildDesign()                        VaseMesh
 ──────────                      ───────────                          ────────
 height: 180          ┐   1. silhouette curve  r(t)               positions: [x,y,z, x,y,z, …]
 baseDiameter: 80     │   2. decorate: ribs, twist, ripples       indices:   [a,b,c, a,b,c, …]
@@ -32,11 +32,11 @@ If you built this in Grasshopper you'd probably do:
 
 Our code does exactly that, but builds the mesh directly. Files in [`site/src/geometry/`](../../site/src/geometry/):
 
-### 1 · The silhouette — `profile.ts → profileRadius(t)`
+### 1 · The silhouette — the Round start in `starts/shapes.ts`
 
 `t` goes from 0 (bottom) to 1 (top). The radius eases from base to belly, then from belly to top, using *smoothstep* — a curve that starts and ends flat, so the shape never has a kink.
 
-### 2 · Decoration — `outerRadius(t, θ)`
+### 2 · Decoration — `displacement()` in `geometry/patterns.ts`
 
 At any height `t` and angle `θ` around the vase:
 
@@ -83,12 +83,28 @@ The first version failed two tests: "is it watertight?" and "is the volume right
 
 > **Lesson:** "it looks right" is not "it is right". Write the test first, then trust the green.
 
+## Version 2: one pipeline, many front doors
+
+When we added more ways to start (chapter 06), the algorithm was split in two:
+
+1. **The starting point** answers one question — *how far is the wall from the axis at height t and angle θ?* That function is called a **field**. Round, sphere, box, polygon, cone, drawn, sketched and image-based vases are all fields ([`site/src/starts/`](../../site/src/starts/)).
+2. **The shared pipeline** does everything else, the same way for all of them: add the surface pattern, offset the wall, stitch, close, measure ([`buildVase.ts`](../../site/src/geometry/buildVase.ts)).
+
+```
+radius(t, θ) = start.radius(t, θ) + pattern(t, θ) × depth
+inner        = radius − wallThickness
+```
+
+**Carve** is the exception. It builds a field vase first, then cuts it with a second solid using a **boolean** (CSG, with the library three-bvh-csg — the same idea as BooleanDifference in Rhino). Because the result can no longer be described by a radius per angle, it is **measured from the mesh** afterwards: overhang from the direction each triangle faces, size from the bounding box ([`analyze.ts`](../../site/src/geometry/analyze.ts)). Wall thickness near a cut can't be guaranteed — and the print check says so.
+
+A test then checks that **every start × every pattern** produces a closed mesh, and that **every preset passes the print check on its own printer**. That second test caught three bad presets on its first run.
+
 ## Try it
 
 ```text
-Explain the twist in site/src/geometry/profile.ts with a small diagram.
+Explain the twist in site/src/geometry/patterns.ts with a small diagram.
 Then add a new parameter "lean" that tilts the top of the vase sideways
-by up to 20 mm. Add it to config/parameters.ts, use it in profile.ts,
+by up to 20 mm. Add it to the Round start in starts/shapes.ts (controls + field),
 and add a test that a vase with lean is still watertight. Plan first.
 ```
 

@@ -19,8 +19,11 @@ A teaching repo for a 3-hour workshop ("Prompt to Print"). It contains:
 - Do not add new frameworks or UI libraries without asking first.
 
 ## Where things live (site/src)
-- `geometry/` — pure functions: parameters -> vase mesh. No React here.
-- `config/` — printers, materials, colours, parameter definitions. Change lab constraints here.
+- `starts/` — the ways to start a vase. One module each: controls, representation, steps, results, field.
+- `design/` — the Design object (all user choices), presets, control definitions.
+- `geometry/` — pure functions: design -> vase mesh (shared pipeline, patterns, carve, analysis). No React here.
+- `config/` — printers and materials. Change lab constraints here.
+- `slides/` — the presentation deck (data), animated diagrams, PowerPoint export.
 - `checks/` — printability rules. Each rule is a small function returning pass/warn/fail.
 - `export/` — file exporters.
 - `viewer/` — React Three Fiber scene.

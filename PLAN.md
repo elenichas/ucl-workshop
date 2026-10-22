@@ -70,5 +70,12 @@ Vite · React · TypeScript · Tailwind · Radix/shadcn-style UI · React Three 
 ## 10. Out of scope (v1)
 Accounts, saving to a server, payment, ordering prints, textures in the export.
 
+## 12. Version 2 (approved after the first workshop plan)
+- **Ways to start:** shapes (round, sphere, box, polygon, cone), draw a profile, sketch, from an image, carve (boolean). Each exposes its own controls.
+- **Surface patterns** as real geometry: ribs, ripples, knurl, honeycomb, scales, bricks, knit, organic, cells, image relief.
+- **Finish:** colour picker, two-colour gradient, matte/satin/gloss/speckle. Printers gain a "multi-colour" flag; the print check warns about gradients.
+- **System map** generated from the start modules — in the configurator and in the course.
+- **Course as a presentation:** one continuous deck, animated diagrams, live 3D, notes, PowerPoint export.
+
 ## 11. Build order (each step = one commit + tag)
-1. Scaffold + stack → 2. Algorithm + tests → 3. Viewer → 4. Profiles + checks → 5. Exports → 6. UI craft, responsive, accessibility → 7. Tests, course pages, deploy
+1. Scaffold + stack → 2. Algorithm + tests → 3. Viewer → 4. Profiles + checks → 5. Exports → 6. UI craft, responsive, accessibility → 7. Tests, course pages, deploy → 8. Ways to start, patterns, finish, system map → 9. Presentation + PowerPoint

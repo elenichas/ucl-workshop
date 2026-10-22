@@ -79,3 +79,23 @@ test('the course chapters render', async ({ page }) => {
   await page.getByRole('link', { name: /Starting systematically/ }).click()
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Starting systematically')
 })
+
+test('present mode: keyboard steps through slides, overview jumps', async ({ page }) => {
+  await page.goto('/#/course')
+  await page.getByRole('link', { name: /Present the course/ }).click()
+  await expect(page.getByText(/^1 \/ \d+/)).toBeVisible()
+  await page.keyboard.press('ArrowRight')
+  await expect(page.getByText(/^2 \/ \d+/)).toBeVisible()
+  await page.keyboard.press('o')
+  await page.getByRole('dialog', { name: 'All slides' }).getByRole('button', { name: /system map · 2/i }).click()
+  await expect(page.getByText('Shared pipeline', { exact: true })).toBeVisible()
+})
+
+test('present mode exports a PowerPoint file', async ({ page }) => {
+  test.skip(test.info().project.name === 'phone', 'export is a desktop task')
+  test.setTimeout(240_000)
+  await page.goto('/#/present')
+  const download = page.waitForEvent('download', { timeout: 200_000 })
+  await page.getByRole('button', { name: /PowerPoint/ }).click()
+  expect((await download).suggestedFilename()).toBe('Prompt-to-Print.pptx')
+})

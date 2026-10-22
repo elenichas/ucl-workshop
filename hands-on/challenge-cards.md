@@ -9,10 +9,11 @@ Pick one. Each has a suggested starting stage, a goal, and a first prompt. Use p
 ## 🟢 Easy
 
 ### G1 · A new preset
-**Stage:** `main` · **Touches:** `config/parameters.ts`
+**Stage:** `main` · **Touches:** `design/design.ts` (PRESETS)
 Design a preset you love and give it a name.
 ```text
-Add a preset called "<name>" to config/parameters.ts with these values: …
+Add a preset called "<name>" to PRESETS in site/src/design/design.ts,
+starting from <round / sphere / box…> with these values: …
 Then tell me which check, if any, it fails on the clay printer.
 ```
 
@@ -51,7 +52,7 @@ Follow the style of the existing rules.
 ```
 
 ### Y2 · A new parameter
-**Stage:** `stage-02-algorithm` or later · **Touches:** `config/parameters.ts`, `geometry/profile.ts`, tests
+**Stage:** `stage-08-ways-to-start` · **Touches:** one start in `starts/shapes.ts` (its controls + field), tests
 "Lean" (the top shifts sideways), "Polygon" (an n-sided cross-section instead of a circle), "Foot" (a small step at the base).
 ```text
 Add a parameter "<name>" that <does what>. Plan first: which files change,
@@ -83,7 +84,33 @@ Show the triangles. Then add a "Resolution" control and watch the mesh change.
 
 ---
 
+### Y7 · A new pattern
+**Stage:** `stage-08-ways-to-start` or later · **Touches:** `site/src/geometry/patterns.ts` + its test
+Waves, dots, a woven basket, Japanese seigaiha… Every pattern is one small function that returns 0–1 for a point on the wall.
+```text
+Add a surface pattern called "<name>" to geometry/patterns.ts: <describe it>.
+Make it repeat a whole number of times around so there is no seam.
+The existing test "every pattern stays closed" must still pass. Plan first.
+```
+
+### Y8 · Map your system
+**Stage:** your own project · Fill in [`system-map-worksheet.md`](system-map-worksheet.md), then ask Claude to draw the map from your code and compare.
+
+---
+
 ## 🔴 Hard
+
+### R0 · Add your own starting point
+**Stage:** `stage-08-ways-to-start` · **Touches:** a new file in `site/src/starts/`, `starts/index.ts`
+A teardrop, a gourd, a "stacked pebbles" start, a start from two drawn curves (front and side)… One module declares its controls, how it describes the form, its steps, its results — and a field function. It then appears in the UI **and** the system map automatically.
+```text
+Read site/src/starts/shapes.ts and starts/types.ts. Add a new starting
+point "<name>" that <describe it>. Declare its controls, representation,
+steps and results like the others. Add it to STARTS. Then check it appears
+in the configurator and in "How it works", and that the watertight test
+covers it. Plan first.
+```
+
 
 ### R1 · Overhang heat-map
 Colour the vase by how far the wall leans outward vs. the material's limit. Compute colours per vertex when the mesh is built, not every frame.

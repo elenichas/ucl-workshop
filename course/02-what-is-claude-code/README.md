@@ -22,13 +22,13 @@ When you type a request, this is roughly what happens:
                      │
 3. MODEL       Claude thinks: "I should look at how parameters are defined."
                      │
-4. TOOL CALL   Read  site/src/config/parameters.ts          ← you may see this in the UI
+4. TOOL CALL   Read  site/src/starts/shapes.ts              ← you may see this in the UI
                      │
 5. RESULT      the file's content goes back into the context
                      │
-6. MODEL       "Now I'll edit profile.ts to rotate the ribs…"
+6. MODEL       "Now I'll add a twist control and rotate the ribs…"
                      │
-7. TOOL CALL   Edit  site/src/geometry/profile.ts           ← you may be asked to approve
+7. TOOL CALL   Edit  site/src/geometry/patterns.ts          ← you may be asked to approve
                      │
 8. TOOL CALL   Bash  npm test                                ← it checks its own work
                      │

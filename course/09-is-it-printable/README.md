@@ -17,7 +17,9 @@ Ask a fabrication technician "will this print?" and they will look at a few thin
 | **Wall thickness** | Thinnest wall vs. material minimum and 2 × nozzle | PLA 0.8 mm · clay 3 mm |
 | **Overhangs** | Steepest outward lean of the wall vs. material limit | PLA ~45° · stoneware ~25° · porcelain ~20° |
 | **Stands steady** | Base vs. height and vs. widest point | Small foot + tall body = tips over |
-| **Surface detail** | Rib/ripple depth vs. nozzle size | Details smaller than the nozzle vanish |
+| **Surface detail** | Pattern depth and feature size vs. nozzle | Details smaller than the nozzle vanish |
+| **Colour** | A gradient vs. what the printer can do | Needs a multi-colour printer — or glaze on clay |
+| **Closed shape** | Every edge shared by two triangles | Carved shapes are checked after the cut |
 
 The numbers come from **profiles** (chapter 06), so the same vase can pass in PLA and fail in clay. That's the point.
 
