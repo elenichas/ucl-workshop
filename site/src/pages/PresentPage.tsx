@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, Download, Expand, LayoutGrid, LoaderCircle, NotebookText, X } from 'lucide-react'
-import { DECK } from '@/slides/deck'
+import { contextOf, DECK } from '@/slides/deck'
 import { SlideView, SLIDE_H, SLIDE_W } from '@/slides/SlideView'
 import { stepsOf, titleOf } from '@/slides/types'
 import { CHAPTERS } from './course'
@@ -110,7 +110,7 @@ export default function PresentPage() {
       <div ref={stage} className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden" aria-live="polite">
         <div key={index} className="slide-enter shadow-2xl" style={{ width: SLIDE_W * scale, height: SLIDE_H * scale }}>
           <div style={{ transform: `scale(${scale})`, transformOrigin: 'top left' }}>
-            <SlideView slide={slide} step={step} />
+            <SlideView slide={slide} step={step} context={contextOf(index)} />
           </div>
         </div>
       </div>

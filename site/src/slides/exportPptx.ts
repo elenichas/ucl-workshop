@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { toPng } from 'html-to-image'
 import { SlideView, SLIDE_W } from './SlideView'
 import { stepsOf, type Slide } from './types'
+import { contextOf } from './deck'
 
 /**
  * POWERPOINT EXPORT — built in the browser with PptxGenJS.
@@ -28,6 +29,18 @@ export async function exportDeck(deck: Slide[], progress: (msg: string) => void)
     const slide = pptx.addSlide()
     slide.background = { color: C.paper }
     if (s.notes) slide.addNotes(s.notes)
+    const ctx = contextOf(i)
+    if (s.kind === 'part') slide.background = { color: C.ink }
+    else if (s.kind !== 'title') {
+      // the small "Part · chapter" label at the top of every content slide
+      slide.addText(
+        [
+          ...(ctx.part ? [{ text: `PART ${ctx.part.number} · ${ctx.part.title.toUpperCase()}   /   `, options: { color: C.clay } }] : []),
+          { text: ctx.chapter.toUpperCase(), options: { color: C.muted } },
+        ],
+        { x: inch(96), y: inch(30), w: inch(1200), h: inch(30), fontFace: BODY, fontSize: 9, charSpacing: 2 },
+      )
+    }
     slide.addText(`${i + 1}`, { x: inch(1500), y: inch(850), w: inch(80), h: inch(30), fontFace: MONO, fontSize: 9, color: C.muted, align: 'right' })
     await addContent(slide, s)
   }
@@ -51,6 +64,15 @@ async function addContent(slide: PSlide, s: Slide) {
       if (img) slide.addImage({ data: img.data, x: inch(890), y: 0, w: inch(710), h: inch(900) })
       return
     }
+    case 'part':
+      slide.addText(`Part ${s.number}`, { x: inch(96), y: inch(250), w: inch(700), h: inch(60), fontFace: MONO, fontSize: pt(40), color: 'D2714B' })
+      slide.addText(s.title, { x: inch(96), y: inch(320), w: inch(820), h: inch(300), fontFace: DISPLAY, fontSize: pt(100), color: C.paper, valign: 'top', fit: 'shrink' })
+      slide.addText(s.question, { x: inch(96), y: inch(650), w: inch(760), h: inch(140), fontFace: DISPLAY, fontSize: pt(40), italic: true, color: 'A79F92', valign: 'top' })
+      slide.addText(
+        s.chapters.map((c) => ({ text: `${c.number}   ${c.title}`, options: { breakLine: true, paraSpaceAfter: 12 } })),
+        { x: inch(930), y: inch(250), w: inch(580), h: inch(560), fontFace: BODY, fontSize: pt(28), color: C.paper, valign: 'bottom' },
+      )
+      return
     case 'chapter':
       slide.addText(s.part.toUpperCase(), { x: inch(96), y: inch(80), w: inch(1200), h: inch(40), fontFace: BODY, fontSize: 12, color: C.muted, charSpacing: 2 })
       slide.addText(s.number, { x: inch(96), y: inch(250), w: inch(300), h: inch(70), fontFace: MONO, fontSize: pt(44), color: C.clay })

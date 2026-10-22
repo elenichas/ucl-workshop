@@ -1,6 +1,6 @@
 # Worksheet · map your own configurator
 
-Draw this **before** you build, on paper or in a file. Then compare it with ours (the **How it works** button in the configurator, or slides 48–49 of the course deck), and finally ask Claude to draw the map from your code.
+Draw this **before** you build, on paper or in a file. Then compare it with ours (the **How it works** button in the configurator, or slides 19–20 of the course deck), and finally ask Claude to draw the map from your code.
 
 ## 1 · The columns
 

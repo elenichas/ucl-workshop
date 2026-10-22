@@ -87,7 +87,7 @@ test('present mode: keyboard steps through slides, overview jumps', async ({ pag
   await page.keyboard.press('ArrowRight')
   await expect(page.getByText(/^2 \/ \d+/)).toBeVisible()
   await page.keyboard.press('o')
-  await page.getByRole('dialog', { name: 'All slides' }).getByRole('button', { name: /system map · 2/i }).click()
+  await page.getByRole('dialog', { name: 'All slides' }).getByRole('button', { name: /one shared pipeline/i }).click()
   await expect(page.getByText('Shared pipeline', { exact: true })).toBeVisible()
 })
 

@@ -16,11 +16,38 @@ export const SLIDE_H = 900
  * Draws one slide on a fixed 1600 × 900 canvas (the presenter scales it to fit the screen).
  * `step` is how many clicks into the slide we are; `exporting` hides live-only bits.
  */
-export function SlideView({ slide, step, exporting = false }: { slide: Slide; step: number; exporting?: boolean }) {
+export interface SlideContext {
+  part: { number: number; title: string } | null
+  chapter: string
+}
+
+export function SlideView({ slide, step, exporting = false, context }: { slide: Slide; step: number; exporting?: boolean; context?: SlideContext }) {
+  const showLabel = context && slide.kind !== 'title' && slide.kind !== 'part'
   return (
     <div className="slide relative flex flex-col overflow-hidden bg-paper text-ink" style={{ width: SLIDE_W, height: SLIDE_H }}>
+      {showLabel && (
+        <div className="slide-label absolute inset-x-24 top-9 z-10 flex items-center justify-between gap-6">
+          <p className="section-label !text-[16px]">
+            {context.part && <span className="text-clay">Part {context.part.number} · {context.part.title}</span>}
+            {context.part && <span className="mx-3 text-line">/</span>}
+            {context.chapter}
+          </p>
+          {context.part && <PartTicks current={context.part.number} />}
+        </div>
+      )}
       <SlideBody slide={slide} step={step} exporting={exporting} />
     </div>
+  )
+}
+
+/** Five small marks: where we are in the five parts. */
+function PartTicks({ current, dark = false }: { current: number; dark?: boolean }) {
+  return (
+    <span className="flex gap-1.5" aria-hidden>
+      {[1, 2, 3, 4, 5].map((n) => (
+        <span key={n} className="h-1.5 w-8" style={{ background: n === current ? (dark ? '#D2714B' : 'var(--color-clay)') : n < current ? (dark ? '#8a8378' : 'var(--color-ink-muted)') : (dark ? '#3A352E' : 'var(--color-line)') }} />
+      ))}
+    </span>
   )
 }
 
@@ -42,6 +69,28 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
             <p className="font-mono text-[20px] text-ink-muted">→ press the right arrow</p>
           </div>
           <LiveVase presetDesigns={[{ label: '' }]} step={0} exporting={exporting} />
+        </div>
+      )
+    case 'part':
+      // A dark divider, the same in light and dark mode, so a change of subject is unmistakable.
+      return (
+        <div className="grid h-full grid-cols-[1.25fr_1fr] gap-16 p-24" style={{ background: '#1C1A17', color: '#F3EFE7' }}>
+          <div className="flex flex-col justify-between">
+            <PartTicks current={slide.number} dark />
+            <div>
+              <p className="font-mono text-[40px]" style={{ color: '#D2714B' }}>Part {slide.number}</p>
+              <h2 className="mt-4 font-display text-[150px] leading-[0.9] tracking-tight [text-wrap:balance]">{slide.title}</h2>
+              <p className="mt-10 max-w-[26ch] font-display text-[44px] italic leading-tight" style={{ color: '#A79F92' }}>{slide.question}</p>
+            </div>
+          </div>
+          <ol className="grid content-end gap-0 border-t" style={{ borderColor: '#3A352E' }}>
+            {slide.chapters.map((c) => (
+              <li key={c.number} className="flex items-baseline gap-6 border-b py-4" style={{ borderColor: '#3A352E' }}>
+                <span className="font-mono text-[24px]" style={{ color: '#D2714B' }}>{c.number}</span>
+                <span className="text-[30px] leading-snug">{c.title}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       )
     case 'chapter':
