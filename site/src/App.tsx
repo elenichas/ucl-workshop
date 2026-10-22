@@ -1,16 +1,27 @@
-import { buildVase } from '@/geometry/buildVase'
-import { DEFAULT_PARAMS } from '@/config/parameters'
+import { useState } from 'react'
+import { DEFAULT_PARAMS, PARAMS } from '@/config/parameters'
+import { useVase } from '@/state/useVase'
+import { VaseViewer } from '@/viewer/VaseViewer'
 
-// Stage 2: the algorithm exists. No 3D yet — we prove it works with numbers and tests.
+// Stage 3: a 3D viewer and plain browser sliders. Ugly on purpose — function first, craft later.
 export default function App() {
-  const { stats } = buildVase(DEFAULT_PARAMS)
+  const [params, setParams] = useState(DEFAULT_PARAMS)
+  const { mesh } = useVase(params)
   return (
-    <main className="min-h-dvh grid place-items-center bg-paper text-ink p-8">
-      <div className="max-w-xl">
-        <h1 className="font-display text-6xl">Vessel</h1>
-        <p className="mt-4 text-ink-muted">The algorithm runs. Default vase:</p>
-        <pre className="mt-4 font-mono text-sm">{JSON.stringify(stats, null, 2)}</pre>
+    <main className="grid min-h-dvh grid-cols-[1fr_320px] bg-paper text-ink">
+      <div className="h-dvh">
+        <VaseViewer mesh={mesh} height={params.height} look={{ color: '#C9BFAE', roughness: 0.6, metalness: 0, clearcoat: 0 }} description="3D view of the vase" />
       </div>
+      <aside className="overflow-auto p-4 text-sm">
+        {PARAMS.map((d) => (
+          <label key={d.key} className="block py-1">
+            {d.label}: {params[d.key]} {d.unit}
+            <input type="range" className="w-full" min={d.min} max={d.max} step={d.step} value={params[d.key]}
+              onChange={(e) => setParams({ ...params, [d.key]: Number(e.target.value) })} />
+          </label>
+        ))}
+        <pre className="mt-4 font-mono text-xs">{JSON.stringify(mesh.stats, null, 1)}</pre>
+      </aside>
     </main>
   )
 }

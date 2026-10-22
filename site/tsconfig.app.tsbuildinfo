@@ -1,1 +1,1 @@
-{"root":["./src/App.tsx","./src/main.tsx","./src/config/parameters.ts","./src/geometry/buildVase.test.ts","./src/geometry/buildVase.ts","./src/geometry/profile.ts","./src/geometry/types.ts"],"version":"5.7.3"}
+{"root":["./src/App.tsx","./src/main.tsx","./src/config/parameters.ts","./src/geometry/buildVase.test.ts","./src/geometry/buildVase.ts","./src/geometry/profile.ts","./src/geometry/types.ts","./src/state/useVase.ts","./src/viewer/VaseViewer.tsx"],"version":"5.7.3"}
