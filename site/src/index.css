@@ -11,7 +11,7 @@
   --color-clay: #B5532F;
   --color-clay-ink: #8E3C1E;
   --color-ok: #2F6B45;
-  --color-warn: #9A6A00;
+  --color-warn: #8A5F00;
   --color-fail: #A3291B;
 
   --font-display: "Instrument Serif", Georgia, serif;
@@ -22,11 +22,36 @@
   --radius-md: 4px;
 }
 
-html { color-scheme: light; }
+/* Dark mode: same names, different values. Every component follows automatically. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #171512;
+    --color-paper-raised: #221F1B;
+    --color-ink: #EEE8DD;
+    --color-ink-muted: #A79F92;
+    --color-line: #3A352E;
+    --color-clay: #D2714B;
+    --color-ok: #6FB58A;
+    --color-warn: #D9A640;
+    --color-fail: #E0705F;
+  }
+  html { color-scheme: dark; }
+}
+
 body {
   margin: 0;
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-medium uppercase tracking-[0.14em] text-ink-muted;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
 }

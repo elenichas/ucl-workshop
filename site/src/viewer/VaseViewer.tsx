@@ -23,6 +23,8 @@ interface Props {
   view?: CameraView
   /** changes every time the user asks for a camera preset, so the same view can be re-applied */
   viewNonce?: number
+  /** Background colour of the 3D stage */
+  stage?: string
   /** Text alternative for screen readers */
   description: string
 }
@@ -37,22 +39,24 @@ interface Props {
  * - geometry is rebuilt only when the mesh changes, and the old one is disposed
  * - ContactShadows rendered once (frames=1) instead of real-time shadows
  */
-export function VaseViewer({ mesh, height, look, showSection, view = 'three-quarter', viewNonce = 0, description }: Props) {
+export function VaseViewer({ mesh, height, look, showSection, view = 'three-quarter', viewNonce = 0, stage = '#EAE5DB', description }: Props) {
+  // Frame the camera on whichever is bigger: the height or the width of the vase.
+  const size = Math.max(height, mesh.stats.maxDiameter * 1.15)
   return (
     <div className="relative h-full w-full" role="img" aria-label={description}>
       <Canvas
         frameloop="demand"
         dpr={[1, 2]}
-        camera={{ fov: 30, near: 1, far: 5000, position: [0, height * 0.9, height * 2.6] }}
+        camera={{ fov: 30, near: 1, far: 5000, position: [0, height * 0.9, size * 2.6] }}
         gl={{ antialias: true, preserveDrawingBuffer: true }}
       >
-        <color attach="background" args={['#EAE5DB']} />
+        <color key={stage} attach="background" args={[stage]} />
         <hemisphereLight args={['#fffaf0', '#b9ad9a', 1.1]} />
         <directionalLight position={[200, 400, 250]} intensity={2.2} />
         <directionalLight position={[-300, 150, -200]} intensity={0.6} />
         <VaseObject mesh={mesh} look={look} showSection={!!showSection} />
         <ContactShadows position={[0, 0, 0]} scale={height * 2.5} far={height} blur={2.2} opacity={0.45} frames={1} key={mesh.stats.volume} />
-        <Controls height={height} view={view} viewNonce={viewNonce} />
+        <Controls height={height} size={size} view={view} viewNonce={viewNonce} />
       </Canvas>
     </div>
   )
@@ -97,7 +101,7 @@ function VaseObject({ mesh, look, showSection }: { mesh: VaseMesh; look: ViewerL
   )
 }
 
-function Controls({ height, view, viewNonce }: { height: number; view: CameraView; viewNonce: number }) {
+function Controls({ height, size, view, viewNonce }: { height: number; size: number; view: CameraView; viewNonce: number }) {
   const ref = useRef<OrbitControlsImpl>(null)
   const camera = useThree((s) => s.camera)
   const invalidate = useThree((s) => s.invalidate)
@@ -105,7 +109,7 @@ function Controls({ height, view, viewNonce }: { height: number; view: CameraVie
   // Move the camera to a preset view when asked.
   useEffect(() => {
     const target = new THREE.Vector3(0, height / 2, 0)
-    const d = height * 2.7
+    const d = size * 2.7
     const positions: Record<CameraView, THREE.Vector3> = {
       front: new THREE.Vector3(0, height / 2, d),
       top: new THREE.Vector3(0, d + height / 2, 0.001),
@@ -130,8 +134,8 @@ function Controls({ height, view, viewNonce }: { height: number; view: CameraVie
       ref={ref}
       makeDefault
       enableDamping={false}
-      minDistance={height * 0.6}
-      maxDistance={height * 6}
+      minDistance={size * 0.6}
+      maxDistance={size * 6}
       maxPolarAngle={Math.PI * 0.55}
     />
   )
