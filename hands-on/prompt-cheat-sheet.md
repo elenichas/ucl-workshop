@@ -5,7 +5,7 @@
 ```
 CONTEXT    what this is, who it's for            "This is a vase configurator for students…"
 TASK       one clear thing                        "Add a 'lean' parameter."
-WHERE      files, if you know them                "in config/parameters.ts and geometry/profile.ts"
+WHERE      files, if you know them                "in starts/shapes.ts (the Round start)"
 LIMITS     what not to do                         "Don't change the UI. Don't add libraries."
 DONE WHEN  how you'll check                       "A test proves the vase is still watertight."
 PROCESS    how to proceed                         "Plan first and wait for my OK."

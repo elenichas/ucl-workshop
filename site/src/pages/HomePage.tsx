@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import { PRESETS } from '@/config/parameters'
-import { buildVase } from '@/geometry/buildVase'
-import { DRAFT } from '@/geometry/types'
+import { getPreset } from '@/design/design'
+import { buildDesign } from '@/geometry/buildDesign'
 import { VaseViewer } from '@/viewer/VaseViewer'
 import { usePrefersDark } from '@/state/usePrefersDark'
 import { Button } from '@/components/ui/button'
 
-const hero = PRESETS.find((p) => p.id === 'tulip')!
-const heroMesh = buildVase(hero.params, { ...DRAFT, radial: 160, vertical: 120 })
+const hero = getPreset('tulip')
+const heroMesh = buildDesign(hero, 'full', { radial: 160, vertical: 120 })
 
 const FLOW = [
   { n: '01', title: 'Inputs', body: 'Height, diameters, ribs, twist, ripples. A printer and a material with their own limits.' },
@@ -44,7 +43,7 @@ export default function HomePage() {
         <div className="h-[56svh] min-h-[360px] lg:h-[calc(100dvh-3.5rem)]">
           <VaseViewer
             mesh={heroMesh}
-            height={hero.params.height}
+            height={heroMesh.stats.height}
             look={{ color: '#B5532F', roughness: 0.8, metalness: 0, clearcoat: 0.1 }}
             stage={dark ? '#26221E' : '#EAE5DB'}
             description="A terracotta tulip-shaped vase with six twisting ribs, shown in 3D. Drag to rotate."

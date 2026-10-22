@@ -11,6 +11,11 @@ export interface ViewerLook {
   metalness: number
   /** 0–1: clearcoat makes glazed ceramic / shiny resin read as glossy */
   clearcoat: number
+  /** Second colour: the vase fades from `color` at the bottom to `colorB` at the top */
+  colorB?: string
+  gradient?: boolean
+  /** Dark flecks, like a speckled clay body under glaze */
+  speckle?: boolean
 }
 
 export type CameraView = 'front' | 'top' | 'three-quarter'
@@ -76,6 +81,33 @@ function VaseObject({ mesh, look, showSection }: { mesh: VaseMesh; look: ViewerL
     return g
   }, [mesh])
 
+  // Per-point colours for gradients and speckle (otherwise one colour for the whole mesh).
+  const useVertexColors = !!(look.gradient || look.speckle)
+  useEffect(() => {
+    if (!useVertexColors) {
+      geometry.deleteAttribute('color')
+      return
+    }
+    const pos = geometry.getAttribute('position')
+    const a = new THREE.Color(look.color), b = new THREE.Color(look.gradient ? look.colorB ?? look.color : look.color)
+    let minY = Infinity, maxY = -Infinity
+    for (let i = 0; i < pos.count; i++) { minY = Math.min(minY, pos.getY(i)); maxY = Math.max(maxY, pos.getY(i)) }
+    const colors = new Float32Array(pos.count * 3)
+    const c = new THREE.Color()
+    for (let i = 0; i < pos.count; i++) {
+      const t = (pos.getY(i) - minY) / (maxY - minY || 1)
+      c.copy(a).lerp(b, t * t * (3 - 2 * t))
+      if (look.speckle) {
+        const h = Math.sin(pos.getX(i) * 12.9898 + pos.getY(i) * 78.233 + pos.getZ(i) * 37.719) * 43758.5453
+        const f = h - Math.floor(h)
+        if (f > 0.93) c.multiplyScalar(0.45)
+      }
+      colors.set([c.r, c.g, c.b], i * 3)
+    }
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+    invalidate()
+  }, [geometry, useVertexColors, look.color, look.colorB, look.gradient, look.speckle, invalidate])
+
   // Free GPU memory of the previous geometry — otherwise memory grows with every slider move.
   useEffect(() => () => geometry.dispose(), [geometry])
 
@@ -89,7 +121,9 @@ function VaseObject({ mesh, look, showSection }: { mesh: VaseMesh; look: ViewerL
   return (
     <mesh geometry={geometry}>
       <meshPhysicalMaterial
-        color={look.color}
+        key={useVertexColors ? 'vc' : 'plain'}
+        vertexColors={useVertexColors}
+        color={useVertexColors ? '#ffffff' : look.color}
         roughness={look.roughness}
         metalness={look.metalness}
         clearcoat={look.clearcoat}

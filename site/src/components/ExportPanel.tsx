@@ -1,8 +1,8 @@
 import { Download, LoaderCircle } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { buildVase } from '@/geometry/buildVase'
-import { FULL, type VaseParams } from '@/geometry/types'
+import { buildDesign } from '@/geometry/buildDesign'
+import type { Design } from '@/design/design'
 import { download, to3DM, toOBJ, toSTL } from '@/export/formats'
 
 const FORMATS = [
@@ -11,7 +11,7 @@ const FORMATS = [
   { id: '3dm', label: '3DM', note: 'opens in Rhino, millimetres' },
 ] as const
 
-export function ExportPanel({ params, name, disabledReason }: { params: VaseParams; name: string; disabledReason?: string }) {
+export function ExportPanel({ design, name, disabledReason }: { design: Design; name: string; disabledReason?: string }) {
   const [busy, setBusy] = useState<string | null>(null)
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
@@ -19,7 +19,7 @@ export function ExportPanel({ params, name, disabledReason }: { params: VasePara
     setBusy(format)
     try {
       // Always export at full resolution, whatever the viewer is showing.
-      const mesh = buildVase(params, FULL)
+      const mesh = buildDesign(design, 'full')
       if (format === 'stl') download(toSTL(mesh), `${slug}.stl`)
       if (format === 'obj') download(toOBJ(mesh), `${slug}.obj`)
       if (format === '3dm') download(await to3DM(mesh, name), `${slug}.3dm`)

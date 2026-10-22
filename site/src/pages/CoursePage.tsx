@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Presentation } from 'lucide-react'
 import { CHAPTERS, PARTS } from './course'
 
 export default function CoursePage() {
@@ -10,6 +11,12 @@ export default function CoursePage() {
         Building a parametric vase configurator with Claude Code. Nineteen short chapters on how AI agents and websites work,
         how to start systematically, and how to build — and judge — a 3D tool step by step.
       </p>
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        <Link to="/present" className="flex items-center gap-2 bg-ink px-5 py-3 font-medium text-paper hover:bg-clay">
+          <Presentation className="size-4" aria-hidden /> Present the course
+        </Link>
+        <p className="text-sm text-ink-muted">Slides with live 3D and step-by-step reveals · download as PowerPoint from inside the presentation · press N for speaker notes</p>
+      </div>
 
       <div className="mt-14 grid gap-12">
         {PARTS.map((part) => (

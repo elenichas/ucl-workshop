@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Presentation } from 'lucide-react'
+import { firstSlideOf } from '@/slides/deck'
 import { CHAPTERS, resolveHref } from './course'
 
 export default function ChapterPage() {
@@ -30,7 +31,12 @@ export default function ChapterPage() {
 
   return (
     <article className="mx-auto max-w-[760px] px-4 py-12 md:px-6 md:py-16">
-      <Link to="/course" className="section-label hover:text-ink">← All chapters</Link>
+      <div className="flex items-center justify-between gap-4">
+        <Link to="/course" className="section-label hover:text-ink">← All chapters</Link>
+        <Link to={`/present?s=${firstSlideOf(chapter.slug)}`} className="flex items-center gap-2 border border-ink px-3 py-1.5 text-sm font-medium hover:bg-ink hover:text-paper">
+          <Presentation className="size-4" aria-hidden /> Present this chapter
+        </Link>
+      </div>
       <div className="prose mt-8">
         <Markdown
           remarkPlugins={[remarkGfm]}

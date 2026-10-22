@@ -28,6 +28,12 @@ Legend: **▶ present** · **↷ flip through** (show one slide/table, 1 min) ·
 
 If you're running late, cut in this order: 14 → 13 → 12 → 10 → 06 → 17. Never cut 05.
 
+## Presenting from the site
+
+**Course → Present the course.** Arrow keys / clicker: next reveal or slide · **O** overview (jump anywhere) · **N** speaker notes window (keep it on your laptop, share only the slides) · **F** full screen · **PowerPoint** button for a .pptx backup (takes about a minute; diagrams and 3D become images, notes are kept).
+
+Slide numbers for the key moments: system map 48–49 · inside-out vase ~55 · same vase two printers ~63. Use **O** rather than memorising.
+
 ## Live demo checklist (before the session)
 
 - [ ] `cd site && npm install && npm run dev` works on your laptop *offline-ish* (fonts may fall back without internet — fine)
@@ -35,6 +41,7 @@ If you're running late, cut in this order: 14 → 13 → 12 → 10 → 06 → 17
 - [ ] One clean terminal ready for `git checkout stage-05-exports` / `stage-06-craft` (the before/after craft moment)
 - [ ] The site open on your phone (`npm run dev -- --host`, same Wi-Fi)
 - [ ] An exported `.3dm` already opened in Rhino, in case live export is slow
+- [ ] A PowerPoint export saved locally, in case the browser misbehaves on the projector
 - [ ] Ask the lab: which printers and materials? → edit `site/src/config/printers.ts` / `materials.ts` **or** keep the "Our lab only has X" card as a live exercise
 
 ## During the hands-on

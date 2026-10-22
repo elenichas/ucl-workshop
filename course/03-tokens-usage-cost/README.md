@@ -54,7 +54,7 @@ When the context gets full, Claude Code will **compact** it (summarise older par
 | **Plan first** (plan mode, PLAN.md) | A wrong build costs 10× more than a conversation about the plan |
 | **Small steps** | Each step has a small context; mistakes are caught early |
 | **One task per conversation** — then `/clear` | You stop paying to re-read old, irrelevant history |
-| **Point to files** — "look at `geometry/profile.ts`" | Instead of "look at everything" (which reads the whole repo) |
+| **Point to files** — "look at `starts/shapes.ts`" | Instead of "look at everything" (which reads the whole repo) |
 | **Keep CLAUDE.md short** | It's read on every single turn |
 | **Put decisions in files** | You can `/clear` freely; knowledge survives |
 | **Ask for summaries, not dumps** | "Run the tests and tell me only what failed" |

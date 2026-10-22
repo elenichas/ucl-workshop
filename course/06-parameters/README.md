@@ -38,7 +38,49 @@ Ask, for each candidate parameter:
 | | Wall thickness | mm | 0.8–8 | Strength vs. weight; material-dependent |
 | | Floor thickness | mm | 1–10 | |
 
-What we **deliberately left out** (for now): handles, non-round cross-sections, text/logos, a free-form curve editor, textures in the exported file. Each one is a great hands-on challenge.
+What we **deliberately left out**: handles, text/logos, colour in the exported files. (Non-round sections and a curve editor were left out of version 1 — and added in version 2, see below.)
+
+## Different starts, different controls
+
+The first version had one way to start: a round profile with three diameters. Version 2 has **nine** — and each one exposes its *own* controls, because each one describes the form differently.
+
+| Start from | Controls it exposes | How the form is described |
+|---|---|---|
+| **Round** | height, base / belly / top diameter, belly position | three diameters eased into one curve, revolved |
+| **Sphere** | diameter, squash, foot diameter, opening | an ellipse cut by two planes — **height is derived**, not set |
+| **Box** | width, depth, height, corner rounding, top size, bulge, twist | a rounded rectangle (superellipse) scaled along the height |
+| **Polygon** | sides, diameter, height, star depth, softness, top size, twist | a polygon or star outline, scaled and rotated |
+| **Cone** | base / top diameter, height, curve | two circles joined by a power curve |
+| **Draw a profile** | your points + height | a smooth spline through the points you drag |
+| **Sketch** | your stroke + height, widest diameter, smoothing | a freehand line, resampled into 64 rows |
+| **From an image** | the image + height, width, outline sensitivity, smoothing | the outline found in a photo or drawing — plus its colours |
+| **Carve** | start solid, cutter, operation, size, position, tilt, spin, repeats | solid A − solid B (or A ∩ B): a boolean |
+
+Profile-based starts (round, cone, draw, sketch, image) also get **cross-section** controls: turn every slice into a polygon or a star.
+
+After the start, everyone shares the same next steps: **Surface** (ribs, ripples, knurl, honeycomb, scales, bricks, knit, organic noise, cells, or an image pressed in as relief), **Finish** (colour, two-colour gradient, matte / satin / gloss / speckled), and **Make** (printer, material, walls).
+
+Notice what this teaches: *the starting point decides which questions make sense*. Asking a sphere for its "belly position" is meaningless. Asking a box for its "corner rounding" is the most important question.
+
+## The system map
+
+In the configurator, **How it works** opens a map of the whole system:
+
+```
+START FROM → CONTROLS IT EXPOSES → HOW THE FORM IS DESCRIBED → ITS OWN STEPS → SHARED PIPELINE → RESULTS
+```
+
+The active start is highlighted; click another row to switch. The map is generated from the same definitions that build the controls ([`site/src/starts/`](../../site/src/starts/)), so it can never drift from what the app does.
+
+### Exercise — map your own configurator
+
+Before you build, draw your system map on paper: for each way to start, its inputs, how the form is described, its steps, its outputs. Use the [worksheet](../../hands-on/system-map-worksheet.md). Then compare with ours — and afterwards ask Claude:
+
+```text
+Read my code and draw the system map of my configurator as a table:
+start → controls → representation → steps → shared pipeline → results.
+Where does it differ from what I intended in PLAN.md?
+```
 
 ## Parameters vs. profiles
 
@@ -56,7 +98,7 @@ If on the day we learn "the lab only has one clay printer", we edit one file and
 
 ## Describing parameters once
 
-In the code, every slider is described once, with its label, unit, range, step and help text ([`config/parameters.ts`](../../site/src/config/parameters.ts)). The UI is *generated* from that list. To add a parameter you add one entry there and use it in the algorithm. One source of truth — the same idea as a well-organised Grasshopper definition with named sliders.
+In the code, every control is described once, with its label, unit, range, step and help text — inside the starting point it belongs to ([`site/src/starts/`](../../site/src/starts/)). The UI *and* the system map are generated from those lists. To add a parameter you add one entry there and use it in that start's field function. One source of truth — the same idea as a well-organised Grasshopper definition with named sliders.
 
 ## Presets: defaults with a name
 

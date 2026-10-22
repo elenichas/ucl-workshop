@@ -1,14 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { buildVase } from '@/geometry/buildVase'
-import { DRAFT } from '@/geometry/types'
-import { DEFAULT_PARAMS } from '@/config/parameters'
-import { getMaterial } from '@/config/materials'
+import { buildDesign } from '@/geometry/buildDesign'
+import { getMaterial, MATERIALS } from '@/config/materials'
 import { getPrinter, PRINTERS } from '@/config/printers'
-import { MATERIALS } from '@/config/materials'
+import { newDesign, withStartValues, type Design } from '@/design/design'
 import { overall, runChecks } from './printability'
 
-const check = (params = DEFAULT_PARAMS, printerId = 'fdm-desktop', materialId = 'pla') =>
-  runChecks({ params, mesh: buildVase(params, DRAFT), printer: getPrinter(printerId), material: getMaterial(materialId) })
+const check = (design: Design = newDesign(), printerId = 'fdm-desktop', materialId = 'pla') =>
+  runChecks({ design, mesh: buildDesign(design, 'draft'), printer: getPrinter(printerId), material: getMaterial(materialId) })
 
 const verdictOf = (results: ReturnType<typeof check>, id: string) => results.find((r) => r.id === id)?.verdict
 
@@ -18,22 +16,29 @@ describe('printability', () => {
   })
 
   it('a vase taller than the printer fails the build-volume check', () => {
-    expect(verdictOf(check({ ...DEFAULT_PARAMS, height: 300 }), 'build-volume')).toBe('fail')
+    expect(verdictOf(check(withStartValues(newDesign(), 'round', { height: 300 })), 'build-volume')).toBe('fail')
   })
 
   it('a 2 mm wall is fine for PLA but fails for clay', () => {
-    expect(verdictOf(check(DEFAULT_PARAMS, 'fdm-desktop', 'pla'), 'wall')).toBe('pass')
-    expect(verdictOf(check(DEFAULT_PARAMS, 'clay', 'stoneware'), 'wall')).toBe('fail')
+    expect(verdictOf(check(newDesign(), 'fdm-desktop', 'pla'), 'wall')).toBe('pass')
+    expect(verdictOf(check(newDesign(), 'clay', 'stoneware'), 'wall')).toBe('fail')
   })
 
-  it('clay is stricter about overhangs than PLA', () => {
-    const flared = { ...DEFAULT_PARAMS, ribCount: 0, baseDiameter: 70, bellyDiameter: 140, bellyPosition: 0.4 }
-    expect(verdictOf(check(flared, 'fdm-desktop', 'pla'), 'overhang')).toBe('pass')
-    expect(verdictOf(check({ ...flared, wallThickness: 4 }, 'clay', 'stoneware'), 'overhang')).not.toBe('pass')
+  it('a sphere with a wide foot prints in PLA but overhangs too much for clay', () => {
+    // foot 120 of 150: the wall leans about 37° just above the foot
+    const d = withStartValues({ ...newDesign(), start: 'sphere', wall: { wallThickness: 4, baseThickness: 5 } }, 'sphere', { diameter: 150, footDiameter: 120, openingDiameter: 60, squash: 1 })
+    expect(verdictOf(check(d, 'fdm-desktop', 'pla'), 'overhang')).not.toBe('fail')
+    expect(verdictOf(check(d, 'clay', 'stoneware'), 'overhang')).toBe('fail')
   })
 
   it('a tall vase on a tiny foot is unstable', () => {
-    expect(verdictOf(check({ ...DEFAULT_PARAMS, baseDiameter: 40, height: 210 }), 'stability')).toBe('fail')
+    expect(verdictOf(check(withStartValues(newDesign(), 'round', { baseDiameter: 35, height: 210 })), 'stability')).toBe('fail')
+  })
+
+  it('a colour gradient needs a multi-colour printer', () => {
+    const d = { ...newDesign(), finish: { ...newDesign().finish, mode: 'gradient' as const } }
+    expect(verdictOf(check(d, 'fdm-desktop'), 'colour')).toBe('warn')
+    expect(verdictOf(check(d, 'fdm-multi'), 'colour')).toBe('pass')
   })
 
   it('every printer lists only materials that exist', () => {

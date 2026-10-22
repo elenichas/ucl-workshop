@@ -9,7 +9,7 @@ Read `DESIGN.md` at the repo root first. It is the brief. This skill is how to a
 
 ## Before writing UI
 1. Read `DESIGN.md` (tokens + principles + don'ts) and `site/src/index.css` (the same tokens as CSS variables).
-2. Reuse what exists: `components/ui/` (button, slider, tabs, native-select), `.section-label`, `ParamSlider`, `ChecksPanel`. Extend a component rather than creating a near-duplicate.
+2. Reuse what exists: `components/ui/` (button, slider, tabs, native-select), `.section-label`, `ControlField`, `StartPicker`, `ChecksPanel`. Extend a component rather than creating a near-duplicate.
 3. State in one line how the change serves "The object first" and which principle it follows.
 
 ## Rules of thumb
