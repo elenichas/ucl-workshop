@@ -66,6 +66,22 @@ Be honest about the limits — this is a teaching tool, not a slicer:
 
 [`.claude/skills/printability-review/`](../../.claude/skills/printability-review/SKILL.md) packages this knowledge for Claude: when you ask *"will this vase print in porcelain?"*, it knows to read the profiles and rules, explain in fabrication terms, and suggest the smallest change that fixes it.
 
+## The prompt: research first, with sources
+
+You don't need to know the fabrication rules before you start. Ask the agent to research them — and to say where each rule comes from:
+
+```text
+Research how people check whether a 3D model can be printed —
+for a desktop plastic printer and for a clay printer.
+Propose a few basic checks (for example: wall too thin, too steep
+an overhang, too big for the printer), each with where the rule
+comes from — link the sources. Wait for my OK.
+Then build them: each check says pass, warn or fail, in one
+sentence with the numbers. Keep the sources in CHECKS.md.
+```
+
+Then read the sources. A rule without a source is a guess — and the lab technician is the best source of all.
+
 ## Try it
 
 ```text

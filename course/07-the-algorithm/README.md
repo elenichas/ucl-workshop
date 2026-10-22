@@ -79,9 +79,11 @@ While building, the algorithm records facts the checks need (chapter 09):
 
 ## A real story from building it
 
-The first version failed two tests: "is it watertight?" and "is the volume right?" (off by 12%). The tests had caught that **the side walls were facing the wrong way** — inside-out — while the bottom faced correctly, so the surfaces didn't agree. On screen it looked perfect (we render both sides of every triangle). A slicer would have choked. Claude flipped the winding order, tests went green. See [`prompts/03-algorithm.md`](../../prompts/03-algorithm.md).
+A 3D model is a skin of tiny triangles, and each one has an **outside** and an **inside**. In our first version the side walls were flipped — the vase was **inside-out**. On screen it looked perfect. The printer software would have seen a broken file.
 
-> **Lesson:** "it looks right" is not "it is right". Write the test first, then trust the green.
+You can't see this by eye. What caught it were two automatic checks the agent had written: *"is every vase a closed shape?"* and *"is the volume what a hand calculation gives?"* (it was off by 12%). Claude flipped the walls, the checks passed. See [`prompts/03-algorithm.md`](../../prompts/03-algorithm.md).
+
+> **Lesson:** "it looks right" is not "it is right". For things you can't see, ask the agent for checks: *"Is every vase a closed shape? Do its surfaces face outwards?"*
 
 ## Version 2: one pipeline, many front doors
 

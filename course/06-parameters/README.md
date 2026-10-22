@@ -72,9 +72,9 @@ START FROM → CONTROLS IT EXPOSES → HOW THE FORM IS DESCRIBED → ITS OWN STE
 
 The active start is highlighted; click another row to switch. The map is generated from the same definitions that build the controls ([`site/src/starts/`](../../site/src/starts/)), so it can never drift from what the app does.
 
-### Exercise — map your own configurator
+### Exercise — map your vase configurator
 
-Before you build, draw your system map on paper: for each way to start, its inputs, how the form is described, its steps, its outputs. Use the [worksheet](../../hands-on/system-map-worksheet.md). Then compare with ours — and afterwards ask Claude:
+Everyone builds a **vase** configurator — the exercise is to decide what *yours* offers. Before you build, draw its system map on paper: which ways to start you want (round, box, a drawn profile, an image…), the controls each one gives the user, the steps every vase shares, and what comes out at the end. Use the [worksheet](../../hands-on/system-map-worksheet.md). Then compare with ours — and afterwards ask Claude:
 
 ```text
 Read my code and draw the system map of my configurator as a table:

@@ -190,7 +190,7 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
               ))}
             </ol>
           </div>
-          <LiveVase presetDesigns={slide.designs} step={step} exporting={exporting} />
+          {liveVase() ? <LiveVase presetDesigns={slide.designs} step={step} exporting={exporting} /> : <StaticVase id={slide.id} count={slide.designs.length} step={step} labels={slide.designs.map((d) => d.label)} />}
         </div>
       )
     case 'images':
@@ -211,6 +211,27 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
   }
 }
 
+/** Path of the pre-rendered picture of one vase on a vase slide. */
+export const vaseImage = (id: string, i: number) => `slides/vase-${id}-${i}.png`
+
+/** Set by scripts/render-slide-vases.mjs to render the live 3D version, which it then saves as pictures. */
+const liveVase = () => typeof window !== 'undefined' && (window as unknown as { __LIVE_VASE__?: boolean }).__LIVE_VASE__ === true
+
+/**
+ * On slides the vases are still pictures (rendered from the real 3D viewer):
+ * stepping through them is a hard cut — no camera moves, no loading flash.
+ */
+function StaticVase({ id, count, step, labels }: { id: string; count: number; step: number; labels: string[] }) {
+  const current = Math.min(step, count - 1)
+  return (
+    <div className="relative h-full border-l border-line bg-[#EAE5DB]" data-export="vase">
+      {Array.from({ length: count }, (_, i) => (
+        <img key={i} src={`${import.meta.env.BASE_URL}${vaseImage(id, i)}`} alt={`3D render: ${labels[i]}`} aria-hidden={i !== current} className={cn('absolute inset-0 h-full w-full object-contain', i === current ? 'opacity-100' : 'opacity-0')} />
+      ))}
+    </div>
+  )
+}
+
 /** A real 3D vase on the slide — built by the same code as the configurator. */
 function LiveVase({ presetDesigns, step, exporting }: { presetDesigns: { label: string; design?: Design }[]; step: number; exporting: boolean }) {
   const dark = usePrefersDark()
@@ -218,7 +239,7 @@ function LiveVase({ presetDesigns, step, exporting }: { presetDesigns: { label: 
   const mesh = useMemo(() => buildDesign(design, 'full', design.start === 'carve' ? { radial: 140, vertical: 100 } : { radial: 200, vertical: 140 }), [design])
   return (
     <div className="h-full border-l border-line" data-export="vase">
-      <VaseViewer mesh={mesh} height={mesh.stats.height} look={{ ...finishLook(design.finish), metalness: 0 }} stage={dark && !exporting ? '#26221E' : '#EAE5DB'} description={`3D view: ${design.name}`} />
+      <VaseViewer key={step} mesh={mesh} height={mesh.stats.height} look={{ ...finishLook(design.finish), metalness: 0 }} stage={dark && !exporting ? '#26221E' : '#EAE5DB'} description={`3D view: ${design.name}`} />
     </div>
   )
 }
