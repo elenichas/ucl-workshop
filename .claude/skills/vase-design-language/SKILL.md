@@ -1,0 +1,30 @@
+---
+name: vase-design-language
+description: Apply and protect the Vessel visual language (DESIGN.md) when creating or changing any UI in site/ — pages, components, colours, typography, layout, icons, motion. Use whenever the task touches how something looks, or when the user asks for a design critique of the site.
+---
+
+# Vessel design language
+
+Read `DESIGN.md` at the repo root first. It is the brief. This skill is how to apply it.
+
+## Before writing UI
+1. Read `DESIGN.md` (tokens + principles + don'ts) and `site/src/index.css` (the same tokens as CSS variables).
+2. Reuse what exists: `components/ui/` (button, slider, tabs, native-select), `.section-label`, `ParamSlider`, `ChecksPanel`. Extend a component rather than creating a near-duplicate.
+3. State in one line how the change serves "The object first" and which principle it follows.
+
+## Rules of thumb
+- Colours only via tokens: `bg-paper`, `text-ink`, `text-ink-muted`, `border-line`, `bg-clay` / `text-clay`, `text-ok|warn|fail`. Never raw hex in components (the 3D stage colour is the one exception).
+- Clay is the **only** accent and appears sparingly: primary action hover, active state, slider fill, focus ring, small numerals.
+- Type: `font-display` only for big moments; `font-mono tabular-nums` for every number with a unit; sentence-case labels.
+- Separation by 1px `border-line` rules, not shadows or cards. Radius `rounded-sm` at most.
+- Icons: lucide-react only, decorative ones `aria-hidden`.
+- Every interactive element: visible label (or `aria-label`), keyboard reachable, `focus-visible` outline in clay.
+- Status = icon + word + colour, never colour alone.
+- Motion ≤ 250 ms, and must be disabled by `prefers-reduced-motion` (already global in index.css).
+- Check both light and dark mode; text contrast ≥ 4.5 : 1.
+
+## Never
+Purple/blue gradients, gradient text, glassmorphism, glowing blobs, emoji icons, a hero followed by three feature cards, fake testimonials or stats, lorem ipsum, pill-shaped everything, a second accent colour.
+
+## Critique mode
+When asked to critique: list the 5 most important issues, each with *where*, *which DESIGN.md principle it breaks*, and *the smallest fix*. Don't change code until asked. If possible, take a screenshot (Playwright) and look at it before judging.
