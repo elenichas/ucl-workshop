@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Design tokens from DESIGN.md. Tailwind turns each --color-* into classes
+   such as bg-paper, text-ink, border-line. */
+@theme {
+  --color-paper: #F3EFE7;
+  --color-paper-raised: #FBF9F4;
+  --color-ink: #1C1A17;
+  --color-ink-muted: #5E5850;
+  --color-line: #D9D2C5;
+  --color-clay: #B5532F;
+  --color-clay-ink: #8E3C1E;
+  --color-ok: #2F6B45;
+  --color-warn: #9A6A00;
+  --color-fail: #A3291B;
+
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+}
+
+html { color-scheme: light; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
