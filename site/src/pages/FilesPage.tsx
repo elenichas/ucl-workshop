@@ -35,16 +35,15 @@ function Page({ children }: { children: React.ReactNode }) {
 function FilesIndex() {
   return (
     <div className="mx-auto max-w-[1100px] px-4 py-12 md:px-6 md:py-20">
-      <p className="section-label">Project files</p>
-      <h1 className="mt-5 font-display text-5xl leading-[0.95] tracking-tight md:text-7xl">Everything we wrote down</h1>
+      <h1 className="font-display text-5xl leading-[0.95] tracking-tight md:text-7xl">Everything we wrote down</h1>
       <div className="mt-6 grid max-w-[62ch] gap-4 text-lg leading-relaxed text-ink-muted">
         <p>
-          Building with an agent works best when decisions live in files, not only in the chat. These are the <span className="font-mono text-base">.md</span> files
+          Building with an agent works best when decisions live in files, not only in the chat. These are the <span className="font-code text-base">.md</span> files
           behind the demo — the plan, the design brief, the skills, the worksheets and the real prompts.
         </p>
         <p>
-          <span className="text-ink">For your own project:</span> keep the same kind of files in your project folder — a <span className="font-mono text-base">PLAN.md</span>, a{' '}
-          <span className="font-mono text-base">DESIGN.md</span>, a <span className="font-mono text-base">PROGRESS.md</span> — so Claude stays consistent from one chat to the next. Copy or
+          <span className="text-ink">For your own project:</span> keep the same kind of files in your project folder — a <span className="font-code text-base">PLAN.md</span>, a{' '}
+          <span className="font-code text-base">DESIGN.md</span>, a <span className="font-code text-base">PROGRESS.md</span> — so Claude stays consistent from one chat to the next. Copy or
           download any file here as a starting point. No GitHub needed.
         </p>
       </div>
@@ -57,8 +56,8 @@ function FilesIndex() {
               {g.paths.map((p) => (
                 <li key={p} className="border-b border-line">
                   <Link to={`/files/${p}`} className="group grid gap-x-8 py-4 md:grid-cols-[minmax(0,22rem)_1fr]">
-                    <span className="font-mono text-sm text-clay">{p}</span>
-                    <span className="text-lg leading-snug group-hover:underline group-hover:decoration-clay group-hover:underline-offset-4">{fileTitle(p)}</span>
+                    <span className="font-code text-[13px] text-ink-muted">{p}</span>
+                    <span className="text-lg leading-snug group-hover:underline group-hover:decoration-accent group-hover:underline-offset-4">{fileTitle(p)}</span>
                   </Link>
                 </li>
               ))}
@@ -73,7 +72,7 @@ function FilesIndex() {
 function Breadcrumb({ path }: { path: string }) {
   const parts = path.split('/').filter(Boolean)
   return (
-    <nav aria-label="Where this file lives" className="flex flex-wrap items-center gap-1 font-mono text-sm text-ink-muted">
+    <nav aria-label="Where this file lives" className="flex flex-wrap items-center gap-1 font-code text-sm text-ink-muted">
       <Link to="/files" className="hover:text-ink">files</Link>
       {parts.map((p, i) => {
         const last = i === parts.length - 1
@@ -135,8 +134,8 @@ function MdFile({ path }: { path: string }) {
       </div>
       {fm && (
         <div className="mt-8 border border-line bg-paper-raised p-5">
-          <p className="section-label">{isSkill ? 'Header · Claude always sees this, and reads the rest only when it’s relevant' : 'Header · settings at the top of the file'}</p>
-          <pre className="mt-3 overflow-x-auto whitespace-pre-wrap font-mono text-[13px] leading-relaxed">{fm[1]}</pre>
+          <p className="section-label">{isSkill ? 'Header: Claude always sees this, and reads the rest only when it’s relevant' : 'Header: settings at the top of the file'}</p>
+          <pre className="mt-3 overflow-x-auto whitespace-pre-wrap font-code text-[13px] leading-relaxed">{fm[1]}</pre>
         </div>
       )}
       <div className="mt-8">
@@ -163,7 +162,7 @@ function CodeFile({ path }: { path: string }) {
       <p className="mt-6 max-w-[62ch] text-sm leading-relaxed text-ink-muted">
         This is code the agent wrote for the demo. You don’t need to read it — but you can, and you can always ask Claude to explain a file in plain words.
       </p>
-      <pre className="mt-6 overflow-x-auto border border-line bg-paper-raised p-5 font-mono text-[13px] leading-relaxed">
+      <pre className="mt-6 overflow-x-auto border border-line bg-paper-raised p-5 font-code text-[13px] leading-relaxed">
         <code>{text ?? 'Loading…'}</code>
       </pre>
     </article>
@@ -181,9 +180,9 @@ function FolderView({ folder, paths }: { folder: string; paths: string[] }) {
           const Icon = isMd ? FileText : FileCode2
           return (
             <li key={p} className="border-b border-line">
-              <Link to={`/files/${p}`} className="flex items-center gap-3 py-3 hover:text-clay">
+              <Link to={`/files/${p}`} className="flex items-center gap-3 py-3 hover:text-accent">
                 <Icon className="size-4 shrink-0 text-ink-muted" aria-hidden />
-                <span className="font-mono text-sm">{p.slice(folder.length + 1)}</span>
+                <span className="font-code text-sm">{p.slice(folder.length + 1)}</span>
                 {isMd && <span className="ml-auto hidden text-sm text-ink-muted sm:block">{fileTitle(p)}</span>}
               </Link>
             </li>

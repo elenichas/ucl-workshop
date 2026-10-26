@@ -3,37 +3,44 @@
 /* Design tokens from DESIGN.md. Tailwind turns each --color-* into classes
    such as bg-paper, text-ink, border-line. */
 @theme {
-  --color-paper: #F3EFE7;
-  --color-paper-raised: #FBF9F4;
-  --color-ink: #1C1A17;
-  --color-ink-muted: #5E5850;
-  --color-line: #D9D2C5;
-  --color-clay: #A6482A;
-  --color-clay-ink: #8E3C1E;
+  --color-paper: #E9EBE8;
+  --color-paper-raised: #F7F8F6;
+  --color-stage: #DCDFDB;
+  --color-ink: #000000;
+  --color-ink-muted: #4F5652;
+  --color-line: #C9CDC9;
+  --color-filament: #FFC21A;
+  --color-on-filament: #000000;
+  --color-accent: #7A5300;
   --color-ok: #2F6B45;
-  --color-warn: #8A5F00;
-  --color-fail: #A3291B;
+  --color-warn: #A84A00;
+  --color-fail: #B3261E;
 
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-sans: "Instrument Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /* One family, three widths (see .font-display / .font-mono below). */
+  --font-display: "Archivo Variable", "Archivo", system-ui, sans-serif;
+  --font-sans: "Archivo Variable", "Archivo", system-ui, sans-serif;
+  --font-mono: "Archivo Variable", "Archivo", system-ui, sans-serif;
+  --font-code: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
 
-  --radius-sm: 2px;
-  --radius-md: 4px;
+  --radius-sm: 6px;
+  --radius-md: 6px;
 }
 
 /* Dark mode: same names, different values. Every component follows automatically. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-paper: #171512;
-    --color-paper-raised: #221F1B;
-    --color-ink: #EEE8DD;
-    --color-ink-muted: #A79F92;
-    --color-line: #3A352E;
-    --color-clay: #D2714B;
+    --color-paper: #1A1D1C;
+    --color-paper-raised: #242827;
+    --color-stage: #2B302E;
+    --color-ink: #F2F3F1;
+    --color-ink-muted: #A3AAA6;
+    --color-line: #343936;
+    --color-filament: #FFC21A;
+    --color-on-filament: #000000;
+    --color-accent: #FFC21A;
     --color-ok: #6FB58A;
-    --color-warn: #D9A640;
-    --color-fail: #E0705F;
+    --color-warn: #FF9A3D;
+    --color-fail: #FF7A6B;
   }
   html { color-scheme: dark; }
 }
@@ -47,10 +54,16 @@ body {
 }
 
 @layer components {
+  /* A section heading: sentence case, normal width — no uppercase tracked eyebrow. */
   .section-label {
-    @apply text-xs font-medium uppercase tracking-[0.14em] text-ink-muted;
+    @apply text-sm font-semibold text-ink-muted;
   }
 }
+
+/* Archivo is variable in width: wide for headlines, narrow with tabular figures for numbers. */
+.font-display { font-stretch: 125%; font-weight: 700; letter-spacing: -0.025em; }
+.font-mono { font-stretch: 82%; font-variant-numeric: tabular-nums; letter-spacing: 0; }
+.font-code { font-family: var(--font-code); font-stretch: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
@@ -59,21 +72,21 @@ body {
 /* Long-form text for the course chapters (rendered from Markdown). */
 .prose { font-size: 1.0625rem; line-height: 1.7; }
 .prose > * + * { margin-top: 1.1em; }
-.prose h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.6rem, 6vw, 4.2rem); line-height: 1; letter-spacing: -0.01em; }
-.prose h2 { font-family: var(--font-display); font-weight: 400; font-size: 2.1rem; line-height: 1.1; margin-top: 2.4em; padding-top: 0.6em; border-top: 1px solid var(--color-line); }
+.prose h1 { font-family: var(--font-display); font-stretch: 125%; font-weight: 700; letter-spacing: -0.025em; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.02; }
+.prose h2 { font-family: var(--font-display); font-stretch: 125%; font-weight: 700; letter-spacing: -0.02em; font-size: 1.6rem; line-height: 1.15; margin-top: 2.4em; padding-top: 0.6em; border-top: 1px solid var(--color-line); }
 .prose h3 { font-weight: 600; font-size: 1.1rem; margin-top: 2em; }
 .prose h4 { font-weight: 600; margin-top: 1.6em; }
 .prose p, .prose li { color: var(--color-ink); }
-.prose a { text-decoration: underline; text-decoration-color: var(--color-clay); text-underline-offset: 3px; }
-.prose a:hover { color: var(--color-clay); }
+.prose a { text-decoration: underline; text-decoration-color: var(--color-filament); text-decoration-thickness: 3px; text-underline-offset: 3px; }
+.prose a:hover { background: var(--color-filament); color: var(--color-on-filament); }
 .prose strong { font-weight: 600; }
 .prose ul { list-style: disc; padding-left: 1.3em; }
 .prose ol { list-style: decimal; padding-left: 1.3em; }
 .prose li + li { margin-top: 0.35em; }
-.prose blockquote { border-left: 2px solid var(--color-clay); padding-left: 1em; color: var(--color-ink-muted); }
+.prose blockquote { border-left: 4px solid var(--color-filament); padding-left: 1em; color: var(--color-ink-muted); }
 .prose hr { border: 0; border-top: 1px solid var(--color-line); margin: 2.5em 0; }
-.prose code { font-family: var(--font-mono); font-size: 0.85em; background: var(--color-paper-raised); border: 1px solid var(--color-line); padding: 0.1em 0.35em; border-radius: 2px; }
-.prose pre { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.55; background: var(--color-paper-raised); border: 1px solid var(--color-line); padding: 1em 1.2em; overflow-x: auto; border-radius: 2px; }
+.prose code { font-family: var(--font-code); font-size: 0.85em; background: var(--color-paper-raised); border: 1px solid var(--color-line); padding: 0.1em 0.35em; border-radius: 4px; }
+.prose pre { font-family: var(--font-code); font-size: 0.8rem; line-height: 1.55; background: var(--color-paper-raised); border: 1px solid var(--color-line); padding: 1em 1.2em; overflow-x: auto; border-radius: 6px; }
 .prose pre code { background: none; border: 0; padding: 0; font-size: inherit; }
 .prose .table-wrap { overflow-x: auto; border-top: 1px solid var(--color-ink); }
 .prose table { width: 100%; border-collapse: collapse; font-size: 0.9rem; line-height: 1.45; }
@@ -83,7 +96,7 @@ body {
 
 /* The animated "flow" on the active row of the system map. */
 .flow-line {
-  background: repeating-linear-gradient(90deg, var(--color-clay) 0 6px, transparent 6px 10px) !important;
+  background: repeating-linear-gradient(90deg, var(--color-filament) 0 6px, transparent 6px 10px) !important;
   background-size: 20px 1px !important;
   height: 2px !important;
   animation: flow 0.9s linear infinite;

@@ -50,8 +50,8 @@ export function Dimensions({ mesh }: { mesh: VaseMesh }) {
 
 // Each line gets a thin halo in the opposite tone, so it reads over the background and over a dark or light vase.
 type Palette = { ink: string; accent: string; axis: string; halo: string }
-const LIGHT: Palette = { ink: '#2a2622', accent: '#A6482A', axis: '#6f675e', halo: '#F3EFE7' }
-const DARK: Palette = { ink: '#F1EADF', accent: '#F0A07C', axis: '#B8AEA2', halo: '#1C1A17' }
+const LIGHT: Palette = { ink: '#000000', accent: '#7A5300', axis: '#4F5652', halo: '#F7F8F6' }
+const DARK: Palette = { ink: '#F2F3F1', accent: '#FFC21A', axis: '#A3AAA6', halo: '#1A1D1C' }
 const fmt = (mm: number) => `${mm.toFixed(0)} mm`
 
 function Dim({ from, to, tick, tickDir = [0, 0, 1], label, accent, pal }: { from: V3; to: V3; tick: number; tickDir?: V3; label: string; accent?: boolean; pal: Palette }) {

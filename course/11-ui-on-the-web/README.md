@@ -39,12 +39,18 @@ The **object first**. On desktop the 3D view takes the most space and the contro
 Twelve sliders at once is a wall. Tabs split them into **Shape / Surface / Make**. Help text sits under each control, small and muted: available, not shouting.
 
 ### Typography as a system
-- **Serif** (Instrument Serif) for big moments only: the vase name, page titles.
-- **Sans** (Instrument Sans) for the interface.
-- **Mono** (JetBrains Mono) for numbers — equal-width digits so values don't jiggle as they change.
+One typeface, **Archivo**, used at three widths:
+- **Wide and bold** for big moments only: the vase name, page titles.
+- **Normal** for the interface.
+- **Narrow, with equal-width digits** for numbers, so values don't jiggle as they change.
+
+A real monospace font appears only where something is code or a prompt you type.
 
 ### Colour with meaning
-Paper, ink, and **one** accent (clay). Green/amber/red only for print status — and always with a word and an icon (chapter 13).
+The grey of a print bed, true black text, and **one** accent: filament yellow, used as a fill (the main button, the active step, the slider) with black text on it. Green, orange and red only for print status, always with a word and an icon (chapter 13).
+
+### One bold thing
+The vase is drawn with visible **layer lines**, like a real print. That is the one memorable element; everything around it stays quiet.
 
 ### Controls that respect expertise
 Architects often know the exact number. Every slider also has a **number field**: drag to explore, type to be precise.

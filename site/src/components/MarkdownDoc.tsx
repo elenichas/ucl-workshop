@@ -12,6 +12,12 @@ export function MarkdownDoc({ body, resolve }: { body: string; resolve: (href: s
       <Markdown
         remarkPlugins={[remarkGfm]}
         components={{
+          // Chapter titles are written "05 · Title": show the number on its own instead of a dot-joined string.
+          h1: ({ children }) => {
+            const text = typeof children === 'string' ? children : ''
+            const m = text.match(/^(\d+)\s*·\s*(.+)$/)
+            return m ? <h1><span className="mr-3 font-mono font-medium text-ink-muted">{m[1]}</span>{m[2]}</h1> : <h1>{children}</h1>
+          },
           a: ({ href = '', children }) => {
             const r = resolve(href)
             if (r.to) return <Link to={r.to}>{children}</Link>

@@ -20,7 +20,7 @@ PROCESS    how to proceed                         "Plan first and wait for my OK
 | It's broken, fix it. | When I drag "Twist" past 200°, the console shows: `<paste error>`. Find the cause, explain it, then fix it. Add a test. |
 | Add more features. | Add a "Share" button that copies a link containing all current parameters. Nothing else. |
 | Make it faster. | The viewer stutters when I drag Height. First measure: buildVase time, triangle count, FPS. Then propose the smallest fix. |
-| Use a nice font. | Use Instrument Serif for headings only; keep everything else as in DESIGN.md. |
+| Use a nice font. | Use Archivo at its widest width for headings only; keep everything else as in DESIGN.md. |
 | Write tests. | Write a test that a 2 mm wall fails on the clay printer. Show it failing before you change anything. |
 
 ## Prompts that teach you something

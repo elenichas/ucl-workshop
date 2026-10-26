@@ -12,8 +12,10 @@ import { contextOf } from './deck'
  * offscreen in their final state and placed as images. Speaker notes go into
  * PowerPoint's notes field. Animations don't carry over: every point is visible.
  */
-const C = { paper: 'F3EFE7', raised: 'FBF9F4', ink: '1C1A17', muted: '5E5850', line: 'D9D2C5', clay: 'A6482A' }
-const DISPLAY = 'Georgia', BODY = 'Arial', MONO = 'Courier New'
+// The site's palette (DESIGN.md). Archivo isn't installed with Office, so PowerPoint gets close system fonts:
+// Arial Black for the wide headlines, Arial for text, Arial Narrow for numbers, Courier New for code.
+const C = { paper: 'E9EBE8', raised: 'F7F8F6', ink: '000000', muted: '4F5652', line: 'C9CDC9', accent: '7A5300', filament: 'FFC21A', night: 'F2F3F1', nightMuted: 'A3AAA6' }
+const DISPLAY = 'Arial Black', BODY = 'Arial', MONO = 'Arial Narrow', CODE = 'Courier New'
 const inch = (px: number) => px / (SLIDE_W / 13.333)
 const pt = (px: number) => Math.round(px * 0.6)
 
@@ -35,10 +37,10 @@ export async function exportDeck(deck: Slide[], progress: (msg: string) => void)
       // the small "Part · chapter" label at the top of every content slide
       slide.addText(
         [
-          ...(ctx.part ? [{ text: `PART ${ctx.part.number} · ${ctx.part.title.toUpperCase()}   /   `, options: { color: C.clay } }] : []),
-          { text: ctx.chapter.toUpperCase(), options: { color: C.muted } },
+          ...(ctx.part ? [{ text: `Part ${ctx.part.number}: ${ctx.part.title}      `, options: { color: C.ink, bold: true } }] : []),
+          { text: ctx.chapter, options: { color: C.muted } },
         ],
-        { x: inch(96), y: inch(30), w: inch(1200), h: inch(30), fontFace: BODY, fontSize: 9, charSpacing: 2 },
+        { x: inch(96), y: inch(30), w: inch(1200), h: inch(30), fontFace: BODY, fontSize: 10 },
       )
     }
     slide.addText(`${i + 1}`, { x: inch(1500), y: inch(850), w: inch(80), h: inch(30), fontFace: MONO, fontSize: 9, color: C.muted, align: 'right' })
@@ -62,17 +64,17 @@ async function addContent(slide: PSlide, s: Slide) {
       return
     }
     case 'part':
-      slide.addText(`Part ${s.number}`, { x: inch(96), y: inch(250), w: inch(700), h: inch(60), fontFace: MONO, fontSize: pt(40), color: 'D2714B' })
-      slide.addText(s.title, { x: inch(96), y: inch(320), w: inch(820), h: inch(300), fontFace: DISPLAY, fontSize: pt(100), color: C.paper, valign: 'top', fit: 'shrink' })
-      slide.addText(s.question, { x: inch(96), y: inch(650), w: inch(760), h: inch(140), fontFace: DISPLAY, fontSize: pt(40), italic: true, color: 'A79F92', valign: 'top' })
+      slide.addText(`Part ${s.number}`, { x: inch(96), y: inch(250), w: inch(700), h: inch(60), fontFace: MONO, fontSize: pt(40), color: C.filament })
+      slide.addText(s.title, { x: inch(96), y: inch(320), w: inch(820), h: inch(300), fontFace: DISPLAY, fontSize: pt(90), color: C.night, valign: 'top', fit: 'shrink' })
+      slide.addText(s.question, { x: inch(96), y: inch(650), w: inch(760), h: inch(140), fontFace: BODY, fontSize: pt(36), color: C.nightMuted, valign: 'top' })
       slide.addText(
         s.chapters.map((c) => ({ text: `${c.number}   ${c.title}`, options: { breakLine: true, paraSpaceAfter: 12 } })),
-        { x: inch(930), y: inch(250), w: inch(580), h: inch(560), fontFace: BODY, fontSize: pt(28), color: C.paper, valign: 'bottom' },
+        { x: inch(930), y: inch(250), w: inch(580), h: inch(560), fontFace: BODY, fontSize: pt(28), color: C.night, valign: 'bottom' },
       )
       return
     case 'chapter':
-      slide.addText(s.part.toUpperCase(), { x: inch(96), y: inch(80), w: inch(1200), h: inch(40), fontFace: BODY, fontSize: 12, color: C.muted, charSpacing: 2 })
-      slide.addText(s.number, { x: inch(96), y: inch(250), w: inch(300), h: inch(70), fontFace: MONO, fontSize: pt(44), color: C.clay })
+      slide.addText(s.part, { x: inch(96), y: inch(80), w: inch(1200), h: inch(40), fontFace: BODY, fontSize: 12, color: C.muted, bold: true })
+      slide.addText(s.number, { x: inch(96), y: inch(250), w: inch(300), h: inch(70), fontFace: MONO, fontSize: pt(44), color: C.muted })
       slide.addText(s.title, { x: inch(96), y: inch(330), w: inch(1300), h: inch(300), fontFace: DISPLAY, fontSize: pt(130), color: C.ink, valign: 'top', fit: 'shrink' })
       slide.addText(s.summary, { x: inch(96), y: inch(700), w: inch(1300), h: inch(120), fontFace: BODY, fontSize: pt(28), color: C.muted, valign: 'top' })
       return
@@ -91,14 +93,14 @@ async function addContent(slide: PSlide, s: Slide) {
     case 'compare':
       title(slide, s.title)
       ;[s.left, s.right].forEach((col, i) => {
-        slide.addText(col.label.toUpperCase(), { x: inch(96 + i * 730), y: inch(260), w: inch(680), h: inch(40), fontFace: BODY, fontSize: 13, color: i ? C.clay : C.muted, charSpacing: 2 })
+        slide.addText(col.label, { x: inch(96 + i * 730), y: inch(260), w: inch(680), h: inch(40), fontFace: BODY, fontSize: 14, bold: true, color: i ? C.accent : C.muted })
         slide.addText(col.points.map((p) => ({ text: p, options: { bullet: true, paraSpaceAfter: 10 } })), { x: inch(96 + i * 730), y: inch(320), w: inch(680), h: inch(480), fontFace: BODY, fontSize: pt(32), color: C.ink, valign: 'top' })
       })
       return
     case 'table': {
       title(slide, s.title)
       const rows: PptxGenJS.TableRow[] = [
-        s.head.map((h) => ({ text: h.toUpperCase(), options: { bold: false, fontSize: 11, color: C.muted, charSpacing: 1, border: [{ type: 'none' }, { type: 'none' }, { pt: 1.5, color: C.ink }, { type: 'none' }] } })),
+        s.head.map((h) => ({ text: h, options: { bold: true, fontSize: 12, color: C.muted, border: [{ type: 'none' }, { type: 'none' }, { pt: 1.5, color: C.ink }, { type: 'none' }] } })),
         ...s.rows.map((r) => r.map((c, j) => ({ text: c, options: { fontSize: pt(27), color: j === 0 ? C.ink : C.muted, bold: j === 0, border: [{ type: 'none' }, { type: 'none' }, { pt: 0.75, color: C.line }, { type: 'none' }] } }))),
       ] as PptxGenJS.TableRow[]
       slide.addTable(rows, { x: inch(96), y: inch(250), w: inch(1408), fontFace: BODY, valign: 'top', margin: [6, 8, 6, 0] })
@@ -107,8 +109,8 @@ async function addContent(slide: PSlide, s: Slide) {
     case 'code':
       title(slide, s.title)
       slide.addText((s.lang === 'prompt' ? 'PROMPT\n' : '') + s.code, {
-        x: inch(96), y: inch(260), w: inch(1408), h: inch(420), fontFace: MONO, fontSize: pt(26), color: C.ink, valign: 'top',
-        fill: { color: C.raised }, line: { color: s.lang === 'prompt' ? C.clay : C.line, width: 1 }, margin: 18,
+        x: inch(96), y: inch(260), w: inch(1408), h: inch(420), fontFace: CODE, fontSize: pt(26), color: C.ink, valign: 'top',
+        fill: { color: C.raised }, line: { color: s.lang === 'prompt' ? C.filament : C.line, width: s.lang === 'prompt' ? 3 : 1 }, margin: 18,
       })
       if (s.caption) slide.addText(s.caption, { x: inch(96), y: inch(710), w: inch(1408), h: inch(80), fontFace: BODY, fontSize: pt(26), color: C.muted })
       return

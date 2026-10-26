@@ -14,21 +14,21 @@ export function WebRequest({ step }: V) {
         </div>
         <div className="grid h-80 place-items-center p-6 text-center">
           <Reveal step={step} at={2}>
-            <p className="font-display text-[44px] leading-none">Vessel</p>
+            <p className="font-display text-[36px] leading-none">Vessel</p>
             <p className="mt-2 text-[20px] text-ink-muted">page drawn</p>
           </Reveal>
           <Reveal step={step} at={3}>
-            <p className="font-mono text-[20px] text-clay">JS rebuilds the vase on your laptop</p>
+            <p className="font-mono text-[20px] text-accent">JS rebuilds the vase on your laptop</p>
           </Reveal>
         </div>
         <p className="border-t border-ink px-4 py-2 text-[22px] font-medium">Your browser</p>
       </div>
       <div className="grid gap-6">
-        <div className="flex items-center gap-3"><span className="text-[28px]">“give me /configure”</span><span className="flex-1 border-t-2 border-dashed border-clay" /><Arrow /></div>
+        <div className="flex items-center gap-3"><span className="text-[28px]">“give me /configure”</span><span className="flex-1 border-t-2 border-dashed border-accent" /><Arrow /></div>
         <Reveal step={step} at={1}>
-          <div className="flex items-center gap-3"><Arrow className="rotate-180" /><span className="flex-1 border-t-2 border-clay" />
+          <div className="flex items-center gap-3"><Arrow className="rotate-180" /><span className="flex-1 border-t-2 border-accent" />
             <span className="flex gap-2">
-              {['HTML', 'CSS', 'JS'].map((f) => <span key={f} className="border border-clay bg-paper-raised px-3 py-1 font-mono text-[22px]">{f}</span>)}
+              {['HTML', 'CSS', 'JS'].map((f) => <span key={f} className="border border-accent bg-paper-raised px-3 py-1 font-mono text-[22px]">{f}</span>)}
             </span>
           </div>
         </Reveal>
@@ -52,9 +52,9 @@ export function RepoTimeline({ step }: V) {
           {COMMITS.map(([c, tag], i) => (
             <Reveal key={tag} step={step} at={Math.min(i, 3)}>
               <div className="flex flex-col items-center text-center">
-                <span className={cn('size-9 rounded-full border-2 border-ink bg-paper', i === COMMITS.length - 1 && 'border-clay bg-clay')} />
+                <span className={cn('size-9 rounded-full border-2 border-ink bg-paper', i === COMMITS.length - 1 && 'border-ink bg-filament')} />
                 <span className="mt-4 text-[22px] font-medium">{c}</span>
-                <span className="mt-1 font-mono text-[17px] text-clay">{tag}</span>
+                <span className="mt-1 font-mono text-[17px] text-accent">{tag}</span>
               </div>
             </Reveal>
           ))}
@@ -89,7 +89,7 @@ export function StackLayers({ step }: V) {
         <Reveal key={layer} step={step} at={i}>
           <li className="grid grid-cols-[13rem_20rem_1fr] items-baseline gap-6 border-b border-line py-2.5">
             <span className="section-label !text-[17px]">{layer}</span>
-            <span className="text-[30px] font-medium text-clay">{choice}</span>
+            <span className="text-[30px] font-medium text-accent">{choice}</span>
             <span className="text-[22px] text-ink-muted">{what}</span>
           </li>
         </Reveal>
@@ -106,7 +106,7 @@ export function FirstLoop({ step }: V) {
       {items.map(([k, d], i) => (
         <Reveal key={k} step={step} at={i}>
           <div className="relative flex h-[320px] flex-col border border-ink/70 p-8">
-            <p className="font-display text-[80px] leading-none text-clay">{k}</p>
+            <p className="font-display text-[56px] leading-none text-accent">{k}</p>
             <p className="mt-6 text-[30px] leading-snug">{d}</p>
             {i < 3 && <Arrow className="absolute -right-6 top-1/2 -translate-y-1/2" />}
           </div>
@@ -120,7 +120,7 @@ export function FirstLoop({ step }: V) {
 export function TypeSystem() {
   return (
     <div className="grid h-full grid-cols-3 items-center gap-10">
-      <div><p className="section-label !text-[17px]">Display · big moments only</p><p className="mt-4 font-display text-[150px] leading-none">Amphora</p></div>
+      <div><p className="section-label !text-[17px]">Display: big moments only</p><p className="mt-4 font-display text-[120px] leading-none">Amphora</p></div>
       <div><p className="section-label !text-[17px]">Sans · the interface</p><p className="mt-4 text-[54px] font-medium leading-tight">Belly diameter</p><p className="text-[32px] text-ink-muted">Width at the widest point.</p></div>
       <div><p className="section-label !text-[17px]">Mono · every number</p><p className="mt-4 font-mono text-[76px] tabular-nums leading-tight">130 mm<br />60°<br />159 g</p></div>
     </div>
@@ -171,12 +171,11 @@ export function SlopVsDesigned({ step }: V) {
       <Reveal step={step} at={1} className="flex flex-col">
         <div className="flex flex-1 border border-line bg-paper">
           <div className="flex flex-1 flex-col justify-between p-8">
-            <p className="section-label !text-[14px]">A workshop demo · Prompt to Print</p>
-            <p className="font-display text-[64px] leading-[0.95]">Design a vessel. Check it. Print it.</p>
+            <p className="font-display text-[46px] leading-[0.98]">Design a vessel. Check it. Print it.</p>
             <span className="w-fit bg-ink px-5 py-2.5 text-[18px] text-paper">Open the configurator →</span>
           </div>
-          <div className="w-[38%] bg-[#EAE5DB]">
-            <svg viewBox="0 0 100 160" className="h-full w-full"><path d="M38 140 C25 110 22 70 30 40 C32 30 28 22 26 18 H74 C72 22 68 30 70 40 C78 70 75 110 62 140 Z" className="fill-clay" /></svg>
+          <div className="w-[38%] bg-stage">
+            <svg viewBox="0 0 100 160" className="h-full w-full"><path d="M38 140 C25 110 22 70 30 40 C32 30 28 22 26 18 H74 C72 22 68 30 70 40 C78 70 75 110 62 140 Z" className="fill-filament" /></svg>
           </div>
         </div>
         <p className="mt-3 text-[22px] text-ink-muted">Chosen: one idea, one accent, real content, the object first.</p>
@@ -196,7 +195,7 @@ export function TestLevels({ step }: V) {
     <div className="flex h-full flex-col items-center justify-center gap-3">
       {levels.map(([t, d, w], i) => (
         <Reveal key={t} step={step} at={2 - i} className={cn(w)}>
-          <div className={cn('border-2 px-8 py-7 text-center', i === 2 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
+          <div className={cn('border-2 px-8 py-7 text-center', i === 2 ? 'border-accent bg-paper-raised' : 'border-ink/70')}>
             <p className="text-[34px] font-medium">{t}</p>
             <p className="mt-1 text-[25px] text-ink-muted">{d}</p>
           </div>
@@ -219,7 +218,7 @@ export function DeployFlow({ step }: V) {
         </div>
       ))}
       <Reveal step={step} at={2} className="col-span-7 mt-10">
-        <p className="text-center text-[32px]">If a test fails, the Action stops — <span className="text-clay">nothing broken gets published.</span></p>
+        <p className="text-center text-[32px]">If a test fails, the Action stops — <span className="text-accent">nothing broken gets published.</span></p>
       </Reveal>
     </div>
   )
@@ -247,11 +246,11 @@ export function Localhost({ step }: V) {
       </div>
       <div className="grid gap-7">
         <Reveal step={step} at={2}>
-          <p className="font-display text-[64px] leading-none">There’s no place like <span className="font-mono text-[52px] text-clay">127.0.0.1</span></p>
+          <p className="font-display text-[50px] leading-[1.05]">There’s no place like <span className="font-mono text-[52px] text-accent">127.0.0.1</span></p>
         </Reveal>
         <Reveal step={step} at={3}>
           <ul className="grid gap-4 text-[28px] leading-snug">
-            <li><span className="font-mono text-clay">localhost</span> means <strong>this computer</strong>. The link works only on your laptop, only while the dev server runs.</li>
+            <li><span className="font-mono text-accent">localhost</span> means <strong>this computer</strong>. The link works only on your laptop, only while the dev server runs.</li>
             <li>Perfect for designing and testing — nobody else can see it.</li>
             <li className="text-ink-muted">Next step, another day: <em>build</em> the site and put it on a host — then you get a link you can share.</li>
           </ul>
@@ -276,7 +275,7 @@ export function BuildSteps({ step }: V) {
           {BUILD_STEPS.map(([t, s], i) => (
             <Reveal key={t} step={step} at={Math.min(i, 3)}>
               <div className="flex flex-col items-center px-2 text-center">
-                <span className={cn('size-9 rounded-full border-2 border-ink bg-paper', i === step && step < 4 && 'border-clay bg-clay')} />
+                <span className={cn('size-9 rounded-full border-2 border-ink bg-paper', i === step && step < 4 && 'border-ink bg-filament')} />
                 <span className="mt-4 text-[26px] font-medium leading-tight">{t}</span>
                 <span className="mt-1 text-[19px] text-ink-muted">{s}</span>
               </div>
@@ -291,7 +290,7 @@ export function BuildSteps({ step }: V) {
             ['Check before moving on', 'look at it · ask Claude to explain what changed'],
             ['Keep a log', 'the chat itself, or ask Claude to keep a PROGRESS.md: what you asked, what changed, what you decided'],
           ].map(([t, d]) => (
-            <div key={t} className="border-l-2 border-clay pl-5">
+            <div key={t} className="border-l-2 border-accent pl-5">
               <p className="text-[28px] font-medium">{t}</p>
               <p className="mt-1 text-[22px] leading-snug text-ink-muted">{d}</p>
             </div>
@@ -310,12 +309,12 @@ export function A11yBasics({ step }: V) {
       <div className="grid gap-5">
         <div className="grid grid-cols-2 gap-4">
           <div className="border border-line bg-paper-raised p-5">
-            <p className="text-[30px] font-medium" style={{ color: '#1C1A17' }}>Easy to read</p>
-            <p className="mt-2 font-mono text-[20px] text-ok">contrast 15 : 1 ✓</p>
+            <p className="text-[30px] font-medium" style={{ color: '#000000' }}>Easy to read</p>
+            <p className="mt-2 font-mono text-[20px] text-ok">contrast 20 : 1 ✓</p>
           </div>
           <div className="border border-line bg-paper-raised p-5">
-            <p className="text-[30px] font-medium" style={{ color: '#CFC8BC' }}>Hard to read</p>
-            <p className="mt-2 font-mono text-[20px] text-fail">contrast 1.5 : 1 ✗</p>
+            <p className="text-[30px] font-medium" style={{ color: '#C3C8C4' }}>Hard to read</p>
+            <p className="mt-2 font-mono text-[20px] text-fail">contrast 1.6 : 1 ✗</p>
           </div>
         </div>
         <Reveal step={step} at={1}>
@@ -338,9 +337,9 @@ export function A11yBasics({ step }: V) {
         </Reveal>
       </div>
       <div className="grid gap-5 text-[28px] leading-snug">
-        <p><span className="text-clay">Contrast:</span> text must stand out from its background — the WCAG guidelines ask for at least 4.5 : 1.</p>
-        <Reveal step={step} at={1}><p><span className="text-clay">Size:</span> no tiny text. Body around 16 px or more.</p></Reveal>
-        <Reveal step={step} at={2}><p><span className="text-clay">Keyboard:</span> every button and slider reachable without a mouse. (Full accessibility goes further — e.g. screen readers.)</p></Reveal>
+        <p><span className="text-accent">Contrast:</span> text must stand out from its background — the WCAG guidelines ask for at least 4.5 : 1.</p>
+        <Reveal step={step} at={1}><p><span className="text-accent">Size:</span> no tiny text. Body around 16 px or more.</p></Reveal>
+        <Reveal step={step} at={2}><p><span className="text-accent">Keyboard:</span> every button and slider reachable without a mouse. (Full accessibility goes further — e.g. screen readers.)</p></Reveal>
         <Reveal step={step} at={3}>
           <p className="text-ink-muted">Libraries like shadcn/ui get you most of the way. Then ask: <span className="font-mono text-[22px] text-ink">“Check my site for contrast, text size and keyboard use. List problems before fixing.”</span></p>
         </Reveal>
@@ -362,12 +361,12 @@ export function TestWays({ step }: V) {
       <div className="grid grid-cols-3 items-stretch gap-6">
         {ways.map(([t, d, e], i) => (
           <Reveal key={t} step={step} at={i} className="h-full">
-            <div className={cn('flex h-full min-h-[420px] flex-col border p-8', i === 0 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
-              <p className="font-mono text-[24px] text-clay">{i + 1}{i === 2 && <span className="ml-3 text-ink-muted">· optional</span>}</p>
-              <p className="mt-3 font-display text-[46px] leading-[1.05]">{t}</p>
+            <div className={cn('flex h-full min-h-[420px] flex-col border p-8', i === 0 ? 'border-accent bg-paper-raised' : 'border-ink/70')}>
+              <p className="font-mono text-[24px] text-accent">{i + 1}{i === 2 && <span className="ml-3 text-ink-muted">· optional</span>}</p>
+              <p className="mt-3 font-display text-[36px] leading-[1.08]">{t}</p>
               <p className="mt-5 text-[25px] leading-snug">{d}</p>
               <div className="min-h-6 flex-1" />
-              <p className="border-l-2 border-clay pl-4 text-[23px] italic leading-snug text-ink-muted">{e}</p>
+              <p className="border-l-2 border-accent pl-4 text-[23px] italic leading-snug text-ink-muted">{e}</p>
             </div>
           </Reveal>
         ))}
@@ -395,12 +394,12 @@ export function Hosting({ step }: V) {
         <Arrow />
         <span className="border border-ink/70 px-5 py-3">put it on a host</span>
         <Arrow />
-        <span className="border-2 border-clay bg-paper-raised px-5 py-3 text-clay">a link anyone can open</span>
+        <span className="border-2 border-accent bg-paper-raised px-5 py-3 text-accent">a link anyone can open</span>
       </div>
       <Reveal step={step} at={1}>
         <div className="grid grid-cols-5 gap-4">
           {hosts.map(([n, d], i) => (
-            <div key={n} className={cn('border p-6', i === hosts.length - 1 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
+            <div key={n} className={cn('border p-6', i === hosts.length - 1 ? 'border-accent bg-paper-raised' : 'border-ink/70')}>
               <p className="text-[30px] font-medium leading-tight">{n}</p>
               <p className="mt-2 text-[22px] leading-snug text-ink-muted">{d}</p>
             </div>
@@ -408,7 +407,7 @@ export function Hosting({ step }: V) {
         </div>
       </Reveal>
       <Reveal step={step} at={2}>
-        <p className="text-[28px]">Not today — but it’s one prompt away: <span className="font-mono text-[24px] text-clay">“Help me publish this site so I can share a link.”</span></p>
+        <p className="text-[28px]">Not today — but it’s one prompt away: <span className="font-mono text-[24px] text-accent">“Help me publish this site so I can share a link.”</span></p>
       </Reveal>
     </div>
   )

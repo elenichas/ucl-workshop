@@ -8,7 +8,7 @@ export function NativeSelect({ className, children, ...props }: React.SelectHTML
     <div className="relative">
       <select
         className={cn(
-          'h-10 w-full appearance-none rounded-sm border border-line bg-paper-raised pl-3 pr-9 text-sm text-ink hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-clay',
+          'h-10 w-full appearance-none rounded-sm border border-line bg-paper-raised pl-3 pr-9 text-sm text-ink hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent',
           className,
         )}
         {...props}

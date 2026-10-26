@@ -104,7 +104,7 @@ export default function PresentPage() {
     <div className="fixed inset-0 z-40 flex flex-col bg-ink/95 text-paper dark:bg-black">
       {/* progress */}
       <div className="h-1 w-full bg-white/10" aria-hidden>
-        <div className="h-full bg-clay transition-[width] duration-300" style={{ width: `${((index + 1) / DECK.length) * 100}%` }} />
+        <div className="h-full bg-filament transition-[width] duration-300" style={{ width: `${((index + 1) / DECK.length) * 100}%` }} />
       </div>
 
       <div ref={stage} className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden" aria-live="polite">
@@ -140,12 +140,12 @@ export default function PresentPage() {
           <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
             {CHAPTERS.filter((c) => DECK.some((s) => s.chapter === c.slug)).map((c) => (
               <section key={c.slug}>
-                <h3 className="border-b border-ink pb-2 text-sm font-medium"><span className="font-mono text-clay">{c.number}</span> {c.title}</h3>
+                <h3 className="border-b border-ink pb-2 text-sm font-medium"><span className="font-mono text-accent">{c.number}</span> {c.title}</h3>
                 <ol className="mt-2">
                   {DECK.map((s, i) => ({ s, i })).filter(({ s }) => s.chapter === c.slug).map(({ s, i }) => (
                     <li key={i}>
                       <button type="button" onClick={() => { go(i); setOverview(false) }}
-                        className={cn('flex w-full gap-3 py-1 text-left text-sm hover:text-clay', i === index && 'text-clay')}>
+                        className={cn('flex w-full gap-3 py-1 text-left text-sm hover:text-accent', i === index && 'text-accent')}>
                         <span className="w-8 shrink-0 font-mono text-xs text-ink-muted">{i + 1}</span>
                         <span className="truncate">{titleOf(s)}</span>
                       </button>

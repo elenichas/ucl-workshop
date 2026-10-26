@@ -1,6 +1,6 @@
 import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, OrbitControls } from '@react-three/drei'
-import { useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 import type { VaseMesh } from '@/geometry/types'
@@ -17,6 +17,8 @@ export interface ViewerLook {
   gradient?: boolean
   /** Dark flecks, like a speckled clay body under glaze */
   speckle?: boolean
+  /** Draw print layer lines this far apart (mm). 0 or undefined = smooth. */
+  layer?: number
 }
 
 export type CameraView = 'front' | 'top' | 'three-quarter'
@@ -47,7 +49,7 @@ interface Props {
  * - geometry is rebuilt only when the mesh changes, and the old one is disposed
  * - ContactShadows rendered once (frames=1) instead of real-time shadows
  */
-export function VaseViewer({ mesh, height, look, showSection, showDimensions, view = 'three-quarter', viewNonce = 0, stage = '#EAE5DB', description }: Props) {
+export function VaseViewer({ mesh, height, look, showSection, showDimensions, view = 'three-quarter', viewNonce = 0, stage = '#DCDFDB', description }: Props) {
   // Frame the camera on whichever is bigger: the height or the width of the vase.
   const size = Math.max(height, mesh.stats.maxDiameter * 1.15)
   return (
@@ -59,7 +61,7 @@ export function VaseViewer({ mesh, height, look, showSection, showDimensions, vi
         gl={{ antialias: true, preserveDrawingBuffer: true }}
       >
         <color key={stage} attach="background" args={[stage]} />
-        <hemisphereLight args={['#fffaf0', '#b9ad9a', 1.1]} />
+        <hemisphereLight args={['#ffffff', '#a9b0ac', 1.1]} />
         <directionalLight position={[200, 400, 250]} intensity={2.2} />
         <directionalLight position={[-300, 150, -200]} intensity={0.6} />
         <VaseObject mesh={mesh} look={look} showSection={!!showSection} />
@@ -112,6 +114,30 @@ function VaseObject({ mesh, look, showSection }: { mesh: VaseMesh; look: ViewerL
     invalidate()
   }, [geometry, useVertexColors, look.color, look.colorB, look.gradient, look.speckle, invalidate])
 
+  // Layer lines: a 3D print is a stack of thin layers. We darken a narrow groove at every layer
+  // boundary in the shader (by height), so the vase reads as printed rather than moulded.
+  const layer = look.layer ?? 0
+  const addLayers = useCallback((shader: THREE.WebGLProgramParametersWithUniforms) => {
+    shader.uniforms.uLayer = { value: layer }
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying float vLayerY;')
+      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvLayerY = position.y;')
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nvarying float vLayerY;\nuniform float uLayer;')
+      .replace(
+        '#include <color_fragment>',
+        `#include <color_fragment>
+        if (uLayer > 0.0) {
+          float t = vLayerY / uLayer;
+          float w = max(fwidth(t), 0.001);
+          float d = abs(fract(t) - 0.5) * 2.0;           // 0 in the middle of a layer, 1 at the seam
+          float seam = smoothstep(1.0 - 0.35 - w, 1.0 - w * 0.5, d);
+          float fade = clamp(2.2 - w * 3.0, 0.0, 1.0);   // fade out when layers are too small to draw
+          diffuseColor.rgb *= 1.0 - 0.32 * seam * fade;
+        }`,
+      )
+  }, [layer])
+
   // Free GPU memory of the previous geometry — otherwise memory grows with every slider move.
   useEffect(() => () => geometry.dispose(), [geometry])
 
@@ -125,7 +151,9 @@ function VaseObject({ mesh, look, showSection }: { mesh: VaseMesh; look: ViewerL
   return (
     <mesh geometry={geometry}>
       <meshPhysicalMaterial
-        key={useVertexColors ? 'vc' : 'plain'}
+        key={`${useVertexColors ? 'vc' : 'plain'}-${layer}`}
+        onBeforeCompile={addLayers}
+        customProgramCacheKey={() => `layers-${layer}`}
         vertexColors={useVertexColors}
         color={useVertexColors ? '#ffffff' : look.color}
         roughness={look.roughness}

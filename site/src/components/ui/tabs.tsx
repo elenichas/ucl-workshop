@@ -12,7 +12,7 @@ export function TabsTrigger({ className, ...props }: React.ComponentProps<typeof
   return (
     <TabsPrimitive.Trigger
       className={cn(
-        '-mb-px flex-1 border-b-2 border-transparent px-2 py-3 text-sm font-medium text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-clay data-[state=active]:border-clay data-[state=active]:text-ink',
+        '-mb-px flex-1 border-b-2 border-transparent px-2 py-3 text-sm font-medium text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-accent data-[state=active]:border-accent data-[state=active]:text-ink',
         className,
       )}
       {...props}

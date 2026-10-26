@@ -31,7 +31,7 @@ export default function NotesPage() {
   return (
     <div className="mx-auto grid max-w-3xl gap-6 p-6">
       <div className="flex items-baseline justify-between font-mono text-sm text-ink-muted">
-        <span>{state.index + 1} / {DECK.length}{stepsOf(slide) > 0 && ` · step ${state.step + 1}/${stepsOf(slide) + 1}`}</span>
+        <span>{state.index + 1} / {DECK.length}{stepsOf(slide) > 0 && `, step ${state.step + 1} of ${stepsOf(slide) + 1}`}</span>
         <span className="text-2xl text-ink tabular-nums">{String(mins).padStart(2, '0')}:{String(secs).padStart(2, '0')}</span>
       </div>
       <h1 className="font-display text-4xl leading-tight">{titleOf(slide)}</h1>
@@ -41,8 +41,8 @@ export default function NotesPage() {
         <p className="mt-1 text-lg">{nextSlide ? titleOf(nextSlide) : 'End of the deck'}</p>
       </div>
       <div className="flex gap-2">
-        <button className="border border-line px-4 py-2 hover:border-ink" onClick={() => channel?.postMessage({ type: 'prev' })}>← Back</button>
-        <button className="bg-ink px-4 py-2 text-paper hover:bg-clay" onClick={() => channel?.postMessage({ type: 'next' })}>Next →</button>
+        <button className="border border-line px-4 py-2 hover:border-ink" onClick={() => channel?.postMessage({ type: 'prev' })}>Back</button>
+        <button className="rounded-sm bg-filament px-4 py-2 text-on-filament hover:bg-ink hover:text-paper" onClick={() => channel?.postMessage({ type: 'next' })}>Next</button>
       </div>
       <p className="text-sm text-ink-muted">Keep this window on your laptop screen and share only the presentation window. Arrow keys work here too.</p>
     </div>

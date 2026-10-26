@@ -5,11 +5,11 @@ import { cn } from '@/lib/utils'
 
 // shadcn/ui-style button: the code lives in our project, so we restyle it to DESIGN.md.
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
-        primary: 'bg-ink text-paper hover:bg-clay',
+        primary: 'bg-filament text-on-filament hover:bg-ink hover:text-paper',
         outline: 'border border-line bg-transparent text-ink hover:border-ink',
         ghost: 'text-ink hover:bg-line/50',
         chip: 'border border-line text-ink-muted hover:text-ink hover:border-ink aria-pressed:border-ink aria-pressed:text-ink aria-pressed:bg-paper-raised',

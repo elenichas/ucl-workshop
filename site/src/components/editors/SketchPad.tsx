@@ -50,7 +50,7 @@ export function SketchPad({ samples, onChange }: { samples: number[]; onChange: 
     ctx.beginPath(); ctx.moveTo(W / 2, 10); ctx.lineTo(W / 2, H - 10); ctx.stroke()
     ctx.setLineDash([])
     ctx.lineWidth = 2
-    ctx.strokeStyle = css.getPropertyValue('--color-clay') || '#a6482a'
+    ctx.strokeStyle = css.getPropertyValue('--color-accent') || '#7A5300'
     for (const side of [1, -1]) {
       ctx.beginPath()
       samples.forEach((s, i) => {
@@ -89,7 +89,7 @@ export function SketchPad({ samples, onChange }: { samples: number[]; onChange: 
           const p = point(e)
           const ctx = canvas.current!.getContext('2d')!
           const last = stroke.current[stroke.current.length - 1]
-          ctx.strokeStyle = getComputedStyle(canvas.current!).getPropertyValue('--color-ink') || '#1c1a17'
+          ctx.strokeStyle = getComputedStyle(canvas.current!).getPropertyValue('--color-ink') || '#000000'
           ctx.lineWidth = 2.5
           ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke()
           stroke.current.push(p)

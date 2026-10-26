@@ -11,14 +11,14 @@ This is not a full accessibility course. It's the **basics** every website shoul
 ## The three basics
 
 ### 1 · Contrast
-Text must stand out from its background. Light grey on cream looks elegant on your screen and disappears on a projector, a phone in the sun, or for someone with weaker eyesight.
+Text must stand out from its background. Light grey on light grey looks elegant on your screen and disappears on a projector, a phone in the sun, or for someone with weaker eyesight.
 
 The international guidelines (**WCAG**) ask for a contrast of at least **4.5 : 1** for normal text (3 : 1 for large headings). You don't have to calculate it yourself — any contrast checker will tell you, and so will the agent.
 
 | | Contrast | |
 |---|---|---|
-| Near-black on cream | about 15 : 1 | ✓ easy to read |
-| Light grey on cream | about 1.5 : 1 | ✗ hard to read |
+| Black on light grey | about 20 : 1 | ✓ easy to read |
+| Light grey on light grey | about 1.6 : 1 | ✗ hard to read |
 
 ### 2 · Text size
 No tiny text. Body text around **16 px or more**; small labels not much below 12 px. If you have to squint at your own screen, it's too small.

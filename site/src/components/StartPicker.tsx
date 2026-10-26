@@ -56,7 +56,7 @@ export function StartPicker({ design, onStart, onPreset }: { design: Design; onS
               aria-checked={mode === m.id}
               onClick={() => setMode(m.id)}
               className={cn(
-                'flex h-full flex-col rounded-sm border border-line p-2.5 text-left hover:border-ink focus-visible:outline-2 focus-visible:outline-clay',
+                'flex h-full flex-col rounded-sm border border-line p-2.5 text-left hover:border-ink focus-visible:outline-2 focus-visible:outline-accent',
                 mode === m.id && 'border-ink bg-paper-raised',
               )}
             >
@@ -73,10 +73,10 @@ export function StartPicker({ design, onStart, onPreset }: { design: Design; onS
             {shapes.map((s) => (
               <button key={s.id} type="button" aria-pressed={design.start === s.id} onClick={() => onStart(s.id)}
                 className={cn(
-                  'flex flex-col items-center justify-center gap-1 rounded-sm border border-line p-2 text-center text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-clay',
+                  'flex flex-col items-center justify-center gap-1 rounded-sm border border-line p-2 text-center text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-accent',
                   design.start === s.id && 'border-ink bg-paper-raised text-ink',
                 )}>
-                <StartIcon id={s.id} className={design.start === s.id ? 'text-clay' : ''} />
+                <StartIcon id={s.id} className={design.start === s.id ? 'text-accent' : ''} />
                 <span className="font-medium">{s.name}</span>
               </button>
             ))}
@@ -88,10 +88,10 @@ export function StartPicker({ design, onStart, onPreset }: { design: Design; onS
             {others.map((s) => (
               <button key={s.id} type="button" aria-pressed={design.start === s.id} onClick={() => onStart(s.id)}
                 className={cn(
-                  'grid grid-cols-[2rem_1fr] items-center gap-3 rounded-sm border border-line p-2.5 text-left text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-clay',
+                  'grid grid-cols-[2rem_1fr] items-center gap-3 rounded-sm border border-line p-2.5 text-left text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-accent',
                   design.start === s.id && 'border-ink bg-paper-raised text-ink',
                 )}>
-                <StartIcon id={s.id} className={design.start === s.id ? 'text-clay' : ''} />
+                <StartIcon id={s.id} className={design.start === s.id ? 'text-accent' : ''} />
                 <span>
                   <span className="block font-medium text-ink">{s.name}</span>
                   <span className="block text-xs leading-snug text-ink-muted">{s.blurb}</span>
@@ -111,10 +111,10 @@ export function StartPicker({ design, onStart, onPreset }: { design: Design; onS
                 return (
                   <button key={p.id} type="button" aria-pressed={on} onClick={() => onPreset(p.design)}
                     className={cn(
-                      'grid grid-cols-[1.5rem_1fr] items-center gap-2 rounded-sm border border-line p-2 text-left hover:border-ink focus-visible:outline-2 focus-visible:outline-clay',
+                      'grid grid-cols-[1.5rem_1fr] items-center gap-2 rounded-sm border border-line p-2 text-left hover:border-ink focus-visible:outline-2 focus-visible:outline-accent',
                       on && 'border-ink bg-paper-raised',
                     )}>
-                    <StartIcon id={p.design.start} className={cn('h-8 w-6', on ? 'text-clay' : 'text-ink-muted')} />
+                    <StartIcon id={p.design.start} className={cn('h-8 w-6', on ? 'text-accent' : 'text-ink-muted')} />
                     <span className="min-w-0">
                       <span className="block truncate text-sm font-medium">{p.design.name}</span>
                       <span className="block text-[11px] text-ink-muted">{start?.name}</span>

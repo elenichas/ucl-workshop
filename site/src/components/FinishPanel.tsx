@@ -20,13 +20,13 @@ export function FinishPanel({ design, material, onChange }: { design: Design; ma
       {material.colors.map((c) => (
         <button key={c.id} type="button" title={c.name} aria-label={c.name} aria-pressed={f[target].toLowerCase() === c.hex.toLowerCase()}
           onClick={() => set({ [target]: c.hex })}
-          className="size-9 rounded-sm border border-line outline-offset-2 aria-pressed:outline-2 aria-pressed:outline-ink focus-visible:outline-2 focus-visible:outline-clay"
+          className="size-9 rounded-sm border border-line outline-offset-2 aria-pressed:outline-2 aria-pressed:outline-ink focus-visible:outline-2 focus-visible:outline-accent"
           style={{ backgroundColor: c.hex }} />
       ))}
       {palette.map((hex) => (
         <button key={hex} type="button" title={`From your image ${hex}`} aria-label={`Colour from your image ${hex}`} aria-pressed={f[target].toLowerCase() === hex}
           onClick={() => set({ [target]: hex })}
-          className="size-9 rounded-full border border-line outline-offset-2 aria-pressed:outline-2 aria-pressed:outline-ink focus-visible:outline-2 focus-visible:outline-clay"
+          className="size-9 rounded-full border border-line outline-offset-2 aria-pressed:outline-2 aria-pressed:outline-ink focus-visible:outline-2 focus-visible:outline-accent"
           style={{ backgroundColor: hex }} />
       ))}
       <label className="relative flex size-9 cursor-pointer items-center justify-center rounded-sm border border-dashed border-ink-muted text-xs text-ink-muted hover:border-ink" title="Any colour">

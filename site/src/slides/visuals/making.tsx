@@ -21,8 +21,8 @@ export function PlanLoop({ step }: V) {
       <div className="grid grid-cols-7 items-stretch gap-3">
         {items.map(([t, s], i) => (
           <Reveal key={t} step={step} at={Math.min(i, 4)} className="h-full">
-            <div className={cn('relative flex h-full min-h-[230px] flex-col justify-center border p-5', i === 2 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
-              <p className={cn('text-[27px] font-medium leading-tight', i === 2 && 'font-mono text-clay')}>{t}</p>
+            <div className={cn('relative flex h-full min-h-[230px] flex-col justify-center border p-5', i === 2 ? 'border-accent bg-paper-raised' : 'border-ink/70')}>
+              <p className={cn('text-[27px] font-medium leading-tight', i === 2 && 'font-mono text-accent')}>{t}</p>
               {s && <p className="mt-3 text-[22px] leading-snug text-ink-muted">{s}</p>}
             </div>
           </Reveal>
@@ -30,8 +30,8 @@ export function PlanLoop({ step }: V) {
       </div>
       <Reveal step={step} at={5}>
         <svg viewBox="0 0 1500 90" className="mt-2 w-full">
-          <path d="M1390 5 V55 H660 V10" className="fill-none stroke-clay" strokeWidth="3" strokeDasharray="10 8" />
-          <path d="M650 20 L660 5 L670 20" className="fill-none stroke-clay" strokeWidth="3" />
+          <path d="M1390 5 V55 H660 V10" className="fill-none stroke-accent" strokeWidth="3" strokeDasharray="10 8" />
+          <path d="M650 20 L660 5 L670 20" className="fill-none stroke-accent" strokeWidth="3" />
           <text x="1025" y="88" textAnchor="middle" fontSize="30" className="fill-ink-muted">next step — small, checked, noted</text>
         </svg>
       </Reveal>
@@ -53,14 +53,14 @@ export function FiveStarts({ step }: V) {
       {FIVE.map(([t, s, w], i) => (
         <Reveal key={t} step={step} at={i} className="h-full">
           <div className="flex h-full flex-col border border-ink/70 p-6">
-            <p className="font-mono text-[22px] text-clay">{i + 1}</p>
-            <p className="mt-3 font-display text-[40px] leading-[1.02]">{t}</p>
+            <p className="font-mono text-[22px] text-accent">{i + 1}</p>
+            <p className="mt-3 font-display text-[32px] leading-[1.05]">{t}</p>
             <p className="mt-4 text-[21px] leading-snug">{s}</p>
             <p className="mt-auto pt-6 text-[18px] text-ink-muted">suits: {w}</p>
           </div>
         </Reveal>
       ))}
-      <p className="col-span-5 mt-2 text-center text-[24px]">Every route ends in a <span className="font-mono text-clay">PLAN.md</span> you approve — with the stack written in it.</p>
+      <p className="col-span-5 mt-2 text-center text-[24px]">Every route ends in a <span className="font-mono text-accent">PLAN.md</span> you approve — with the stack written in it.</p>
     </div>
   )
 }
@@ -72,7 +72,7 @@ export function WaysToStart({ step }: V) {
       {STARTS.map((s, i) => (
         <Reveal key={s.id} step={step} at={i < 5 ? 0 : i - 4}>
           <div className="flex gap-4 border-b border-line pb-4">
-            <StartIcon id={s.id} className="h-16 w-12 shrink-0 text-clay" />
+            <StartIcon id={s.id} className="h-16 w-12 shrink-0 text-accent" />
             <div>
               <p className="text-[26px] font-medium leading-tight">{s.name}</p>
               <p className="mt-1 text-[17px] leading-snug text-ink-muted">{s.controls.map((c) => c.label).slice(0, 5).join(' · ')}{s.controls.length > 5 ? ' …' : ''}</p>
@@ -101,7 +101,7 @@ export function SystemMapVisual({ step }: V) {
         const cls = cn('border-b border-line py-[7px] transition-opacity duration-300', !on && 'opacity-25')
         return (
           <div key={s.id} className="contents">
-            <p className={cn(cls, 'flex items-center gap-3 font-medium', active === s.id && 'text-clay')}><StartIcon id={s.id} className="h-8 w-6 shrink-0" />{s.name}</p>
+            <p className={cn(cls, 'flex items-center gap-3 font-medium', active === s.id && 'text-accent')}><StartIcon id={s.id} className="h-8 w-6 shrink-0" />{s.name}</p>
             <p className={cn(cls, 'text-ink-muted')}>{s.controls.map((c) => c.label).join(' · ')}{s.usesSection ? ' · + cross-section' : ''}</p>
             <p className={cls}>{s.representation}</p>
           </div>
@@ -120,13 +120,13 @@ export function SystemMapFlow({ step }: V) {
     <div className="flex h-full flex-col">
       <div className="flex flex-wrap gap-2">
         {STARTS.map((x) => (
-          <span key={x.id} className={cn('flex items-center gap-2 border px-3 py-1.5 text-[20px] transition-colors', x.id === active ? 'border-clay text-clay' : 'border-line text-ink-muted')}>
+          <span key={x.id} className={cn('flex items-center gap-2 border px-3 py-1.5 text-[20px] transition-colors', x.id === active ? 'border-accent text-accent' : 'border-line text-ink-muted')}>
             <StartIcon id={x.id} className="h-6 w-5" />{x.name}
           </span>
         ))}
       </div>
       <div className="mt-8 grid flex-1 grid-cols-[1fr_auto_1.25fr_auto_1fr] items-stretch gap-5">
-        <div className="border border-clay bg-paper-raised p-6">
+        <div className="border border-accent bg-paper-raised p-6">
           <p className="section-label !text-[16px]">{s.name} · its own steps</p>
           <ol className="mt-4 grid gap-3">{s.steps.map((x) => <li key={x} className="text-[25px] leading-snug">→ {x}</li>)}</ol>
         </div>
@@ -136,7 +136,7 @@ export function SystemMapFlow({ step }: V) {
           <ol className="mt-4 grid gap-2">
             {PIPELINE.map((p, i) => {
               const off = (p.carveOnly && !isCarve) || (p.fieldOnly && isCarve)
-              return <li key={p.label} className={cn('flex gap-3 text-[22px] leading-snug transition-opacity duration-300', off && 'opacity-20')}><span className="font-mono text-clay">{i + 1}</span>{p.label}</li>
+              return <li key={p.label} className={cn('flex gap-3 text-[22px] leading-snug transition-opacity duration-300', off && 'opacity-20')}><span className="font-mono text-accent">{i + 1}</span>{p.label}</li>
             })}
           </ol>
         </div>
@@ -164,8 +164,8 @@ export function IPO({ step }: V) {
       {cols.map(([t, items], i) => (
         <div key={t} className="contents">
           <Reveal step={step} at={i}>
-            <div className={cn('h-[500px] border p-8', i === 1 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
-              <p className="font-display text-[76px] leading-none">{t}</p>
+            <div className={cn('h-[500px] border p-8', i === 1 ? 'border-accent bg-paper-raised' : 'border-ink/70')}>
+              <p className="font-display text-[58px] leading-none">{t}</p>
               <ul className="mt-6 grid gap-3">{items.map((x) => <li key={x} className="text-[29px] leading-snug">{x}</li>)}</ul>
             </div>
           </Reveal>
@@ -181,17 +181,17 @@ export function IPO({ step }: V) {
 export function Algorithm({ step }: V) {
   const profile = 'M60 230 C40 190 30 140 60 100 C70 85 66 60 62 40'
   const panels = [
-    { t: '1 Profile', s: 'a curve: radius at each height', d: <><line x1="50" y1="20" x2="50" y2="240" className="stroke-ink-muted" strokeDasharray="4 4" /><path d={profile.replace(/(\d+) (\d+)/g, (_m, x, y) => `${Number(x) + 0} ${y}`)} transform="translate(-10 0)" className="fill-none stroke-clay" strokeWidth="4" /></> },
-    { t: '2 Revolve', s: 'spin it around the axis', d: <>{[0.2, 0.45, 0.7, 1].map((k) => <ellipse key={k} cx="90" cy={230 - k * 190} rx={k === 0.45 ? 55 : 35 + k * 8} ry="9" className="fill-none stroke-ink-muted" />)}<path d="M55 230 C30 190 25 140 50 100 C58 85 55 60 52 40 M125 230 C150 190 155 140 130 100 C122 85 125 60 128 40" className="fill-none stroke-clay" strokeWidth="4" /></> },
-    { t: '3 Decorate', s: 'ribs, twist, patterns push out', d: <><path d="M55 230 C30 190 25 140 50 100 C58 85 55 60 52 40 M125 230 C150 190 155 140 130 100 C122 85 125 60 128 40" className="fill-none stroke-ink-muted" strokeWidth="2" />{[0, 1, 2, 3, 4].map((k) => <path key={k} d={`M${70 + k * 10} 230 C${50 + k * 14} 170 ${60 + k * 12} 110 ${75 + k * 9} 40`} className="fill-none stroke-clay" strokeWidth="2.5" />)}</> },
-    { t: '4 Wall', s: 'move inwards by the thickness', d: <><path d="M55 230 C30 190 25 140 50 100 C58 85 55 60 52 40" className="fill-none stroke-clay" strokeWidth="4" /><path d="M65 222 C42 190 37 140 61 100 C68 85 65 60 62 40" className="fill-none stroke-ink" strokeWidth="2" strokeDasharray="6 4" /><text x="78" y="170" fontSize="16" className="fill-ink-muted">2 mm</text></> },
-    { t: '5 Close', s: 'rim · floor · bottom → watertight', d: <><path d="M55 230 C30 190 25 140 50 100 C58 85 55 60 52 40 H62 C65 60 68 85 61 100 C37 140 42 190 65 222 H115 C138 190 143 140 119 100 C112 85 115 60 118 40 H128 C125 60 122 85 130 100 C155 140 150 190 125 230 Z" className="fill-clay/25 stroke-clay" strokeWidth="3" /></> },
+    { t: '1 Profile', s: 'a curve: radius at each height', d: <><line x1="50" y1="20" x2="50" y2="240" className="stroke-ink-muted" strokeDasharray="4 4" /><path d={profile.replace(/(\d+) (\d+)/g, (_m, x, y) => `${Number(x) + 0} ${y}`)} transform="translate(-10 0)" className="fill-none stroke-accent" strokeWidth="4" /></> },
+    { t: '2 Revolve', s: 'spin it around the axis', d: <>{[0.2, 0.45, 0.7, 1].map((k) => <ellipse key={k} cx="90" cy={230 - k * 190} rx={k === 0.45 ? 55 : 35 + k * 8} ry="9" className="fill-none stroke-ink-muted" />)}<path d="M55 230 C30 190 25 140 50 100 C58 85 55 60 52 40 M125 230 C150 190 155 140 130 100 C122 85 125 60 128 40" className="fill-none stroke-accent" strokeWidth="4" /></> },
+    { t: '3 Decorate', s: 'ribs, twist, patterns push out', d: <><path d="M55 230 C30 190 25 140 50 100 C58 85 55 60 52 40 M125 230 C150 190 155 140 130 100 C122 85 125 60 128 40" className="fill-none stroke-ink-muted" strokeWidth="2" />{[0, 1, 2, 3, 4].map((k) => <path key={k} d={`M${70 + k * 10} 230 C${50 + k * 14} 170 ${60 + k * 12} 110 ${75 + k * 9} 40`} className="fill-none stroke-accent" strokeWidth="2.5" />)}</> },
+    { t: '4 Wall', s: 'move inwards by the thickness', d: <><path d="M55 230 C30 190 25 140 50 100 C58 85 55 60 52 40" className="fill-none stroke-accent" strokeWidth="4" /><path d="M65 222 C42 190 37 140 61 100 C68 85 65 60 62 40" className="fill-none stroke-ink" strokeWidth="2" strokeDasharray="6 4" /><text x="78" y="170" fontSize="16" className="fill-ink-muted">2 mm</text></> },
+    { t: '5 Close', s: 'rim · floor · bottom → watertight', d: <><path d="M55 230 C30 190 25 140 50 100 C58 85 55 60 52 40 H62 C65 60 68 85 61 100 C37 140 42 190 65 222 H115 C138 190 143 140 119 100 C112 85 115 60 118 40 H128 C125 60 122 85 130 100 C155 140 150 190 125 230 Z" className="fill-filament/25 stroke-accent" strokeWidth="3" /></> },
   ]
   return (
     <div className="grid h-full grid-cols-5 items-center gap-5">
       {panels.map((p, i) => (
         <Reveal key={p.t} step={step} at={i}>
-          <div className={cn('border p-4', step === i ? 'border-clay' : 'border-line')}>
+          <div className={cn('border p-4', step === i ? 'border-accent' : 'border-line')}>
             <svg viewBox="0 0 180 250" className="w-full">{p.d}</svg>
             <p className="mt-3 text-[32px] font-medium">{p.t}</p>
             <p className="text-[23px] leading-snug text-ink-muted">{p.s}</p>
@@ -233,9 +233,9 @@ export function Winding({ step }: V) {
         <Reveal step={step} at={1}>{panel(false, 'Our first version', 'inside-out')}</Reveal>
       </div>
       <div className="grid gap-6">
-        <p className="text-[30px] leading-snug">A 3D model is a skin of tiny triangles, and each one has an <span className="text-clay">outside</span> and an <span className="text-clay">inside</span>.</p>
+        <p className="text-[30px] leading-snug">A 3D model is a skin of tiny triangles, and each one has an <span className="text-accent">outside</span> and an <span className="text-accent">inside</span>.</p>
         <Reveal step={step} at={1}><p className="text-[27px] leading-snug">In our first version the walls were flipped. <strong>On screen it looked perfect.</strong> The printer software saw a broken file.</p></Reveal>
-        <Reveal step={step} at={2}><p className="border-l-2 border-clay pl-5 text-[26px] leading-snug">You can’t see this by eye — so ask the agent for checks: <span className="font-mono text-[23px] text-clay">“Is every vase a closed shape? Do its surfaces face outwards?”</span> They caught it in half a second.</p></Reveal>
+        <Reveal step={step} at={2}><p className="border-l-2 border-accent pl-5 text-[26px] leading-snug">You can’t see this by eye — so ask the agent for checks: <span className="font-mono text-[23px] text-accent">“Is every vase a closed shape? Do its surfaces face outwards?”</span> They caught it in half a second.</p></Reveal>
       </div>
     </div>
   )
@@ -253,10 +253,10 @@ export function CSG({ step }: V) {
               <clipPath id={`cb${i}`}><circle cx="125" cy="100" r="45" /></clipPath>
               <mask id={`ma${i}`}><rect width="200" height="200" fill="white" /><circle cx="125" cy="100" r="45" fill="black" /></mask>
             </defs>
-            {i === 0 && <rect x="40" y="30" width="110" height="140" className="fill-clay/70" />}
+            {i === 0 && <rect x="40" y="30" width="110" height="140" className="fill-filament/70" />}
             {i === 1 && <><rect x="40" y="30" width="110" height="140" className="fill-none stroke-ink-muted" strokeDasharray="5 4" /><circle cx="125" cy="100" r="45" className="fill-ink/60" /></>}
-            {i === 2 && <rect x="40" y="30" width="110" height="140" className="fill-clay/70" mask={`url(#ma${i})`} />}
-            {i === 3 && <rect x="40" y="30" width="110" height="140" className="fill-clay/70" clipPath={`url(#cb${i})`} />}
+            {i === 2 && <rect x="40" y="30" width="110" height="140" className="fill-filament/70" mask={`url(#ma${i})`} />}
+            {i === 3 && <rect x="40" y="30" width="110" height="140" className="fill-filament/70" clipPath={`url(#cb${i})`} />}
             {i >= 2 && <circle cx="125" cy="100" r="45" className="fill-none stroke-ink-muted" strokeDasharray="5 4" />}
           </svg>
           <p className="mt-3 text-center text-[30px]">{l}</p>
@@ -285,11 +285,11 @@ export function MeshResolution({ step }: V) {
     <div className="grid h-full grid-cols-[1fr_1fr] items-center gap-16">
       <svg viewBox="0 0 600 440" className="w-full">
         <polyline points={smooth} className="fill-none stroke-line" strokeWidth="2" strokeDasharray="6 5" />
-        <polyline points={pts} className="fill-clay/10 stroke-clay" strokeWidth="3" />
+        <polyline points={pts} className="fill-filament/10 stroke-accent" strokeWidth="3" />
         {pts.split(' ').map((p, i) => { const [x, y] = p.split(',').map(Number); return <circle key={i} cx={x} cy={y} r={n > 24 ? 2.5 : 6} className="fill-ink" /> })}
       </svg>
       <div className="grid gap-5">
-        <p className="font-mono text-[64px] text-clay">{n} <span className="text-[30px] text-ink-muted">segments</span></p>
+        <p className="font-mono text-[64px] text-accent">{n} <span className="text-[30px] text-ink-muted">segments</span></p>
         <p className="text-[34px] leading-snug">Rhino stores the smooth curve (NURBS). The web only draws <strong>triangles</strong> — smoothness is a resolution choice.</p>
         <p className="text-[28px] text-ink-muted">More triangles = smoother and slower. We draft while you drag, refine when you stop.</p>
       </div>
@@ -347,7 +347,7 @@ export function Overhang({ step }: V) {
         <line x1="20" y1="360" x2="780" y2="360" className="stroke-ink" strokeWidth="3" />
         {lean(0, 80, '0° vertical', 'stroke-ok', 0)}
         {lean(25, 260, '25° clay', 'stroke-warn', 1)}
-        {lean(45, 470, '45° PLA', 'stroke-clay', 2)}
+        {lean(45, 470, '45° PLA', 'stroke-accent', 2)}
       </svg>
       <div className="grid gap-6 text-[32px] leading-snug">
         <p>Each layer sits on the one below. Lean too far and it sags.</p>
@@ -370,7 +370,7 @@ export function AxisSwap({ step }: V) {
   return (
     <div className="grid h-full grid-cols-[1fr_auto_1fr] items-center gap-10">
       <div><svg viewBox="0 0 400 380" className="w-full">{axes('y', 150)}</svg><p className="text-center text-[26px]">three.js · the web · <strong>Y is up</strong></p></div>
-      <Reveal step={step} at={1}><p className="text-center font-mono text-[26px] text-clay">(x, y, z)<br />→<br />(x, −z, y)</p></Reveal>
+      <Reveal step={step} at={1}><p className="text-center font-mono text-[26px] text-accent">(x, y, z)<br />→<br />(x, −z, y)</p></Reveal>
       <Reveal step={step} at={1}><svg viewBox="0 0 400 380" className="w-full">{axes('z', 150)}</svg><p className="text-center text-[26px]">Rhino · slicers · <strong>Z is up</strong></p></Reveal>
       <Reveal step={step} at={2} className="col-span-3"><p className="text-center text-[24px] text-ink-muted">Forget this and your vase arrives lying on its side. There is a test for it.</p></Reveal>
     </div>
@@ -392,9 +392,9 @@ export function FabPath({ step }: V) {
           <div key={t} className="contents">
             {i > 0 && <Reveal step={step} at={i - 1} className="self-center"><Arrow /></Reveal>}
             <Reveal step={step} at={Math.max(0, i - 1)} className="h-full">
-              <div className={cn('h-full border p-6', i === 0 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
+              <div className={cn('h-full border p-6', i === 0 ? 'border-accent bg-paper-raised' : 'border-ink/70')}>
                 <p className="text-[34px] font-medium">{t}</p>
-                <p className="font-mono text-[19px] text-clay">{s}</p>
+                <p className="font-mono text-[19px] text-accent">{s}</p>
                 <p className="mt-4 text-[22px] leading-snug text-ink-muted">{d}</p>
               </div>
             </Reveal>
@@ -430,13 +430,13 @@ export function WhoDoesWhat({ step }: V) {
               <p className="mt-1 text-[22px] leading-snug">{agent}</p>
             </Reveal>
             <Reveal step={step} at={1} className="mt-auto">
-              <p className="font-mono text-[18px] text-clay">you</p>
-              <p className="mt-1 text-[22px] font-medium leading-snug text-clay">{you}</p>
+              <p className="font-mono text-[18px] text-accent">you</p>
+              <p className="mt-1 text-[22px] font-medium leading-snug text-accent">{you}</p>
             </Reveal>
           </div>
         ))}
       </div>
-      <Reveal step={step} at={2}><p className="text-center text-[32px]">The agent works at every step. <span className="text-clay">The decisions stay yours.</span></p></Reveal>
+      <Reveal step={step} at={2}><p className="text-center text-[32px]">The agent works at every step. <span className="text-accent">The decisions stay yours.</span></p></Reveal>
     </div>
   )
 }

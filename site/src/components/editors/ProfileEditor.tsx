@@ -80,7 +80,7 @@ export function ProfileEditor({ points, height, onChange }: { points: ProfilePoi
         <line x1={W / 2} x2={W / 2} y1={PAD / 2} y2={H - PAD / 2} className="stroke-ink-muted" strokeDasharray="4 4" strokeWidth={1} />
         <text x={W / 2 + 4} y={PAD - 8} className="fill-ink-muted font-mono" fontSize={9}>axis</text>
         <polyline points={mirror.join(' ')} fill="none" className="stroke-line" strokeWidth={2} />
-        <polyline points={curve.join(' ')} fill="none" className="stroke-clay" strokeWidth={2} />
+        <polyline points={curve.join(' ')} fill="none" className="stroke-accent" strokeWidth={2} />
         {points.map((p, i) => (
           <circle
             key={i}
@@ -91,7 +91,7 @@ export function ProfileEditor({ points, height, onChange }: { points: ProfilePoi
             role="slider"
             aria-label={`Point ${i + 1}: ${Math.round(p.t * 100)} % up, radius ${Math.round(p.r)} mm`}
             aria-valuenow={Math.round(p.r)}
-            className="cursor-grab fill-paper-raised stroke-ink focus-visible:outline-none focus-visible:stroke-clay"
+            className="cursor-grab fill-paper-raised stroke-ink focus-visible:outline-none focus-visible:stroke-accent"
             strokeWidth={2}
             onPointerDown={(e) => {
               e.stopPropagation()

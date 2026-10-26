@@ -14,6 +14,7 @@ The demo was built with Claude in one long session, starting from a planning con
 | [`06-exports.md`](06-exports.md) | `stage-05-exports` | STL/OBJ/3DM, and the `ws` bug that only showed up in a real browser |
 | [`07-craft-and-shipping.md`](07-craft-and-shipping.md) | `stage-06-craft`, `stage-07-shipped` | UI, responsive, accessibility (a contrast failure), tests, deploy |
 | [`08-ways-to-start-and-slides.md`](08-ways-to-start-and-slides.md) | `stage-08-ways-to-start`, `stage-09-presentation` | Nine ways to start, patterns, the system map, presentation + PowerPoint — and five things the checks caught |
+| [`09-redesign-with-a-design-skill.md`](09-redesign-with-a-design-skill.md) | after `stage-09` | Reviewing the site with the *frontend-design* skill, and redesigning it from the print lab |
 
 ## Patterns to notice
 

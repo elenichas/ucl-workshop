@@ -95,21 +95,23 @@ export default function ConfigurePage() {
         <VaseViewer
           mesh={mesh}
           height={mesh.stats.height}
-          look={{ ...finishLook(design.finish), metalness: 0 }}
+          // Layer lines at roughly the printer's layer height (drawn a little coarser for fine nozzles so they stay visible).
+          look={{ ...finishLook(design.finish), metalness: 0, layer: Math.max(printer.nozzle * 0.6, 1) }}
           showSection={section}
           showDimensions={dims}
           view={view}
           viewNonce={viewNonce}
-          stage={dark ? '#26221E' : '#EAE5DB'}
+          stage={dark ? '#2B302E' : '#DCDFDB'}
           description={description}
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 flex flex-col gap-3 p-4 sm:flex-row sm:items-start sm:justify-between sm:gap-4 md:p-6">
           <div className="pointer-events-auto min-w-0">
             <label htmlFor="vase-name" className="sr-only">Vase name</label>
             <input id="vase-name" value={design.name} onChange={(e) => patch({ name: e.target.value })}
-              className="w-full max-w-[14ch] bg-transparent font-display text-4xl leading-none outline-none focus-visible:underline focus-visible:decoration-clay md:text-5xl" />
-            <p className="mt-2 font-mono text-xs tabular-nums text-ink-muted">
-              {start.name} · H {mesh.stats.height.toFixed(0)} · W {mesh.stats.width.toFixed(0)} · D {mesh.stats.depth.toFixed(0)} mm · {est.grams.toFixed(0)} g
+              className="w-full max-w-[14ch] bg-transparent font-display text-4xl leading-none outline-none focus-visible:underline focus-visible:decoration-accent md:text-5xl" />
+            <p className="mt-2 font-mono text-sm text-ink-muted">
+              <span className="sr-only">Height, width and depth: </span>
+              {mesh.stats.height.toFixed(0)} × {mesh.stats.width.toFixed(0)} × {mesh.stats.depth.toFixed(0)} mm<span className="ml-3">{est.grams.toFixed(0)} g</span>
             </p>
             <button type="button" onClick={() => setTab('make')} className={cn('pointer-events-auto mt-2 text-xs font-medium underline-offset-4 hover:underline', VERDICT_STYLE[verdict])}>
               ● {VERDICT_WORD[verdict]}
@@ -118,22 +120,22 @@ export default function ConfigurePage() {
           <div role="toolbar" aria-label="View" className="pointer-events-auto order-first flex items-center gap-2 self-start sm:order-none sm:self-auto">
             <div role="group" aria-label="Camera view" className="flex">
               {VIEWS.map((v) => (
-                <Button key={v.id} size="sm" variant="chip" aria-pressed={view === v.id} className="-ml-px font-mono text-xs"
+                <Button key={v.id} size="sm" variant="chip" aria-pressed={view === v.id} className="-ml-px text-xs"
                   onClick={() => { setView(v.id); setViewNonce((n) => n + 1) }}>{v.label}</Button>
               ))}
             </div>
             <Button size="sm" variant="chip" aria-pressed={dims} onClick={() => setDims((d) => !d)}>
-              <Ruler aria-hidden /> Dimensions
+              <Ruler aria-hidden /><span className="max-sm:sr-only">Dimensions</span>
             </Button>
             <Button size="sm" variant="chip" aria-pressed={section} onClick={() => setSection((s) => !s)}>
-              <Scissors aria-hidden /> Section
+              <Scissors aria-hidden /><span className="max-sm:sr-only">Section</span>
             </Button>
           </div>
         </div>
-        <p aria-hidden className={cn('pointer-events-none absolute bottom-3 left-4 font-mono text-[11px] text-ink-muted transition-opacity duration-200 md:left-6', isDraft ? 'opacity-100' : 'opacity-0')}>
-          preview · refining…
+        <p aria-hidden className={cn('pointer-events-none absolute bottom-3 left-4 text-xs text-ink-muted transition-opacity duration-200 md:left-6', isDraft ? 'opacity-100' : 'opacity-0')}>
+          Refining…
         </p>
-        <p className="pointer-events-none absolute bottom-3 right-4 hidden font-mono text-[11px] text-ink-muted md:block md:right-6">drag to orbit · scroll to zoom</p>
+        <p className="pointer-events-none absolute bottom-3 right-4 hidden text-xs text-ink-muted md:block md:right-6">Drag to orbit, scroll to zoom</p>
         </div>
         {/* Outside the 3D view: how the configurator turns choices into a vase */}
         <div className="flex items-center justify-between gap-4 border-t border-line px-4 py-2.5 md:px-6">
@@ -150,7 +152,7 @@ export default function ConfigurePage() {
           <TabsList aria-label="Steps" className="bg-paper">
             {[['start', 'Start'], ['form', 'Form'], ['surface', 'Surface'], ['finish', 'Finish'], ['make', 'Make']].map(([id, label], i) => (
               <TabsTrigger key={id} value={id} className="group flex items-center justify-center gap-1.5 px-0.5 text-[13px]">
-                <span aria-hidden className="grid size-5 shrink-0 place-items-center rounded-full border border-ink-muted/60 font-mono text-[11px] leading-none text-ink-muted group-data-[state=active]:border-clay group-data-[state=active]:bg-clay group-data-[state=active]:text-paper">
+                <span aria-hidden className="grid size-5 shrink-0 place-items-center rounded-full border border-ink-muted/60 font-mono text-[11px] leading-none text-ink-muted group-data-[state=active]:border-filament group-data-[state=active]:bg-filament group-data-[state=active]:text-on-filament">
                   {i + 1}
                 </span>
                 <span><span className="sr-only">Step {i + 1}: </span>{label}</span>
@@ -166,7 +168,7 @@ export default function ConfigurePage() {
           {/* 2 — the controls of the chosen start */}
           <TabsContent value="form">
             <div className="flex items-start gap-3 border-b border-line py-4">
-              <StartIcon id={start.id} className="text-clay" />
+              <StartIcon id={start.id} className="text-accent" />
               <div>
                 <h2 className="font-display text-2xl leading-none">{start.name}</h2>
                 <p className="mt-1 text-xs leading-snug text-ink-muted">{start.blurb}</p>
@@ -205,7 +207,7 @@ export default function ConfigurePage() {
               {PATTERNS.map((p) => (
                 <button key={p.id} type="button" aria-pressed={design.surface.pattern === p.id}
                   onClick={() => patch({ surface: surfaceFor(p.id, design.surface.values) })}
-                  className={cn('rounded-sm border border-line p-1.5 text-left text-xs text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-clay',
+                  className={cn('rounded-sm border border-line p-1.5 text-left text-xs text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-accent',
                     design.surface.pattern === p.id && 'border-ink bg-paper-raised text-ink')}>
                   <PatternThumb id={p.id} />
                   <span className="mt-1 block font-medium">{p.name}</span>

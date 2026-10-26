@@ -27,14 +27,16 @@ A model predicts the most likely next thing. Asked for "a modern landing page", 
 ## How to avoid it
 
 ### 1 · Decide a direction before you build
-A sentence with a point of view beats "modern and clean":
-*"A ceramics studio's catalogue crossed with a technical drawing. Calm, warm, precise. The object is the hero."*
+A sentence with a point of view beats "modern and clean". Start from the **subject**: its materials, its machines, its words:
+*"A tool for an object that a machine builds layer by layer. The grey of a print bed, the bright spool of filament, layer lines on every part."*
+
+> **A real story from this demo.** Our first direction was *"a ceramics studio's catalogue crossed with a technical drawing: calm, warm, precise."* It sounded specific, and the result had a cream background, a serif headline, a terracotta accent, thin rules, small uppercase labels and phrases joined with middle dots. When we checked it with Anthropic's *frontend-design* skill, every one of those turned out to be on its list of what AI-generated design looks like right now. The brief had a point of view, but not one taken from the subject, so the agent filled it with the most common "tasteful" look. We rewrote the brief from the print lab instead, and the site changed.
 
 ### 2 · Write a DESIGN.md
 Our [`DESIGN.md`](../../DESIGN.md) has:
 - **Tokens** (machine-readable): colours, fonts, spacing, radius — in a YAML block at the top, in the format proposed by [Google's DESIGN.md spec](https://github.com/google-labs-code/design.md)
-- **Principles** (human-readable): "The object first", "Lines, not shadows", "Square-ish"
-- **Don'ts**: "No purple gradients. No emoji icons. No three-card hero."
+- **Principles** (human-readable): "The object first", "One bold thing: layer lines", "One typeface, three widths"
+- **Don'ts**: "No purple gradients. No emoji icons. No uppercase eyebrow labels. No cream-serif-terracotta."
 
 The don'ts list is surprisingly powerful. Models respond well to explicit exclusions.
 

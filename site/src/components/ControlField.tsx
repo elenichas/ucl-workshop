@@ -32,7 +32,7 @@ function NumberField({ def, value, onChange }: { def: NumberControl; value: numb
             id={id}
             type="number"
             inputMode="decimal"
-            className="w-16 border-b border-transparent bg-transparent text-right hover:border-line focus:border-clay focus:outline-none"
+            className="w-16 border-b border-transparent bg-transparent text-right hover:border-line focus:border-accent focus:outline-none"
             min={pct ? def.min * 100 : def.min}
             max={pct ? def.max * 100 : def.max}
             step={pct ? 1 : def.step}
@@ -65,7 +65,7 @@ function ChoiceField({ def, value, onChange }: { def: ChoiceControl; value: numb
             aria-pressed={value === o.value}
             onClick={() => onChange(o.value)}
             className={cn(
-              'h-8 rounded-sm border border-line px-3 text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-clay',
+              'h-8 rounded-sm border border-line px-3 text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-accent',
               value === o.value && 'border-ink bg-paper-raised text-ink',
             )}
           >

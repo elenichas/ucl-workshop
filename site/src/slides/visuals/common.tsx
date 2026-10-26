@@ -22,8 +22,8 @@ export function G({ step, at, children, className }: { step: number; at: number;
 /** A labelled box used in many diagrams. */
 export function Box({ title, sub, active, className, children }: { title: string; sub?: string; active?: boolean; className?: string; children?: ReactNode }) {
   return (
-    <div className={cn('flex flex-col justify-center border px-6 py-6 transition-colors duration-300', active ? 'border-clay bg-paper-raised' : 'border-ink/70', className)}>
-      <p className={cn('text-[34px] font-medium leading-tight', active && 'text-clay')}>{title}</p>
+    <div className={cn('flex flex-col justify-center border px-6 py-6 transition-colors duration-300', active ? 'border-accent bg-paper-raised' : 'border-ink/70', className)}>
+      <p className={cn('text-[34px] font-medium leading-tight', active && 'text-accent')}>{title}</p>
       {sub && <p className="mt-2 text-[24px] leading-snug text-ink-muted">{sub}</p>}
       {children}
     </div>
@@ -31,5 +31,5 @@ export function Box({ title, sub, active, className, children }: { title: string
 }
 
 export const Arrow = ({ className }: { className?: string }) => (
-  <span aria-hidden className={cn('font-mono text-[44px] leading-none text-clay', className)}>→</span>
+  <span aria-hidden className={cn('font-mono text-[44px] leading-none text-accent', className)}>→</span>
 )

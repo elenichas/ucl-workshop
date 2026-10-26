@@ -27,10 +27,9 @@ export function SlideView({ slide, step, exporting = false, context }: { slide: 
     <div className="slide relative flex flex-col overflow-hidden bg-paper text-ink" style={{ width: SLIDE_W, height: SLIDE_H }}>
       {showLabel && (
         <div className="slide-label absolute inset-x-24 top-9 z-10 flex items-center justify-between gap-6">
-          <p className="section-label !text-[16px]">
-            {context.part && <span className="text-clay">Part {context.part.number} · {context.part.title}</span>}
-            {context.part && <span className="mx-3 text-line">/</span>}
-            {context.chapter}
+          <p className="flex items-baseline gap-5 text-[17px]">
+            {context.part && <span className="font-semibold text-ink">Part {context.part.number}: {context.part.title}</span>}
+            <span className="text-ink-muted">{context.chapter}</span>
           </p>
           {context.part && <PartTicks current={context.part.number} />}
         </div>
@@ -45,14 +44,14 @@ function PartTicks({ current, dark = false }: { current: number; dark?: boolean 
   return (
     <span className="flex gap-1.5" aria-hidden>
       {[1, 2, 3, 4, 5].map((n) => (
-        <span key={n} className="h-1.5 w-8" style={{ background: n === current ? (dark ? '#D2714B' : 'var(--color-clay)') : n < current ? (dark ? '#8a8378' : 'var(--color-ink-muted)') : (dark ? '#3A352E' : 'var(--color-line)') }} />
+        <span key={n} className="h-1.5 w-8" style={{ background: n === current ? (dark ? '#FFC21A' : 'var(--color-ink)') : n < current ? (dark ? '#A3AAA6' : 'var(--color-ink-muted)') : (dark ? '#343936' : 'var(--color-line)') }} />
       ))}
     </span>
   )
 }
 
 function Title({ children, className }: { children: string; className?: string }) {
-  return <h2 className={cn('font-display text-[72px] leading-[1.02] tracking-tight [text-wrap:balance]', className)}>{children}</h2>
+  return <h2 className={cn('font-display text-[60px] leading-[1.04] tracking-tight [text-wrap:balance]', className)}>{children}</h2>
 }
 
 function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exporting: boolean }) {
@@ -60,26 +59,26 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
     case 'title':
       return (
         <div className="flex h-full flex-col justify-end p-28">
-          <h1 className="font-display text-[200px] leading-[0.88] tracking-tight">{slide.title}</h1>
+          <h1 className="font-display text-[160px] leading-[0.9] tracking-tight">{slide.title}</h1>
           <p className="mt-12 text-[40px] text-ink-muted">{slide.subtitle}</p>
         </div>
       )
     case 'part':
       // A dark divider, the same in light and dark mode, so a change of subject is unmistakable.
       return (
-        <div className="grid h-full grid-cols-[1.25fr_1fr] gap-16 p-24" style={{ background: '#1C1A17', color: '#F3EFE7' }}>
+        <div className="grid h-full grid-cols-[1.25fr_1fr] gap-16 p-24" style={{ background: '#000000', color: '#F2F3F1' }}>
           <div className="flex flex-col justify-between">
             <PartTicks current={slide.number} dark />
             <div>
-              <p className="font-mono text-[40px]" style={{ color: '#D2714B' }}>Part {slide.number}</p>
-              <h2 className="mt-4 font-display text-[150px] leading-[0.9] tracking-tight [text-wrap:balance]">{slide.title}</h2>
-              <p className="mt-10 max-w-[26ch] font-display text-[44px] italic leading-tight" style={{ color: '#A79F92' }}>{slide.question}</p>
+              <p className="font-mono text-[40px]" style={{ color: '#FFC21A' }}>Part {slide.number}</p>
+              <h2 className="mt-4 font-display text-[108px] leading-[0.95] tracking-tight [text-wrap:balance]">{slide.title}</h2>
+              <p className="mt-10 max-w-[26ch] text-[40px] leading-tight" style={{ color: '#A3AAA6' }}>{slide.question}</p>
             </div>
           </div>
-          <ol className="grid content-end gap-0 border-t" style={{ borderColor: '#3A352E' }}>
+          <ol className="grid content-end gap-0 border-t" style={{ borderColor: '#343936' }}>
             {slide.chapters.map((c) => (
-              <li key={c.number} className="flex items-baseline gap-6 border-b py-4" style={{ borderColor: '#3A352E' }}>
-                <span className="font-mono text-[24px]" style={{ color: '#D2714B' }}>{c.number}</span>
+              <li key={c.number} className="flex items-baseline gap-6 border-b py-4" style={{ borderColor: '#343936' }}>
+                <span className="font-mono text-[24px]" style={{ color: '#FFC21A' }}>{c.number}</span>
                 <span className="text-[30px] leading-snug">{c.title}</span>
               </li>
             ))}
@@ -91,8 +90,8 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
         <div className="flex h-full flex-col justify-between p-24">
           <p className="section-label !text-[20px]">{slide.part}</p>
           <div>
-            <p className="font-mono text-[44px] text-clay">{slide.number}</p>
-            <h2 className="mt-4 max-w-[18ch] font-display text-[140px] leading-[0.92] tracking-tight [text-wrap:balance]">{slide.title}</h2>
+            <p className="font-mono text-[44px] text-accent">{slide.number}</p>
+            <h2 className="mt-4 max-w-[18ch] font-display text-[100px] leading-[0.95] tracking-tight [text-wrap:balance]">{slide.title}</h2>
           </div>
           <p className="max-w-[60ch] text-[30px] leading-snug text-ink-muted">{slide.summary}</p>
         </div>
@@ -100,7 +99,7 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
     case 'statement':
       return (
         <div className="flex h-full flex-col justify-center p-28">
-          <p className="max-w-[22ch] font-display text-[104px] leading-[1.0] tracking-tight [text-wrap:balance]">{slide.text}</p>
+          <p className="max-w-[22ch] font-display text-[84px] leading-[1.02] tracking-tight [text-wrap:balance]">{slide.text}</p>
           {slide.sub && <p className="mt-12 max-w-[50ch] text-[32px] leading-snug text-ink-muted">{slide.sub}</p>}
         </div>
       )
@@ -112,7 +111,7 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
             {slide.points.map((p, i) => (
               <Reveal key={p} step={slide.reveal ? step : 99} at={i}>
                 <li className="grid grid-cols-[3.5rem_1fr] items-baseline text-[40px] leading-snug">
-                  <span className="font-mono text-[26px] text-clay">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="font-mono text-[26px] text-accent">{String(i + 1).padStart(2, '0')}</span>
                   <span>{p}</span>
                 </li>
               </Reveal>
@@ -140,7 +139,7 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
           <div className="mt-14 grid flex-1 grid-cols-2 gap-16">
             {[slide.left, slide.right].map((col, i) => (
               <Reveal key={col.label} step={slide.reveal ? step : 99} at={i}>
-                <p className={cn('section-label !text-[22px]', i === 1 && '!text-clay')}>{col.label}</p>
+                <p className={cn('section-label !text-[22px]', i === 1 && '!text-accent')}>{col.label}</p>
                 <ul className="mt-6 grid gap-4">{col.points.map((p) => <li key={p} className="border-b border-line pb-3 text-[34px] leading-snug">{p}</li>)}</ul>
               </Reveal>
             ))}
@@ -169,8 +168,8 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
       return (
         <div className="flex h-full flex-col p-24">
           <Title>{slide.title}</Title>
-          <pre className={cn('mt-12 whitespace-pre-wrap border p-10 font-mono text-[28px] leading-[1.55]', slide.lang === 'prompt' ? 'border-clay bg-paper-raised' : 'border-line bg-paper-raised')}>
-            {slide.lang === 'prompt' && <span className="mb-4 block font-sans text-[18px] uppercase tracking-[0.14em] text-clay">Prompt</span>}
+          <pre className={cn('mt-12 whitespace-pre-wrap border p-10 font-code text-[26px] leading-[1.55]', slide.lang === 'prompt' ? 'border-l-8 border-filament bg-paper-raised' : 'border-line bg-paper-raised')}>
+            {slide.lang === 'prompt' && <span className="mb-4 block font-sans text-[20px] font-semibold text-accent">Prompt</span>}
             {slide.code}
           </pre>
           {slide.caption && <p className="mt-8 text-[28px] text-ink-muted">{slide.caption}</p>}
@@ -184,8 +183,8 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
             {slide.caption && <p className="mt-8 text-[28px] leading-snug text-ink-muted">{slide.caption}</p>}
             <ol className="mt-auto grid gap-2">
               {slide.designs.map((d, i) => (
-                <li key={d.label} className={cn('flex items-center gap-4 text-[28px] transition-colors', i === step ? 'text-clay' : 'text-ink-muted')}>
-                  <span className={cn('size-3 rounded-full', i === step ? 'bg-clay' : 'bg-line')} /> {d.label}
+                <li key={d.label} className={cn('flex items-center gap-4 text-[28px] transition-colors', i === step ? 'text-accent' : 'text-ink-muted')}>
+                  <span className={cn('size-3 rounded-full', i === step ? 'bg-filament' : 'bg-line')} /> {d.label}
                 </li>
               ))}
             </ol>
@@ -224,7 +223,7 @@ const liveVase = () => typeof window !== 'undefined' && (window as unknown as { 
 function StaticVase({ id, count, step, labels }: { id: string; count: number; step: number; labels: string[] }) {
   const current = Math.min(step, count - 1)
   return (
-    <div className="relative h-full border-l border-line bg-[#EAE5DB]" data-export="vase">
+    <div className="relative h-full border-l border-line bg-stage" data-export="vase">
       {Array.from({ length: count }, (_, i) => (
         <img key={i} src={`${import.meta.env.BASE_URL}${vaseImage(id, i)}`} alt={`3D render: ${labels[i]}`} aria-hidden={i !== current} className={cn('absolute inset-0 h-full w-full object-contain', i === current ? 'opacity-100' : 'opacity-0')} />
       ))}
@@ -239,7 +238,7 @@ function LiveVase({ presetDesigns, step, exporting }: { presetDesigns: { label: 
   const mesh = useMemo(() => buildDesign(design, 'full', design.start === 'carve' ? { radial: 140, vertical: 100 } : { radial: 200, vertical: 140 }), [design])
   return (
     <div className="h-full border-l border-line" data-export="vase">
-      <VaseViewer key={step} mesh={mesh} height={mesh.stats.height} look={{ ...finishLook(design.finish), metalness: 0 }} stage={dark && !exporting ? '#26221E' : '#EAE5DB'} description={`3D view: ${design.name}`} />
+      <VaseViewer key={step} mesh={mesh} height={mesh.stats.height} look={{ ...finishLook(design.finish), metalness: 0, layer: 1.2 }} stage={dark && !exporting ? '#2B302E' : '#DCDFDB'} description={`3D view: ${design.name}`} />
     </div>
   )
 }

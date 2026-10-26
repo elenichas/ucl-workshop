@@ -21,7 +21,7 @@ export const PIPELINE: { label: string; carveOnly?: boolean; fieldOnly?: boolean
 ]
 
 export const SHARED_INPUTS = ['Surface pattern', 'Wall & floor', 'Colour & finish', 'Printer & material']
-export const SHARED_OUTPUTS = ['Live 3D view', 'Print report + estimates', 'STL · OBJ · 3DM files']
+export const SHARED_OUTPUTS = ['Live 3D view', 'Print report + estimates', 'STL, OBJ and 3DM files']
 
 export function SystemMap({ active, onSelect, compact = false, className }: {
   active: StartId | null
@@ -51,15 +51,15 @@ export function SystemMap({ active, onSelect, compact = false, className }: {
                 disabled={!onSelect}
                 onClick={() => onSelect?.(s.id)}
                 aria-pressed={active === s.id}
-                className={cn(rowCls, 'text-left font-medium enabled:hover:text-clay', active === s.id && 'text-clay')}
+                className={cn(rowCls, 'text-left font-medium enabled:hover:text-accent', active === s.id && 'text-accent')}
                 style={{ gridRow: i + 2 }}
               >
                 <span className="font-mono text-[10px] text-ink-muted">{String(i + 1).padStart(2, '0')}</span> {s.name}
               </button>
-              <div className={cn(rowCls, 'leading-snug text-ink-muted')} style={{ gridRow: i + 2 }}>{controls.join(' · ')}</div>
+              <div className={cn(rowCls, 'leading-snug text-ink-muted')} style={{ gridRow: i + 2 }}>{controls.join(', ')}</div>
               <div className={cn(rowCls, 'leading-snug')} style={{ gridRow: i + 2 }}>{s.representation}</div>
               <ol className={cn(rowCls, 'leading-snug text-ink-muted')} style={{ gridRow: i + 2 }}>
-                {s.steps.map((st) => <li key={st}>→ {st}</li>)}
+                {s.steps.map((st) => <li key={st}>{st}</li>)}
               </ol>
               <Connector active={active === s.id} faded={dim(s.id)} row={i + 2} col={5} />
               <ul className={cn(rowCls, 'leading-snug')} style={{ gridRow: i + 2, gridColumn: 8 }}>
@@ -82,8 +82,8 @@ export function SystemMap({ active, onSelect, compact = false, className }: {
               const off = (p.carveOnly && active !== null && !isCarve) || (p.fieldOnly && isCarve)
               return (
                 <li key={p.label} className={cn('flex gap-2 leading-snug transition-opacity duration-300', off && 'opacity-25')}>
-                  <span className="font-mono text-clay">{i + 1}</span>
-                  <span>{p.label}{p.carveOnly && <em className="text-ink-muted"> · carve only</em>}</span>
+                  <span className="font-mono text-accent">{i + 1}</span>
+                  <span>{p.label}{p.carveOnly && <em className="text-ink-muted"> (carve only)</em>}</span>
                 </li>
               )
             })}
@@ -101,8 +101,8 @@ export function SystemMap({ active, onSelect, compact = false, className }: {
 function Connector({ active, faded, row, col }: { active: boolean; faded: boolean; row: number; col: number }) {
   return (
     <div aria-hidden className={cn('relative transition-opacity duration-300', faded && 'opacity-30')} style={{ gridRow: row, gridColumn: col }}>
-      <span className={cn('absolute inset-x-0 top-1/2 h-px', active ? 'flow-line bg-clay' : 'bg-line')} />
-      <span className={cn('absolute right-0 top-1/2 -translate-y-1/2 font-mono leading-none', active ? 'text-clay' : 'text-line')}>›</span>
+      <span className={cn('absolute inset-x-0 top-1/2 h-px', active ? 'flow-line bg-filament' : 'bg-line')} />
+      <span className={cn('absolute right-0 top-1/2 -translate-y-1/2 font-mono leading-none', active ? 'text-accent' : 'text-line')}>›</span>
     </div>
   )
 }
