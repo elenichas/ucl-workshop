@@ -35,7 +35,7 @@ If you have used Grasshopper, you already know this way of thinking: **parameter
 
 > **Don't open a chat and type "build me a vase configurator".**
 
-You would get *something*. It would look like every other AI-generated website, you would not understand it, and you could not change it with intention. Instead we will:
+You would get *something*. It would look like every other AI-generated website, you might not fully understand it, and you could not change it with intention. Instead we will:
 
 1. **Think** — what are the inputs, the process, the outputs?
 2. **Plan** — write it down in a file (`PLAN.md`) and approve it.
@@ -48,11 +48,11 @@ The process is the point. The website is the excuse.
 
 | Part | Chapters | Question it answers |
 |---|---|---|
-| 1 — Foundations | 00–04 | What are AI models, agents, websites? What is Claude Code doing? |
-| 2 — Thinking before building | 05–06 | How do I start? What exactly do I control? |
-| 3 — Building it, prompt by prompt | 07–10 | Algorithm, 3D viewer, printability, exports |
-| 4 — Craft and quality | 11–17 | UI, responsiveness, accessibility, 3D interaction, avoiding AI slop, testing, shipping |
-| 5 — Reflection | 18 | What does it mean to work with an agent? |
+| 1 · Foundations | 00–04 | What are AI models, agents, websites? What is Claude Code doing? |
+| 2 · Thinking before building | 05–06 | How do I start? What exactly do I control? |
+| 3 · Building it, prompt by prompt | 07–10 | Algorithm, 3D viewer, printability, exports |
+| 4 · Craft and quality | 11–17 | UI, responsiveness, accessibility, 3D interaction, avoiding AI slop, testing, shipping |
+| 5 · Reflection | 18 | What does it mean to work with an agent? |
 
 We will not cover everything in three hours. That is fine — the repo stays with you.
 
