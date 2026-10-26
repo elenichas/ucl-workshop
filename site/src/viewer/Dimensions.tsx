@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { Html, Line } from '@react-three/drei'
 import type { VaseMesh } from '@/geometry/types'
+import { usePrefersDark } from '@/state/usePrefersDark'
 
 type V3 = [number, number, number]
 
@@ -10,6 +11,7 @@ type V3 = [number, number, number]
  * plan diagonal (boxes, polygons, stars). All values in millimetres.
  */
 export function Dimensions({ mesh }: { mesh: VaseMesh }) {
+  const pal = usePrefersDark() ? DARK : LIGHT
   const m = useMemo(() => measure(mesh.positions), [mesh])
   const size = Math.max(m.maxY - m.minY, m.maxX - m.minX, m.maxZ - m.minZ)
   const gap = size * 0.08 // distance between the object and its dimension lines
@@ -28,31 +30,32 @@ export function Dimensions({ mesh }: { mesh: VaseMesh }) {
   return (
     <group>
       {/* height: a vertical line at the back-right corner, so it stands beside the vase rather than in front of it */}
-      <Dim from={[xR, m.minY, m.minZ]} to={[xR, m.maxY, m.minZ]} tickDir={[1, 0, 0]} tick={tick} label={`H ${fmt(height)}`} />
+      <Dim from={[xR, m.minY, m.minZ]} to={[xR, m.maxY, m.minZ]} tickDir={[1, 0, 0]} tick={tick} label={`H ${fmt(height)}`}  pal={pal} />
       {/* width: along x, on the floor in front */}
-      <Dim from={[m.minX, y0, zF]} to={[m.maxX, y0, zF]} tickDir={[0, 0, 1]} tick={tick} label={`W ${fmt(width)}`} />
+      <Dim from={[m.minX, y0, zF]} to={[m.maxX, y0, zF]} tickDir={[0, 0, 1]} tick={tick} label={`W ${fmt(width)}`}  pal={pal} />
       {/* depth: along z, on the floor to the right */}
-      <Dim from={[xR, y0, m.minZ]} to={[xR, y0, m.maxZ]} tickDir={[1, 0, 0]} tick={tick} label={`D ${fmt(depth)}`} />
+      <Dim from={[xR, y0, m.minZ]} to={[xR, y0, m.maxZ]} tickDir={[1, 0, 0]} tick={tick} label={`D ${fmt(depth)}`}  pal={pal} />
       {round ? (
         <>
           {/* radius at the widest point, from the axis outwards */}
-          <Line points={[[0, m.minY, 0], [0, m.maxY, 0]]} color={AXIS} lineWidth={1} dashed dashSize={tick} gapSize={tick * 0.8} depthTest={false} renderOrder={10} />
-          <Dim from={[0, m.yAtRMax, 0]} to={[m.rMax * Math.cos(m.aAtRMax), m.yAtRMax, m.rMax * Math.sin(m.aAtRMax)]} tick={0} label={`R ${fmt(m.rMax)}`} accent />
+          <Line points={[[0, m.minY, 0], [0, m.maxY, 0]]} color={pal.axis} lineWidth={1.2} dashed dashSize={tick} gapSize={tick * 0.8} depthTest={false} renderOrder={10} />
+          <Dim from={[0, m.yAtRMax, 0]} to={[m.rMax * Math.cos(m.aAtRMax), m.yAtRMax, m.rMax * Math.sin(m.aAtRMax)]} tick={0} label={`R ${fmt(m.rMax)}`} accent  pal={pal} />
         </>
       ) : (
-        <Dim from={[m.minX, y0, m.minZ]} to={[m.maxX, y0, m.maxZ]} tick={0} label={`Diagonal ${fmt(diagonal)}`} accent />
+        <Dim from={[m.minX, y0, m.minZ]} to={[m.maxX, y0, m.maxZ]} tick={0} label={`Diagonal ${fmt(diagonal)}`} accent  pal={pal} />
       )}
     </group>
   )
 }
 
-const INK = '#3d3832'
-const ACCENT = '#A6482A'
-const AXIS = '#8a8278'
+// Each line gets a thin halo in the opposite tone, so it reads over the background and over a dark or light vase.
+type Palette = { ink: string; accent: string; axis: string; halo: string }
+const LIGHT: Palette = { ink: '#2a2622', accent: '#A6482A', axis: '#6f675e', halo: '#F3EFE7' }
+const DARK: Palette = { ink: '#F1EADF', accent: '#F0A07C', axis: '#B8AEA2', halo: '#1C1A17' }
 const fmt = (mm: number) => `${mm.toFixed(0)} mm`
 
-function Dim({ from, to, tick, tickDir = [0, 0, 1], label, accent }: { from: V3; to: V3; tick: number; tickDir?: V3; label: string; accent?: boolean }) {
-  const color = accent ? ACCENT : INK
+function Dim({ from, to, tick, tickDir = [0, 0, 1], label, accent, pal }: { from: V3; to: V3; tick: number; tickDir?: V3; label: string; accent?: boolean; pal: Palette }) {
+  const color = accent ? pal.accent : pal.ink
   const mid: V3 = [(from[0] + to[0]) / 2, (from[1] + to[1]) / 2, (from[2] + to[2]) / 2]
   const t = (p: V3): [V3, V3] => [
     [p[0] - tickDir[0] * tick, p[1] - tickDir[1] * tick, p[2] - tickDir[2] * tick],
@@ -60,13 +63,16 @@ function Dim({ from, to, tick, tickDir = [0, 0, 1], label, accent }: { from: V3;
   ]
   return (
     <group>
-      <Line points={[from, to]} color={color} lineWidth={1.5} depthTest={false} renderOrder={10} />
-      {tick > 0 && <Line points={t(from)} color={color} lineWidth={1.5} depthTest={false} renderOrder={10} />}
-      {tick > 0 && <Line points={t(to)} color={color} lineWidth={1.5} depthTest={false} renderOrder={10} />}
+      {[[from, to] as [V3, V3], ...(tick > 0 ? [t(from), t(to)] : [])].map((pts, i) => (
+        <group key={i}>
+          <Line points={pts} color={pal.halo} lineWidth={4.5} depthTest={false} renderOrder={10} />
+          <Line points={pts} color={color} lineWidth={1.8} depthTest={false} renderOrder={11} />
+        </group>
+      ))}
       <Html position={mid} center zIndexRange={[20, 0]} style={{ pointerEvents: 'none' }}>
         <span
-          className="whitespace-nowrap rounded-sm border bg-paper/90 px-1.5 py-0.5 font-mono text-[11px] leading-none tabular-nums"
-          style={{ borderColor: color, color }}
+          className="whitespace-nowrap rounded-sm border px-1.5 py-0.5 font-mono text-[11px] leading-none tabular-nums"
+          style={{ borderColor: color, color, background: pal.halo }}
         >
           {label}
         </span>
