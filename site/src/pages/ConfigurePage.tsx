@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
-import { ImageUp, Network, Scissors, Sparkles, X } from 'lucide-react'
+import { ImageUp, Network, Ruler, Scissors, Sparkles, X } from 'lucide-react'
 import { getMaterial, MATERIALS } from '@/config/materials'
 import { getPrinter, PRINTERS } from '@/config/printers'
 import { estimates, overall, runChecks } from '@/checks/printability'
@@ -43,6 +43,7 @@ export default function ConfigurePage() {
   const [view, setView] = useState<CameraView>('three-quarter')
   const [viewNonce, setViewNonce] = useState(0)
   const [section, setSection] = useState(false)
+  const [dims, setDims] = useState(false)
   const [showMap, setShowMap] = useState(false)
 
   const start = getStart(design.start)
@@ -96,6 +97,7 @@ export default function ConfigurePage() {
           height={mesh.stats.height}
           look={{ ...finishLook(design.finish), metalness: 0 }}
           showSection={section}
+          showDimensions={dims}
           view={view}
           viewNonce={viewNonce}
           stage={dark ? '#26221E' : '#EAE5DB'}
@@ -120,6 +122,9 @@ export default function ConfigurePage() {
                   onClick={() => { setView(v.id); setViewNonce((n) => n + 1) }}>{v.label}</Button>
               ))}
             </div>
+            <Button size="sm" variant="chip" aria-pressed={dims} onClick={() => setDims((d) => !d)}>
+              <Ruler aria-hidden /> Dimensions
+            </Button>
             <Button size="sm" variant="chip" aria-pressed={section} onClick={() => setSection((s) => !s)}>
               <Scissors aria-hidden /> Section
             </Button>

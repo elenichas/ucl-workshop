@@ -110,3 +110,12 @@ test('project files are readable on the site, without GitHub', async ({ page }) 
   await page.goto('/#/course/00-welcome')
   await expect(page.locator('.prose a[href*="github.com/elenichas"]')).toHaveCount(0)
 })
+
+test('dimensions can be shown in the 3D view', async ({ page }) => {
+  await page.goto('/#/configure')
+  await page.getByRole('button', { name: /Dimensions/ }).click()
+  await expect(page.getByText(/^H \d+ mm$/)).toBeVisible()
+  await expect(page.getByText(/^R \d+ mm$/)).toBeVisible()
+  await page.getByRole('button', { name: /^Box$/ }).click()
+  await expect(page.getByText(/^Diagonal \d+ mm$/)).toBeVisible()
+})

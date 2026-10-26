@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 import type { VaseMesh } from '@/geometry/types'
+import { Dimensions } from './Dimensions'
 
 export interface ViewerLook {
   color: string
@@ -25,6 +26,8 @@ interface Props {
   height: number
   look: ViewerLook
   showSection?: boolean
+  /** Draw height, width, depth and radius / diagonal dimension lines */
+  showDimensions?: boolean
   view?: CameraView
   /** changes every time the user asks for a camera preset, so the same view can be re-applied */
   viewNonce?: number
@@ -44,7 +47,7 @@ interface Props {
  * - geometry is rebuilt only when the mesh changes, and the old one is disposed
  * - ContactShadows rendered once (frames=1) instead of real-time shadows
  */
-export function VaseViewer({ mesh, height, look, showSection, view = 'three-quarter', viewNonce = 0, stage = '#EAE5DB', description }: Props) {
+export function VaseViewer({ mesh, height, look, showSection, showDimensions, view = 'three-quarter', viewNonce = 0, stage = '#EAE5DB', description }: Props) {
   // Frame the camera on whichever is bigger: the height or the width of the vase.
   const size = Math.max(height, mesh.stats.maxDiameter * 1.15)
   return (
@@ -60,6 +63,7 @@ export function VaseViewer({ mesh, height, look, showSection, view = 'three-quar
         <directionalLight position={[200, 400, 250]} intensity={2.2} />
         <directionalLight position={[-300, 150, -200]} intensity={0.6} />
         <VaseObject mesh={mesh} look={look} showSection={!!showSection} />
+        {showDimensions && <Dimensions mesh={mesh} />}
         <ContactShadows position={[0, 0, 0]} scale={height * 2.5} far={height} blur={2.2} opacity={0.45} frames={1} key={mesh.stats.volume} />
         <Controls height={height} size={size} view={view} viewNonce={viewNonce} />
       </Canvas>
