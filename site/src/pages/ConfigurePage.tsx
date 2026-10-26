@@ -89,7 +89,8 @@ export default function ConfigurePage() {
   return (
     <div className="mx-auto grid max-w-[1600px] lg:h-[calc(100dvh-3.5rem-var(--footer-h,0px)-1px)] lg:min-h-[480px] lg:grid-cols-[minmax(0,1fr)_420px]">
       {/* 3D stage */}
-      <section aria-label="3D preview" className="relative h-[52svh] min-h-[320px] border-b border-line lg:h-full lg:border-b-0 lg:border-r">
+      <section aria-label="3D preview" className="flex h-[52svh] min-h-[320px] flex-col border-b border-line lg:h-full lg:border-b-0 lg:border-r">
+        <div className="relative min-h-0 flex-1">
         <VaseViewer
           mesh={mesh}
           height={mesh.stats.height}
@@ -100,7 +101,7 @@ export default function ConfigurePage() {
           stage={dark ? '#26221E' : '#EAE5DB'}
           description={description}
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-4 md:p-6">
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex flex-col gap-3 p-4 sm:flex-row sm:items-start sm:justify-between sm:gap-4 md:p-6">
           <div className="pointer-events-auto min-w-0">
             <label htmlFor="vase-name" className="sr-only">Vase name</label>
             <input id="vase-name" value={design.name} onChange={(e) => patch({ name: e.target.value })}
@@ -112,7 +113,7 @@ export default function ConfigurePage() {
               ● {VERDICT_WORD[verdict]}
             </button>
           </div>
-          <div className="pointer-events-auto flex flex-col items-end gap-2">
+          <div role="toolbar" aria-label="View" className="pointer-events-auto order-first flex items-center gap-2 self-start sm:order-none sm:self-auto">
             <div role="group" aria-label="Camera view" className="flex">
               {VIEWS.map((v) => (
                 <Button key={v.id} size="sm" variant="chip" aria-pressed={view === v.id} className="-ml-px font-mono text-xs"
@@ -122,15 +123,20 @@ export default function ConfigurePage() {
             <Button size="sm" variant="chip" aria-pressed={section} onClick={() => setSection((s) => !s)}>
               <Scissors aria-hidden /> Section
             </Button>
-            <Button size="sm" variant="chip" onClick={() => setShowMap(true)}>
-              <Network aria-hidden /> How it works
-            </Button>
           </div>
         </div>
         <p aria-hidden className={cn('pointer-events-none absolute bottom-3 left-4 font-mono text-[11px] text-ink-muted transition-opacity duration-200 md:left-6', isDraft ? 'opacity-100' : 'opacity-0')}>
           preview · refining…
         </p>
         <p className="pointer-events-none absolute bottom-3 right-4 hidden font-mono text-[11px] text-ink-muted md:block md:right-6">drag to orbit · scroll to zoom</p>
+        </div>
+        {/* Outside the 3D view: how the configurator turns choices into a vase */}
+        <div className="flex items-center justify-between gap-4 border-t border-line px-4 py-2.5 md:px-6">
+          <p className="hidden text-xs text-ink-muted sm:block">See how your choices travel from inputs to a printable file.</p>
+          <Button size="sm" variant="outline" onClick={() => setShowMap(true)}>
+            <Network aria-hidden /> How it works
+          </Button>
+        </div>
       </section>
 
       {/* Control panel */}
