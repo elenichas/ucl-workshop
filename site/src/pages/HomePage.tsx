@@ -57,12 +57,11 @@ export default function HomePage() {
       <section aria-labelledby="how" className="px-4 py-12 md:px-6 lg:py-4">
         <h2 id="how" className="section-label">How it works</h2>
         <ol className="mt-3 grid border-t border-line md:grid-cols-3">
-          {FLOW.map((s, i) => (
-            <li key={s.n} className="relative border-b border-line py-8 md:border-b-0 lg:py-3 md:pr-10 md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:pl-10">
+          {FLOW.map((s) => (
+            <li key={s.n} className="border-b border-line py-8 md:border-b-0 lg:py-3 md:pr-10 md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:pl-10">
               <span className="font-mono text-xs text-clay">{s.n}</span>
               <h3 className="mt-1 font-display text-4xl lg:text-2xl">{s.title}</h3>
               <p className="mt-1 max-w-[46ch] leading-relaxed text-ink-muted lg:text-sm">{s.body}</p>
-              {i < FLOW.length - 1 && <span aria-hidden className="absolute -right-2 top-5 hidden font-mono text-clay md:block">→</span>}
             </li>
           ))}
         </ol>
