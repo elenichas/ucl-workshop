@@ -1,6 +1,6 @@
 # 01 · Fundamentals: AI and the web
 
-> **Part 1 — Foundations** · ~15 min
+> **Part 1 · Foundations**
 
 **In one sentence:** before we use an agent to build a website, we need a mental model of both — what an AI model actually is, and what a website actually is.
 

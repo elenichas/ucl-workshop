@@ -1,6 +1,6 @@
 # 03 · Tokens, usage and cost
 
-> **Part 1 — Foundations** · ~8 min
+> **Part 1 · Foundations**
 
 **In one sentence:** every word you send, every file Claude reads, and every word it writes back is counted in tokens — they are your budget, and a messy process spends it fast.
 

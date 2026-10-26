@@ -13,7 +13,7 @@ PROCESS    how to proceed                         "Plan first and wait for my OK
 
 ## Bad → better
 
-| ❌ Vague | ✅ Specific |
+| Vague | Specific |
 |---|---|
 | Build me a vase configurator. | *(Use a [starting point](starting-points/). Plan first.)* |
 | Make it look better. | Read DESIGN.md. List the 5 biggest visual problems on the configurator page, most important first. Don't change code yet. |

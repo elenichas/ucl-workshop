@@ -2,7 +2,7 @@
 
 Open-source projects that give coding agents better taste. Grouped by **what they do**, with ideas for using each one on the vase configurator.
 
-> ⚠️ **Before installing anything:** a skill or plugin is someone else's code *and* someone else's instructions to your agent. Check the repo, the author, the licence, and read the `SKILL.md`. Star counts quoted on social media are often wrong — look at the repo itself. Install commands change; the repo README is the authority.
+> **Before installing anything:** a skill or plugin is someone else's code *and* someone else's instructions to your agent. Check the repo, the author, the licence, and read the `SKILL.md`. Star counts quoted on social media are often wrong — look at the repo itself. Install commands change; the repo README is the authority.
 
 ---
 

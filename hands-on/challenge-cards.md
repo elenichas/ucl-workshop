@@ -2,11 +2,11 @@
 
 Pick one. Each has a suggested starting stage, a goal, and a first prompt. Use plan mode, build in small steps, and ask the agent to note each working step in PROGRESS.md.
 
-**Levels:** 🟢 easy (15–20 min) · 🟡 medium (30–40 min) · 🔴 hard (60 min+)
+**Levels:** easy · medium · hard
 
 ---
 
-## 🟢 Easy
+## Easy
 
 ### G1 · A new preset
 **Stage:** `main` · **Touches:** `design/design.ts` (PRESETS)
@@ -40,7 +40,7 @@ the vase on screen changes. Draw it as a simple ASCII diagram.
 
 ---
 
-## 🟡 Medium
+## Medium
 
 ### Y1 · A new printability rule
 **Stage:** `stage-04-printability` or later · **Touches:** `checks/printability.ts` + its test
@@ -67,7 +67,7 @@ Show the triangles. Then add a "Resolution" control and watch the mesh change.
 ### Y4 · Share link
 **Stage:** `main` · Save all parameters in the URL so you can send someone your exact vase.
 
-### Y5 · Restyle it 🎨
+### Y5 · Restyle it
 **Stage:** `main` · **Touches:** `DESIGN.md`, `index.css`, components
 ```text
 1. Read resources/references/<your-image>. Write DESIGN.alt.md capturing
@@ -98,7 +98,7 @@ The existing test "every pattern stays closed" must still pass. Plan first.
 
 ---
 
-## 🔴 Hard
+## Hard
 
 ### R0 · Add your own starting point
 **Stage:** `stage-08-ways-to-start` · **Touches:** a new file in `site/src/starts/`, `starts/index.ts`

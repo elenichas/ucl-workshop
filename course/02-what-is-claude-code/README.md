@@ -1,6 +1,6 @@
 # 02 · What is Claude Code?
 
-> **Part 1 — Foundations** · ~15 min
+> **Part 1 · Foundations**
 
 **In one sentence:** you chat, and the agent writes the code — Claude Code is an AI that works *inside your project folder*: it looks at your files, writes into them and checks the result, while you watch and steer.
 

@@ -1,6 +1,6 @@
 # 00 · Welcome
 
-> **Part 1 — Foundations** · ~5 min
+> **Part 1 · Foundations**
 
 **In one sentence:** in three hours we will not become web developers. We will learn to *think* like people who build digital tools with an AI agent, and we will use a vase configurator to practise.
 
@@ -25,7 +25,7 @@ A vase is the smallest project that still has everything a real digital tool has
 |---|---|
 | Inputs | Sliders, a printer, a material |
 | A process | An algorithm that turns numbers into geometry |
-| Rules and constraints | "Clay can't overhang more than ~25°" |
+| Rules and constraints | "Clay can't overhang more than about 25°" |
 | Outputs | A 3D view, a print report, files |
 | Users with different needs | Students, the fabrication lab, you |
 

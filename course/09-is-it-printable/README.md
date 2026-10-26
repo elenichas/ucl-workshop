@@ -1,6 +1,6 @@
 # 09 · Is it printable?
 
-> **Part 3 — Building it, prompt by prompt** · ~10 min · demo stage `stage-04-printability`
+> **Part 3 · Building it, prompt by prompt** · demo stage `stage-04-printability`
 
 **In one sentence:** printability is a set of small, explainable rules that compare the vase with the printer and the material — and the app should say *why*, not just *no*.
 
@@ -15,7 +15,7 @@ Ask a fabrication technician "will this print?" and they will look at a few thin
 | **Material ↔ printer** | Can this machine print this material at all? | Clay printer can't print PLA |
 | **Fits the printer** | Widest diameter and height vs. build volume | e.g. 250 × 210 × 220 mm |
 | **Wall thickness** | Thinnest wall vs. material minimum and 2 × nozzle | PLA 0.8 mm · clay 3 mm |
-| **Overhangs** | Steepest outward lean of the wall vs. material limit | PLA ~45° · stoneware ~25° · porcelain ~20° |
+| **Overhangs** | Steepest outward lean of the wall vs. material limit | PLA about 45° · stoneware about 25° · porcelain about 20° |
 | **Stands steady** | Base vs. height and vs. widest point | Small foot + tall body = tips over |
 | **Surface detail** | Pattern depth and feature size vs. nozzle | Details smaller than the nozzle vanish |
 | **Colour** | A gradient vs. what the printer can do | Needs a multi-colour printer — or glaze on clay |
@@ -51,7 +51,7 @@ export const wallThickness: Rule = ({ mesh, printer, material }) => {
 
 ## Estimates
 
-From the mesh volume and the material density we estimate **weight**, from the printer's flow rate a rough **print time**, and for clay the **fired size** (clay shrinks ~12–14% when dried and fired). These are rough numbers for comparing designs — and the UI says so.
+From the mesh volume and the material density we estimate **weight**, from the printer's flow rate a rough **print time**, and for clay the **fired size** (clay shrinks about 12–14% when dried and fired). These are rough numbers for comparing designs — and the UI says so.
 
 ## What our checks don't know
 

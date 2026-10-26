@@ -1,6 +1,6 @@
 # Hands-on
 
-Time to build. You won't finish a whole website in 80 minutes — that's not the goal. The goal is to go through the loop a few times — **think → plan → build → check → note what changed** — and to make one thing that's yours.
+Time to build. You won't finish a whole website today — that's not the goal. The goal is to go through the loop a few times — **think → plan → build → check → note what changed** — and to make one thing that's yours.
 
 ## Choose your route
 

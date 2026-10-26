@@ -1,6 +1,6 @@
 # 13 · Accessibility: readable for everyone
 
-> **Part 4 — Craft and quality** · ~3 min · context
+> **Part 4 · Craft and quality**
 
 **In one sentence:** before anything fancy, make sure everyone can read and use your site — enough contrast, no tiny text, and it works without a mouse.
 
@@ -17,8 +17,8 @@ The international guidelines (**WCAG**) ask for a contrast of at least **4.5 : 1
 
 | | Contrast | |
 |---|---|---|
-| Near-black on cream | ~15 : 1 | ✓ easy to read |
-| Light grey on cream | ~1.5 : 1 | ✗ hard to read |
+| Near-black on cream | about 15 : 1 | ✓ easy to read |
+| Light grey on cream | about 1.5 : 1 | ✗ hard to read |
 
 ### 2 · Text size
 No tiny text. Body text around **16 px or more**; small labels not much below 12 px. If you have to squint at your own screen, it's too small.

@@ -1,6 +1,6 @@
 # 10 · Exports: from screen to printer
 
-> **Part 3 — Building it, prompt by prompt** · ~8 min · demo stage `stage-05-exports`
+> **Part 3 · Building it, prompt by prompt** · demo stage `stage-05-exports`
 
 **In one sentence:** a configurator is only useful if its output leaves the browser — as files that Rhino, slicers and fabrication labs understand.
 
@@ -42,7 +42,7 @@ Vessel (browser) ──STL──> slicer ──G-code──> printer ──> obj
                  └─3DM──> Rhino ──(add a stand, a logo, an array of 20 vases…)──> STL ──> slicer
 ```
 
-For **clay**: export STL, slice in the clay printer's software (often "vase mode" — a single continuous spiral wall), print, dry slowly, bisque fire, glaze, glaze fire. Remember the ~12% shrinkage.
+For **clay**: export STL, slice in the clay printer's software (often "vase mode" — a single continuous spiral wall), print, dry slowly, bisque fire, glaze, glaze fire. Remember the about 12% shrinkage.
 
 ## Try it
 
