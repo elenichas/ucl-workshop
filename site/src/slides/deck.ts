@@ -95,15 +95,46 @@ const sections: [string, Slide[]][] = [
     { kind: 'visual', title: 'Three ways to test a website', visual: 'test-ways', steps: 2, notes: 'You can always test as a person and report back in plain words. The agent can also open the site in a browser and try it. And it can write small automatic checks that run after every change — optional, your choice.' },
   ]],
   ['17-shipping', [
-    { kind: 'visual', title: 'From localhost to a shareable link', visual: 'hosting', steps: 2, notes: 'Not something we do today — just so you know it exists. Building the site and putting it on a host gives you a link anyone can open. Several services have free plans for small sites.' },
+    { kind: 'visual', title: 'From localhost to a shareable link', visual: 'hosting', steps: 2, notes: 'Another option: ask Claude to publish it as an artifact — a claude.ai link, private until you share it. That is how the demo preview was shared. Not something we do today — just so you know it exists. Building the site and putting it on a host gives you a link anyone can open. Several services have free plans for small sites.' },
   ]],
 
   // ============================================================== PART 5
   ['18-working-with-an-agent', [
     part(5, 'Reflection', 'What did we do — and what did the agent do?', 18, 18),
-    { kind: 'visual', title: 'Who did what', visual: 'who-does-what', steps: 2 },
-    { kind: 'bullets', title: 'For discussion', reveal: true, points: ['If the agent wrote every line, who designed it?', 'How much code do you need to understand?', 'Will every website — and every vase — start to look the same?', 'What becomes more valuable now?'] },
-    { kind: 'statement', text: 'The best prompt you’ll write is the one you thought about before typing.', sub: 'Now go and make one.' },
+    { kind: 'visual', title: 'Who did what', visual: 'who-does-what', steps: 2, notes: 'The agent also thinks, plans and checks — it works at every step. The difference is who decides: it proposes, drafts and runs checks; you decide what it’s for, approve the plan, judge whether it’s right and good, and update the plan. The agent writes the code; you stay responsible for what it means.' },
+    {
+      kind: 'compare', title: 'What agents are good at — and where they fail', reveal: true,
+      left: { label: 'Good at', points: ['A clear description → working code, fast', 'Explaining code and error messages', 'Boilerplate: the hundredth slider', 'Following written rules: CLAUDE.md, DESIGN.md, skills', 'Running checks and fixing what they find'] },
+      right: { label: 'Where they fail', points: ['Vague goals → average results', 'Confident mistakes: our inside-out vase', 'Long chats → forgotten decisions', 'Taste: only the taste you give them', 'The physical world: your lab’s printer', 'Over-building: things nobody asked for'] },
+      notes: 'Chapter 18. Each failure links back to something we did today: the plan (vague goals), the checks (confident mistakes), files instead of long chats, DESIGN.md (taste), the printer and material profiles (physical world).',
+    },
+    {
+      kind: 'table', title: 'Habits worth keeping', head: ['Habit', 'In practice'],
+      rows: [
+        ['Plan first, in a file', 'PLAN.md — approve narrowly'],
+        ['Small steps; keep track', 'PROGRESS.md and the rewind button make mistakes cheap'],
+        ['Read the steps', 'not just the final message'],
+        ['Ask for explanations', '“Explain what you changed, as if to a first-year student”'],
+        ['Check what’s expensive to get wrong', 'printability, closed shapes, file orientation'],
+        ['Write repeated instructions down', 'CLAUDE.md, a skill'],
+        ['Fresh chat per task', 'decisions live in files'],
+        ['Say no', 'refusing and explaining why is part of the loop'],
+      ],
+      notes: 'The eight habits from chapter 18. If short on time, point at three: plan in a file, small steps, say no.',
+    },
+    {
+      kind: 'table', title: 'For discussion', head: ['Theme', 'Question'], reveal: true,
+      rows: [
+        ['Authorship', 'If the agent wrote every line, who designed the configurator? What did you contribute?'],
+        ['Understanding', 'How much code do you need to understand? Do you need to calculate the beam yourself?'],
+        ['Taste and sameness', 'If everyone uses the same models, will every website — and every vase — converge?'],
+        ['Responsibility', 'The checks said “ready to print” and it collapsed in the kiln. Whose fault is it?'],
+        ['Skills and labour', 'What should an architecture student learn now? What becomes more valuable?'],
+        ['Cost', 'Tokens are energy and money. When is it worth it?'],
+      ],
+      notes: 'Pick two or three themes and let the room talk. The architecture analogy for understanding: you don’t calculate the beam, but you must know when the engineer’s answer is wrong.',
+    },
+    { kind: 'statement', text: 'The best prompt you’ll write is the one you thought about before typing.', sub: 'Where next: a challenge card at home · another configurator — a chair, a brick, a lamp · the real prompts on the Files page.' },
   ]],
 ]
 

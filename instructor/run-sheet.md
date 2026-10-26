@@ -6,7 +6,7 @@ Legend: **▶ present** · **↷ flip through** (show one slide/table, 1 min) ·
 
 ## Timeline
 
-The deck has **40 slides**. The weight is on **Part 2 (how to think about a configurator)** and **Part 3 (building it, prompt by prompt)**. Parts 1 and 4 are context: a few slides each, details on the chapter pages.
+The deck has **42 slides**. The weight is on **Part 2 (how to think about a configurator)** and **Part 3 (building it, prompt by prompt)**. Parts 1 and 4 are context: a few slides each, details on the chapter pages.
 
 | Time | Block | Slides | Notes |
 |---|---|---|---|
@@ -15,11 +15,11 @@ The deck has **40 slides**. The weight is on **Part 2 (how to think about a conf
 | 0:15 | **Part 2 · Thinking before building** ⭐ | 10–20 | 25 min. Inputs → process → outputs; the start decides the controls; the system map (show **How it works** live); constraints as inputs; the exercise. |
 | 0:40 | **Part 3 · Building it, prompt by prompt** ⭐ | 21–30 | 20 min. Read the prompts aloud. The inside-out vase; same vase PLA ✓ / clay ✗. |
 | 0:58 | Part 4 · Context — craft and quality | 31–36 | 7 min. Work first, design second · readable for everyone · chosen vs unchosen · three ways to test · how a site gets a public link. |
-| 1:05 | Part 5 · Reflection (short) | 37–38 | 2 min. Save the discussion for the end. |
+| 1:05 | Part 5 · Reflection (short) | 37–40 | 4 min: who did what, good at / fail, habits. Save the discussion for the end. |
 | 1:05 | **Break + setup check** | — | 10 min |
 | 1:15 | **Hands-on** — start with the system-map worksheet, then a starting point or challenge card | `hands-on/` | 87 min — you walk around |
 | 2:42 | Show and tell | — | 10 min — 3–4 screens |
-| 2:52 | Reflection discussion | 39–40 | 8 min — pick **two** questions |
+| 2:52 | Reflection discussion | 41–42 | 8 min — pick **two** themes |
 
 If you're running late: shorten Parts 1 and 4 to their dividers. Never skip Parts 2 and 3.
 

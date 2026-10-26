@@ -384,6 +384,7 @@ export function Hosting({ step }: V) {
     ['Netlify', 'drag in a folder, get a link'],
     ['GitHub Pages', 'free, lives next to your code on GitHub'],
     ['Cloudflare Pages', 'fast, generous free plan'],
+    ['A Claude artifact', 'Claude builds it and gives you a claude.ai link — private until you share it. How this course’s demo was previewed.'],
   ]
   return (
     <div className="flex h-full flex-col justify-center gap-12">
@@ -397,10 +398,10 @@ export function Hosting({ step }: V) {
         <span className="border-2 border-clay bg-paper-raised px-5 py-3 text-clay">a link anyone can open</span>
       </div>
       <Reveal step={step} at={1}>
-        <div className="grid grid-cols-4 gap-5">
-          {hosts.map(([n, d]) => (
-            <div key={n} className="border border-ink/70 p-6">
-              <p className="text-[34px] font-medium">{n}</p>
+        <div className="grid grid-cols-5 gap-4">
+          {hosts.map(([n, d], i) => (
+            <div key={n} className={cn('border p-6', i === hosts.length - 1 ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
+              <p className="text-[30px] font-medium leading-tight">{n}</p>
               <p className="mt-2 text-[22px] leading-snug text-ink-muted">{d}</p>
             </div>
           ))}
