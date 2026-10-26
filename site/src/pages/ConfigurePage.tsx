@@ -85,8 +85,9 @@ export default function ConfigurePage() {
     pattern.id === 'none' ? 'smooth' : `with a ${pattern.name.toLowerCase()} pattern`
   }, in ${design.finish.mode === 'gradient' ? 'a two-colour gradient' : 'one colour'} ${material.name}.`
 
+  // On desktop the stage and the panel share one screen with the footer; the panel scrolls on its own.
   return (
-    <div className="mx-auto grid max-w-[1600px] lg:h-[calc(100dvh-3.5rem)] lg:grid-cols-[minmax(0,1fr)_420px]">
+    <div className="mx-auto grid max-w-[1600px] lg:h-[calc(100dvh-3.5rem-var(--footer-h,0px)-1px)] lg:min-h-[480px] lg:grid-cols-[minmax(0,1fr)_420px]">
       {/* 3D stage */}
       <section aria-label="3D preview" className="relative h-[52svh] min-h-[320px] border-b border-line lg:h-full lg:border-b-0 lg:border-r">
         <VaseViewer
