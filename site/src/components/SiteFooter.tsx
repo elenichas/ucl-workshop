@@ -2,6 +2,7 @@ import { ArrowUpRight, Mail } from 'lucide-react'
 
 const EMAIL = 'eleni.chasioti.19@ucl.ac.uk'
 const LINKEDIN = 'https://www.linkedin.com/in/eleni-chasioti-948486194'
+const REPO = 'https://github.com/elenichas/ucl-workshop'
 
 /** The same footer on every page (not in the presentation or the notes window). */
 export function SiteFooter() {
@@ -18,6 +19,12 @@ export function SiteFooter() {
             <a href={mailto} className="flex items-center gap-2 underline decoration-line underline-offset-4 hover:decoration-clay">
               <Mail className="size-4 text-ink-muted" aria-hidden />
               {EMAIL}
+            </a>
+          </li>
+          <li>
+            <a href={REPO} target="_blank" rel="noreferrer" className="flex items-center gap-1 underline decoration-line underline-offset-4 hover:decoration-clay">
+              Course on GitHub <ArrowUpRight className="size-4 text-ink-muted" aria-hidden />
+              <span className="sr-only">(opens in a new tab)</span>
             </a>
           </li>
           <li>
