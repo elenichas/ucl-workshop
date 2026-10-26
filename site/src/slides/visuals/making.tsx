@@ -410,18 +410,33 @@ export function FabPath({ step }: V) {
 
 // ---------------------------------------------------------------------------
 export function WhoDoesWhat({ step }: V) {
-  const items: [string, 'you' | 'agent'][] = [['Think', 'you'], ['Plan', 'you'], ['Build one step', 'agent'], ['Check', 'you'], ['Keep track', 'you'], ['Learn · update the plan', 'you']]
+  // Both work at every step. The agent proposes and does; you decide and judge.
+  const rows: [string, string, string][] = [
+    ['Think', 'asks questions, suggests options', 'decide what it’s for'],
+    ['Plan', 'drafts PLAN.md', 'edit it, approve it'],
+    ['Build one step', 'writes the code', 'keep the step small'],
+    ['Check', 'runs checks, looks in the browser', 'judge: is it right, is it good?'],
+    ['Note it', 'updates PROGRESS.md', 'read it, correct it'],
+    ['Learn', 'forgets between chats', 'update the plan'],
+  ]
   return (
-    <div className="grid h-full grid-cols-6 items-center gap-4">
-      {items.map(([t, who], i) => (
-        <Reveal key={t} step={step} at={i === 2 ? 1 : 0}>
-          <div className={cn('flex h-80 flex-col justify-between border p-6', who === 'agent' ? 'border-clay bg-paper-raised' : 'border-ink/70')}>
-            <p className="text-[36px] font-medium leading-tight">{t}</p>
-            <p className={cn('font-mono text-[24px]', who === 'agent' ? 'text-clay' : 'text-ink-muted')}>{who === 'agent' ? 'the agent' : 'you'}</p>
+    <div className="grid h-full content-center gap-8">
+      <div className="grid grid-cols-6 gap-4">
+        {rows.map(([t, agent, you]) => (
+          <div key={t} className="flex h-[400px] flex-col border border-ink/70 p-5">
+            <p className="text-[30px] font-medium leading-tight">{t}</p>
+            <Reveal step={step} at={0}>
+              <p className="mt-5 font-mono text-[18px] text-ink-muted">the agent</p>
+              <p className="mt-1 text-[22px] leading-snug">{agent}</p>
+            </Reveal>
+            <Reveal step={step} at={1} className="mt-auto">
+              <p className="font-mono text-[18px] text-clay">you</p>
+              <p className="mt-1 text-[22px] font-medium leading-snug text-clay">{you}</p>
+            </Reveal>
           </div>
-        </Reveal>
-      ))}
-      <Reveal step={step} at={2} className="col-span-6"><p className="mt-8 text-center text-[34px]">The agent was fast at one box. <span className="text-clay">Every other box was ours.</span></p></Reveal>
+        ))}
+      </div>
+      <Reveal step={step} at={2}><p className="text-center text-[32px]">The agent works at every step. <span className="text-clay">The decisions stay yours.</span></p></Reveal>
     </div>
   )
 }

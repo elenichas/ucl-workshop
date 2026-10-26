@@ -14,7 +14,18 @@ think ──► plan (PLAN.md, DESIGN.md) ──► build one step ──► che
   └──────────────────────────────── learn, update the plan ◄──────────────────────────────┘
 ```
 
-The agent was fast at the "build" box. Every other box was ours.
+The agent works at **every** step — it thinks, plans and checks too. The difference is who decides:
+
+| Step | The agent | You |
+|---|---|---|
+| Think | asks questions, suggests options | decide what it's for |
+| Plan | drafts PLAN.md | edit it, approve it |
+| Build one step | writes the code | keep the step small |
+| Check | runs checks, looks in the browser | judge: is it right, is it good? |
+| Note it | updates PROGRESS.md | read it, correct it |
+| Learn | forgets between chats | update the plan |
+
+**The agent works at every step. The decisions stay yours.**
 
 ## What agents are good at
 
