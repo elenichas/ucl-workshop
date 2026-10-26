@@ -1,6 +1,6 @@
 # 04 · Setup and first conversation
 
-> **Part 1 — Foundations** · ~10 min (plus setup time during the hands-on)
+> **Part 1 · Foundations**
 
 **In one sentence:** you start from an empty folder on your laptop, and your first conversation with the agent is about thinking, not building.
 

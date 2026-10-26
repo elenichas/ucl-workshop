@@ -1,6 +1,6 @@
 # 06 · Parameters: what do we control?
 
-> **Part 2 — Thinking before building** · ~10 min
+> **Part 2 · Thinking before building**
 
 **In one sentence:** a configurator is a set of decisions you hand over to the user — choosing *which* decisions, with what ranges and defaults, is the real design work.
 

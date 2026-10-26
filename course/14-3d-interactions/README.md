@@ -1,6 +1,6 @@
 # 14 · 3D interactions
 
-> **Part 4 — Craft and quality** · ~8 min
+> **Part 4 · Craft and quality**
 
 **In one sentence:** a 3D viewer is an interface too — how you move around the object, and how the object responds to you, decides whether it feels like a tool or a toy.
 
@@ -42,7 +42,7 @@ We limit the camera on purpose:
 
 ## Motion: subtle, short, optional
 
-UI animation should be under ~250 ms and never block the user. Big movement (camera fly-throughs, scroll-driven stories) is for the landing page, not the tool. And always: respect `prefers-reduced-motion`.
+UI animation should be under about 250 ms and never block the user. Big movement (camera fly-throughs, scroll-driven stories) is for the landing page, not the tool. And always: respect `prefers-reduced-motion`.
 
 For motion inspiration, see the GSAP and Emil Kowalski skills in [`resources/design-repos.md`](../../resources/design-repos.md) — e.g. a landing page where the vase is "printed" layer by layer as you scroll.
 

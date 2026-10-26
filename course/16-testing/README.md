@@ -1,6 +1,6 @@
 # 16 · Testing: three ways to check a website
 
-> **Part 4 — Craft and quality** · ~3 min · context
+> **Part 4 · Craft and quality**
 
 **In one sentence:** a website can be tested by you, by the agent clicking through it in a browser, or by small automatic checks the agent writes — and you decide which ones you want.
 

@@ -1,6 +1,6 @@
 # 07 · The algorithm
 
-> **Part 3 — Building it, prompt by prompt** · ~12 min · demo stage `stage-02-algorithm`
+> **Part 3 · Building it, prompt by prompt** · demo stage `stage-02-algorithm`
 
 **In one sentence:** the heart of the app is a pure function — numbers go in, a closed mesh of triangles comes out — and you can test it without ever looking at a screen.
 

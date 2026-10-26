@@ -1,6 +1,6 @@
 # 15 · Avoiding AI slop
 
-> **Part 4 — Craft and quality** · ~12 min
+> **Part 4 · Craft and quality**
 
 **In one sentence:** AI-made websites look alike because models produce the *average* of what they've seen — taste has to come from you, written down where the agent can read it.
 

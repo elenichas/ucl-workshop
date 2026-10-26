@@ -1,6 +1,6 @@
 # 08 · The 3D viewer
 
-> **Part 3 — Building it, prompt by prompt** · ~12 min · demo stage `stage-03-viewer`
+> **Part 3 · Building it, prompt by prompt** · demo stage `stage-03-viewer`
 
 **In one sentence:** a browser can draw 3D almost like Rhino's viewport — on the graphics card, with no installation — but it works with meshes, and you have to be careful with performance.
 

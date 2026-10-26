@@ -22,13 +22,13 @@ Before any code, the instructor and Claude went back and forth for several round
 
 **Claude:** proposed a run sheet (70 min talk / 80 min hands-on / 20 min show-and-tell), merging chapters into 10, plus starting points and challenge cards.
 
-### Round 4 — a constraint becomes a feature ⭐
+### Round 4 — a constraint becomes a feature
 
 > **Instructor:** I'm not sure what printer they'll use. Leave it open — several printers, materials, colours. If I find out we need to limit it, that's a nice case of real-life limitations affecting the app. And don't worry about size: I'd rather have more material and skip chapters.
 
 **Claude:** back to the full chapter list, and — the key design decision — **printers and materials become editable profiles** in one config file, with printability rules that read from them. *"Our lab only has X — update the app"* becomes a hands-on challenge.
 
-> 💡 This decision didn't exist in the first prompt. It came from a question. That is the argument for interviewing before building.
+> This decision didn't exist in the first prompt. It came from a question. That is the argument for interviewing before building.
 
 ### Round 5 — teaching the process
 

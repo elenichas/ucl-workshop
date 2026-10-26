@@ -1,6 +1,6 @@
 # 18 · Working with an agent
 
-> **Part 5 — Reflection** · ~10 min, ideally as a discussion
+> **Part 5 · Reflection**
 
 **In one sentence:** the agent writes the code; you remain responsible for what it means, whether it's right, and whether it's good.
 

@@ -1,6 +1,6 @@
 # 11 · UI on the web
 
-> **Part 4 — Craft and quality** · ~3 min · context
+> **Part 4 · Craft and quality**
 
 **In one sentence:** first make it work, then make it good — build the working core with plain controls, and only then design the interface around it.
 

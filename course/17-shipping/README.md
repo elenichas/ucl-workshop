@@ -1,6 +1,6 @@
 # 17 · From localhost to a shareable link
 
-> **Part 4 — Craft and quality** · ~2 min · context — not something we do today
+> **Part 4 · Craft and quality**
 
 **In one sentence:** your site lives at `localhost` on your laptop; to give people a link they can open, it has to be built and put on a host — a next step, not part of today.
 

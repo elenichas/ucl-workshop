@@ -2,7 +2,7 @@
 
 **Use it when:** you want full control and want Claude as a critic, not an author.
 
-## Step 1 — write PLAN.md by hand (15 minutes)
+## Step 1 — write PLAN.md by hand
 
 ```markdown
 # PLAN — <name>

@@ -1,6 +1,6 @@
 # 05 · Starting systematically: from idea to plan
 
-> **Part 2 — Thinking before building** · ~15 min · ⭐ the most important chapter
+> **Part 2 · Thinking before building**
 
 **In one sentence:** never start with "build me X" — start with a conversation that produces a written plan, approve the plan, and only then build.
 

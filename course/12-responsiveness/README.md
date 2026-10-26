@@ -1,6 +1,6 @@
 # 12 · Responsiveness
 
-> **Part 4 — Craft and quality** · ~6 min
+> **Part 4 · Craft and quality**
 
 **In one sentence:** one website, every screen — the layout should *reorganise* for a phone, not just shrink.
 
@@ -38,7 +38,7 @@ CSS can apply different rules depending on the screen width. Tailwind makes this
 
 - **Touch:** one finger orbits, two fingers pinch to zoom. OrbitControls handles this; the canvas uses `touch-action: none` so the page doesn't scroll while you rotate. But that means… users need somewhere *else* to scroll. Never make the 3D view fill the whole phone screen.
 - **Performance:** phones have weaker GPUs. Our draft/full trick and the pixel-ratio cap matter even more.
-- **Thumb reach:** controls with at least ~40 px tall touch targets.
+- **Thumb reach:** controls with at least about 40 px tall touch targets.
 
 ## Testing it
 
