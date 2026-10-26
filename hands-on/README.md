@@ -22,16 +22,20 @@ Time to build. You won't finish a whole website in 80 minutes — that's not the
 
 Your project is simply **a folder on your laptop**. You don't need a GitHub account or Git today.
 
-- **Keeping track:** the chat itself is a log. Even better, ask Claude at the start: *"Keep a PROGRESS.md in this folder: after each step, write what I asked, what you changed and what we decided."*
+- **Keeping track:** the chat itself is a log. Even better, ask Claude at the start: *"Keep a PROGRESS.md in this folder: after each step, write what I asked, what you changed and what we decided."* There's a [template](progress-template.md).
 - **Undo:** Claude Code can rewind to an earlier point in the conversation. For extra safety, duplicate the folder before a big change.
-- **Starting from a stage (route B):** get the stage folder from the instructor, or download the repo as a ZIP.
+- **Starting from a stage (route B):** get the stage folder from the instructor.
 - **Your site is at `localhost`:** that link only works on your own laptop. Sharing it with others (building and hosting) is a next step for another day.
 
 *Already comfortable with Git?* Every stage is also a tag: `git checkout stage-04-printability`.
 
 ## Files in this folder
 
+All of these are also on the website's **Files** page, where you can copy or download them.
+
 - [`starting-points/`](starting-points/) — five copy-paste prompts to begin a project systematically
 - [`challenge-cards.md`](challenge-cards.md) — tasks at three levels
 - [`prompt-cheat-sheet.md`](prompt-cheat-sheet.md) — good vs. bad prompts, useful commands
 - [`stack-card.md`](stack-card.md) — the stack, and the choices you may make
+- [`progress-template.md`](progress-template.md) — a template for your PROGRESS.md log
+- [`system-map-worksheet.md`](system-map-worksheet.md) — map your vase configurator before you build

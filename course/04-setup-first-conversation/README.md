@@ -61,6 +61,19 @@ Nothing changes, nothing breaks, and you learn the shape of the problem. When yo
 - **Better: a progress file.** At the start, ask: *"Keep a PROGRESS.md in this folder. After each step, write what I asked, what you changed and what we decided."*
 - **Undo:** Claude Code can rewind the conversation to an earlier point. Before a big change, you can also simply duplicate the folder.
 
+### Your own .md files
+
+Write your decisions down in your project folder, so Claude stays consistent from one chat to the next. A new chat starts with an empty memory; these files are its memory.
+
+| File | What goes in it | Our example |
+|---|---|---|
+| `PLAN.md` | What you're building, step by step, and the stack | [PLAN.md](../../PLAN.md) |
+| `DESIGN.md` | How it should look: colours, type, do's and don'ts | [DESIGN.md](../../DESIGN.md) |
+| `PROGRESS.md` | What you asked, what changed, what you decided | [template](../../hands-on/progress-template.md) |
+| `CLAUDE.md` | Short rules Claude reads at the start of every chat | [CLAUDE.md](../../CLAUDE.md) |
+
+You don't have to write them yourself: ask Claude to draft each one, then read and edit it. All of ours are on the **Files** page of this website.
+
 (Professionals use Git for this — a history of saved versions. It's worth learning later; you don't need it today.)
 
 ## Your site lives at localhost

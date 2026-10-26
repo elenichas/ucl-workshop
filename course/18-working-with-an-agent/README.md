@@ -56,9 +56,9 @@ The agent was fast at the "build" box. Every other box was ours.
 ## Where to go next
 
 - Continue a challenge card at home: [`hands-on/challenge-cards.md`](../../hands-on/challenge-cards.md)
-- Fork the repo and build your own configurator: a chair, a brick, a façade panel, a lamp
-- Read the real build conversation: [`prompts/`](../../prompts/)
-- Browse [`resources/`](../../resources/)
+- Start a new folder and build another configurator: a chair, a brick, a façade panel, a lamp
+- Read the real build conversation: [the prompt log](../../prompts/)
+- Browse [the resources](../../resources/)
 
 > The best prompt you'll write is the one you thought about before typing.
 

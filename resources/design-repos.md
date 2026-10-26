@@ -18,7 +18,7 @@ A **DESIGN.md** is a plain-text design system: tokens (colours, type, spacing) p
 **Use on the vase app:** three students restyle the *same* configurator with three different DESIGN.md files (a luxury car brand, an editorial magazine, a 2001 web portal). Compare. Discuss: what did you borrow, what is still yours? Better still: write a DESIGN.md for an imaginary ceramics studio.
 
 ```text
-Copy <brand>/DESIGN.md from the awesome-design-md collection into our repo
+Copy <brand>/DESIGN.md from the awesome-design-md collection into our project folder
 as DESIGN.alt.md. On a new branch "style-<brand>", restyle only the landing
 page with it. Keep the configurator and all tests unchanged.
 ```

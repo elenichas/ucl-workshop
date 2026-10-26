@@ -75,8 +75,8 @@ Skills relevant to this project:
 | `frontend-design` | Anthropic ([skills repo](https://github.com/anthropics/skills)) | Pushing the UI away from generic defaults |
 | `webapp-testing` | Anthropic | Letting Claude open the site in a real browser and test it |
 | `skill-creator` | Anthropic | Writing your own skills |
-| `printability-review` | **this repo** | Reviewing a vase design against printer/material rules |
-| `vase-design-language` | **this repo** | Keeping new UI consistent with DESIGN.md |
+| `printability-review` | **this project** | Reviewing a vase design against printer/material rules |
+| `vase-design-language` | **this project** | Keeping new UI consistent with DESIGN.md |
 | Impeccable, Hallmark, Taste Skill… | Community | Design critique and anti-slop — see [`resources/design-repos.md`](../../resources/design-repos.md) |
 
 > **The lesson:** a skill is just *know-how written down*. If you find yourself explaining the same thing to Claude twice, it should be a skill (or a line in CLAUDE.md).

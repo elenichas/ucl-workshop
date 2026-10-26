@@ -99,3 +99,12 @@ test('present mode exports a PowerPoint file', async ({ page }) => {
   await page.getByRole('button', { name: /PowerPoint/ }).click()
   expect((await download).suggestedFilename()).toBe('Prompt-to-Print.pptx')
 })
+
+test('project files are readable on the site, without GitHub', async ({ page }) => {
+  await page.goto('/#/files')
+  await expect(page.getByRole('heading', { name: 'Everything we wrote down' })).toBeVisible()
+  await page.getByRole('link', { name: /^PLAN\.md/ }).first().click()
+  await expect(page.getByRole('button', { name: /Download/ })).toBeVisible()
+  await page.goto('/#/course/00-welcome')
+  await expect(page.locator('.prose a[href*="github.com/elenichas"]')).toHaveCount(0)
+})

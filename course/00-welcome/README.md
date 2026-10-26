@@ -15,7 +15,7 @@
 3. **Check** whether it can actually be printed on a given printer, in a given material.
 4. **Download** it as a file for Rhino (`.3dm`) or a slicer (`.stl`).
 
-The finished demo lives in [`site/`](../../site/). Open it, play with it, break it.
+The finished demo is the **Configure** page of this website. Open it, play with it, break it.
 
 ## Why a vase?
 
@@ -54,13 +54,17 @@ The process is the point. The website is the excuse.
 | 4 · Craft and quality | 11–17 | UI, responsiveness, accessibility, 3D interaction, avoiding AI slop, testing, shipping |
 | 5 · Reflection | 18 | What does it mean to work with an agent? |
 
-We will not cover everything in three hours. That is fine — the repo stays with you.
+We will not cover everything in three hours. That is fine — this website, with all its chapters and files, stays with you.
 
 ## How to follow along
 
-- **Look at each stage:** every chapter that builds something names a demo stage (`stage-03-viewer`…) — the state of the app at that moment. The instructor shares each stage as a plain folder; no Git needed.
-- **Read the real prompts:** [`prompts/`](../../prompts/) has the conversation behind each step, including the mistakes.
-- **Get your hands dirty:** [`hands-on/`](../../hands-on/) has starting-point prompts and challenge cards.
+Everything lives on this website — you don't need GitHub or any account.
+
+- **Read the chapters** here, at your own pace.
+- **Open the project files:** the **Files** page (top menu) shows every `.md` file behind the demo — [the plan](../../PLAN.md), [the design brief](../../DESIGN.md), [the instructions Claude reads](../../CLAUDE.md), the skills and the worksheets. Copy or download any of them as a starting point for your own folder.
+- **Read the real prompts:** [the prompt log](../../prompts/) has the conversation behind each step, including the mistakes.
+- **Get your hands dirty:** [hands-on](../../hands-on/) has starting-point prompts, challenge cards and a [template for your progress log](../../hands-on/progress-template.md).
+- **Want to start from a stage of the demo?** Each chapter that builds something names a stage (`stage-03-viewer`…). The instructor shares those as plain folders.
 
 ---
 
