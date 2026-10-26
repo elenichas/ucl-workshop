@@ -23,7 +23,7 @@ const sections: [string, Slide[]][] = [
   // ============================================================== WELCOME
   ['00-welcome', [
     { kind: 'title', title: 'Prompt to Print', subtitle: 'Eleni Chasioti', notes: 'Today is about how to think when you build a digital tool with an AI agent. The vase configurator is our case study — open it for 30 seconds before the next slide.' },
-    { kind: 'visual', title: 'Don’t type “build me a configurator”', visual: 'plan-loop', steps: 5, notes: 'You would get something average that you don’t understand. Think, write a plan, approve it, build one small step, check it, note what changed. This loop is the whole workshop.' },
+    { kind: 'visual', title: 'Don’t type “build me a configurator”', visual: 'plan-loop', steps: 5, notes: 'You would get something average that you might not fully understand. Think, write a plan, approve it, build one small step, check it, note what changed. This loop is the whole workshop.' },
   ]],
 
   // ============================================================== PART 1 · context
