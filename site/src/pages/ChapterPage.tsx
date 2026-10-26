@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import Markdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { ArrowLeft, ArrowRight, Presentation } from 'lucide-react'
 import { firstSlideOf } from '@/slides/deck'
+import { MarkdownDoc } from '@/components/MarkdownDoc'
 import { CHAPTERS, resolveHref } from './course'
 
 export default function ChapterPage() {
@@ -37,23 +36,8 @@ export default function ChapterPage() {
           <Presentation className="size-4" aria-hidden /> Present this chapter
         </Link>
       </div>
-      <div className="prose mt-8">
-        <Markdown
-          remarkPlugins={[remarkGfm]}
-          components={{
-            a: ({ href = '', children }) => {
-              const r = resolveHref(href, chapter.slug)
-              return r.to ? <Link to={r.to}>{children}</Link> : <a href={r.href} target="_blank" rel="noreferrer">{children}</a>
-            },
-            table: ({ children }) => (
-              <div className="table-wrap" tabIndex={0} role="region" aria-label="Table">
-                <table>{children}</table>
-              </div>
-            ),
-          }}
-        >
-          {body}
-        </Markdown>
+      <div className="mt-8">
+        <MarkdownDoc body={body} resolve={(href) => resolveHref(href, chapter.slug)} />
       </div>
       <nav aria-label="Chapters" className="mt-16 grid gap-px border border-line bg-line sm:grid-cols-2">
         {prev ? (

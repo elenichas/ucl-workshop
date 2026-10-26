@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 const nav = [
   { to: '/configure', label: 'Configure' },
   { to: '/course', label: 'Course' },
+  { to: '/files', label: 'Files' },
 ]
 
 export function SiteHeader() {

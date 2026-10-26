@@ -33,7 +33,7 @@ const sections: [string, Slide[]][] = [
     { kind: 'visual', title: 'A website is files — and a stack you choose', visual: 'stack-layers', steps: 6, notes: 'Context only. The browser downloads HTML, CSS and JavaScript and runs them; our app computes the vase on your own laptop. The stack is a decision — write it in the plan. More: chapter 01.' },
   ]],
   ['02-what-is-claude-code', [
-    { kind: 'visual', title: 'Decisions live in files, not in the chat', visual: 'knowledge-files', steps: 4, notes: 'Context only. Your project is just a folder on your laptop. CLAUDE.md, PLAN.md, DESIGN.md, skills live in it. Files survive a fresh chat and cost fewer tokens than repeating yourself.' },
+    { kind: 'visual', title: 'Decisions live in files, not in the chat', visual: 'knowledge-files', steps: 4, caption: 'All of ours are on the website, under Files — copy them as a starting point for your own folder.', notes: 'Context only. Your project is just a folder on your laptop. CLAUDE.md, PLAN.md, DESIGN.md, skills live in it. Files survive a fresh chat and cost fewer tokens than repeating yourself. All of ours are on the website under Files — students can copy them as a start.' },
   ]],
   ['04-setup-first-conversation', [
     { kind: 'code', title: 'Your first prompt: ask, don’t order', lang: 'prompt', code: 'I want to make a website where people can design their own\n3D-printable vase. I have never built a website.\nBefore we build anything: how should I think about it?\nWhat are the inputs, the process and the outputs?\nExplain it with an analogy from architecture or Grasshopper.\nDon’t write any code yet.', caption: 'You start from an empty folder. The first conversation is about thinking, not building.', notes: 'Most of you start from a blank folder. Ask questions first — it costs nothing, changes nothing, and you learn the shape of the problem.' },
@@ -45,7 +45,7 @@ const sections: [string, Slide[]][] = [
   ['05-starting-systematically', [
     part(2, 'Thinking before building', 'What exactly are we making — and how do we decide?', 5, 6),
     { kind: 'statement', text: 'Every gap you leave, the model fills — with the average.', sub: 'Planning is deciding which gaps you want to fill yourself.', notes: 'The most important idea of the day.' },
-    { kind: 'visual', title: 'Five ways to start the conversation', visual: 'five-starts', steps: 4, notes: 'Pick the one that matches how you think. All end in a PLAN.md you read, edit and approve. Copy-paste prompts in hands-on/starting-points.' },
+    { kind: 'visual', title: 'Five ways to start the conversation', visual: 'five-starts', steps: 4, notes: 'Pick the one that matches how you think. All end in a PLAN.md you read, edit and approve. Copy-paste prompts on the website: Files → Hands-on.' },
     { kind: 'code', title: 'Prompt · let it interview you', lang: 'prompt', code: 'I want to build a configurator for 3D-printable vases.\nBefore writing any code, interview me about what it needs.\nAsk ONE question at a time and wait for my answer.\nCover: who uses it, what they control, what they get at the end,\nwhich printers and materials, how it should feel.\nThen write PLAN.md and stop.', caption: 'Real story: the question “which printers?” turned printers and materials into editable profiles.' },
   ]],
   ['06-parameters', [
@@ -59,7 +59,7 @@ const sections: [string, Slide[]][] = [
     { kind: 'visual', title: 'The system map · nine ways in', visual: 'system-map', steps: 5, notes: 'Start from → the controls it exposes → how it describes the form. Live version: “How it works” in the configurator.' },
     { kind: 'visual', title: 'The system map · one shared pipeline', visual: 'system-map-flow', steps: 4, notes: 'Each start adds its own steps, then all join the same pipeline and the same outputs. Carve is the only branch.' },
     { kind: 'bullets', title: 'Constraints are inputs too', reveal: true, points: ['The printer: build volume, nozzle, one colour or many', 'The material: thinnest wall, steepest overhang, shrinkage', 'Kept in two small editable files — “profiles”', 'When the lab says “we only have X”, the app changes'], notes: 'Real-world limits shaping the app are not a failure — they are the brief.' },
-    { kind: 'bullets', title: 'Exercise · map your vase configurator', points: ['Choose your ways to start — round, box, a drawn profile, an image…', 'For each start: which controls does it give the user?', 'Write the steps every vase shares, and what comes out at the end', 'Then ask Claude: “Read my code and draw the system map. Where does it differ from my plan?”'], aside: 'Worksheet: hands-on/system-map-worksheet.md', notes: 'Everyone builds a vase configurator — the exercise is to decide what YOUR configurator offers. Ten minutes on paper before any prompt.' },
+    { kind: 'bullets', title: 'Exercise · map your vase configurator', points: ['Choose your ways to start — round, box, a drawn profile, an image…', 'For each start: which controls does it give the user?', 'Write the steps every vase shares, and what comes out at the end', 'Then ask Claude: “Read my code and draw the system map. Where does it differ from my plan?”'], aside: 'Worksheet on the website: Files → Hands-on', notes: 'Everyone builds a vase configurator — the exercise is to decide what YOUR configurator offers. Ten minutes on paper before any prompt.' },
   ]],
 
   // ============================================================== PART 3 · CORE
@@ -89,7 +89,7 @@ const sections: [string, Slide[]][] = [
     { kind: 'visual', title: 'Readable for everyone: the basics', visual: 'a11y-basics', steps: 3, notes: 'Not a full accessibility course — just the basics everyone should check: enough contrast (WCAG asks 4.5 : 1 for text), no tiny text, usable without a mouse. Component libraries like shadcn/ui handle much of this. And you can ask the agent to check.' },
   ]],
   ['15-avoiding-ai-slop', [
-    { kind: 'visual', title: 'Unchosen vs chosen', visual: 'slop-vs-designed', steps: 1, notes: 'AI sites look alike because nobody decided. Write a DESIGN.md with a direction and a list of don’ts. Design repos and skills: resources/design-repos.md.' },
+    { kind: 'visual', title: 'Unchosen vs chosen', visual: 'slop-vs-designed', steps: 1, notes: 'AI sites look alike because nobody decided. Write a DESIGN.md with a direction and a list of don’ts. Design repos and skills: on the website, Files → Resources.' },
   ]],
   ['16-testing', [
     { kind: 'visual', title: 'Three ways to test a website', visual: 'test-ways', steps: 2, notes: 'You can always test as a person and report back in plain words. The agent can also open the site in a browser and try it. And it can write small automatic checks that run after every change — optional, your choice.' },
