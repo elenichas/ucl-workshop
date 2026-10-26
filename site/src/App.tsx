@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { SiteHeader } from '@/components/SiteHeader'
+import { SiteFooter } from '@/components/SiteFooter'
 import HomePage from '@/pages/HomePage'
 import ConfigurePage from '@/pages/ConfigurePage'
 import CoursePage from '@/pages/CoursePage'
@@ -35,6 +36,7 @@ function Shell() {
           <Route path="/notes" element={<NotesPage />} />
         </Routes>
       </main>
+      {!bare && <SiteFooter />}
     </>
   )
 }
