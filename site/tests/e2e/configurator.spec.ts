@@ -24,7 +24,8 @@ test('switching to the clay printer flags the thin wall; the Clay pot preset fix
   await page.getByLabel('Printer').selectOption('clay')
   await expect(status(page)).toHaveText(/will not print/i)
   await page.getByRole('tab', { name: /Start/ }).click()
-  await page.getByRole('button', { name: 'Clay pot' }).click()
+  await page.getByRole('radio', { name: /ready-made design/ }).click()
+  await page.getByRole('button', { name: /^Clay pot/ }).click()
   await page.getByRole('tab', { name: /Make/ }).click()
   await expect(status(page)).not.toHaveText(/will not print/i)
 })
@@ -50,6 +51,7 @@ test('sliders work with the keyboard', async ({ page }) => {
 
 test('an image becomes a vase outline', async ({ page }) => {
   await page.goto('/#/configure')
+  await page.getByRole('radio', { name: /Another way/ }).click()
   await page.getByRole('button', { name: /From an image/ }).click()
   await page.getByRole('button', { name: /Try a sample sketch/ }).click()
   await expect(page.getByText('Colours found in the image')).toBeVisible()

@@ -1,4 +1,5 @@
-import { FAMILIES, STARTS } from '@/starts'
+import { useState } from 'react'
+import { STARTS } from '@/starts'
 import type { StartId } from '@/starts/types'
 import { PRESETS, type Design } from '@/design/design'
 import { cn } from '@/lib/utils'
@@ -24,60 +25,106 @@ export function StartIcon({ id, className }: { id: StartId; className?: string }
   )
 }
 
+type Mode = 'shape' | 'other' | 'preset'
+
+const MODES: { id: Mode; title: string; sub: string }[] = [
+  { id: 'shape', title: 'A basic shape', sub: 'Pick a solid, then adjust it' },
+  { id: 'other', title: 'Another way', sub: 'Draw, sketch, image or carve' },
+  { id: 'preset', title: 'A ready-made design', sub: 'Start from an example' },
+]
+
+/**
+ * Step 1. Three ways in, chosen first (a basic shape, another way, or a ready-made design);
+ * only the options of the chosen way are shown underneath.
+ */
 export function StartPicker({ design, onStart, onPreset }: { design: Design; onStart: (id: StartId) => void; onPreset: (d: Design) => void }) {
+  const current = STARTS.find((s) => s.id === design.start)
+  const [mode, setMode] = useState<Mode>(current?.family === 'shape' ? 'shape' : 'other')
+  const shapes = STARTS.filter((s) => s.family === 'shape')
+  const others = STARTS.filter((s) => s.family !== 'shape')
+
   return (
-    <div className="grid gap-6 py-4">
-      {FAMILIES.filter((f) => f.id === 'shape').concat([{ id: 'draw', name: 'Or start another way', blurb: 'Draw, sketch, borrow from an image, or carve.' }]).map((f) => {
-        const starts = f.id === 'shape' ? STARTS.filter((s) => s.family === 'shape') : STARTS.filter((s) => s.family !== 'shape')
-        const single = f.id !== 'shape'
-        return (
-          <section key={f.id} aria-labelledby={`fam-${f.id}`}>
-            <h3 id={`fam-${f.id}`} className="text-sm font-medium">{f.name}</h3>
-            <p className="text-xs text-ink-muted">{f.blurb}</p>
-            <div className={cn('mt-2 grid gap-2', !single ? 'grid-cols-3 sm:grid-cols-5 lg:grid-cols-3' : 'grid-cols-1')}>
-              {starts.map((s) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  aria-pressed={design.start === s.id}
-                  onClick={() => onStart(s.id)}
-                  className={cn(
-                    'flex items-center gap-2 rounded-sm border border-line p-2 text-left text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-clay',
-                    !single && 'flex-col justify-center gap-1 text-center',
-                    design.start === s.id && 'border-ink bg-paper-raised text-ink',
-                  )}
-                >
-                  <StartIcon id={s.id} className={design.start === s.id ? 'text-clay' : ''} />
-                  <span>
-                    <span className="block font-medium">{s.name}</span>
-                    {single && <span className="block text-xs text-ink-muted">{s.blurb}</span>}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </section>
-        )
-      })}
-      <section aria-labelledby="fam-presets">
-        <h3 id="fam-presets" className="text-sm font-medium">A preset</h3>
-        <p className="text-xs text-ink-muted">Named designs that use the starting points above. Pick one, then change anything.</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {PRESETS.map((p) => (
+    <div className="grid gap-5 py-4">
+      <fieldset>
+        <legend className="text-sm font-medium">How do you want to begin?</legend>
+        <div role="radiogroup" aria-label="How do you want to begin?" className="mt-2 grid grid-cols-3 gap-2">
+          {MODES.map((m) => (
             <button
-              key={p.id}
+              key={m.id}
               type="button"
-              aria-pressed={design.name === p.design.name}
-              onClick={() => onPreset(p.design)}
+              role="radio"
+              aria-checked={mode === m.id}
+              onClick={() => setMode(m.id)}
               className={cn(
-                'flex h-8 items-center gap-1.5 rounded-sm border border-line pl-1.5 pr-3 text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-clay',
-                design.name === p.design.name && 'border-ink bg-paper-raised text-ink',
+                'flex h-full flex-col rounded-sm border border-line p-2.5 text-left hover:border-ink focus-visible:outline-2 focus-visible:outline-clay',
+                mode === m.id && 'border-ink bg-paper-raised',
               )}
             >
-              <StartIcon id={p.design.start} className="h-6 w-5" />
-              {p.design.name}
+              <span className={cn('text-sm font-medium leading-tight', mode === m.id ? 'text-ink' : 'text-ink-muted')}>{m.title}</span>
+              <span className="mt-1 text-[11px] leading-snug text-ink-muted">{m.sub}</span>
             </button>
           ))}
         </div>
+      </fieldset>
+
+      <section aria-label={MODES.find((m) => m.id === mode)!.title} className="border-t border-line pt-4">
+        {mode === 'shape' && (
+          <div className="grid grid-cols-3 gap-2">
+            {shapes.map((s) => (
+              <button key={s.id} type="button" aria-pressed={design.start === s.id} onClick={() => onStart(s.id)}
+                className={cn(
+                  'flex flex-col items-center justify-center gap-1 rounded-sm border border-line p-2 text-center text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-clay',
+                  design.start === s.id && 'border-ink bg-paper-raised text-ink',
+                )}>
+                <StartIcon id={s.id} className={design.start === s.id ? 'text-clay' : ''} />
+                <span className="font-medium">{s.name}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {mode === 'other' && (
+          <div className="grid gap-2">
+            {others.map((s) => (
+              <button key={s.id} type="button" aria-pressed={design.start === s.id} onClick={() => onStart(s.id)}
+                className={cn(
+                  'grid grid-cols-[2rem_1fr] items-center gap-3 rounded-sm border border-line p-2.5 text-left text-sm text-ink-muted hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-clay',
+                  design.start === s.id && 'border-ink bg-paper-raised text-ink',
+                )}>
+                <StartIcon id={s.id} className={design.start === s.id ? 'text-clay' : ''} />
+                <span>
+                  <span className="block font-medium text-ink">{s.name}</span>
+                  <span className="block text-xs leading-snug text-ink-muted">{s.blurb}</span>
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {mode === 'preset' && (
+          <>
+            <p className="mb-3 text-xs leading-snug text-ink-muted">Complete designs made with the ways to start. Pick one, then change anything.</p>
+            <div className="grid grid-cols-2 gap-2">
+              {PRESETS.map((p) => {
+                const start = STARTS.find((s) => s.id === p.design.start)
+                const on = design.name === p.design.name
+                return (
+                  <button key={p.id} type="button" aria-pressed={on} onClick={() => onPreset(p.design)}
+                    className={cn(
+                      'grid grid-cols-[1.5rem_1fr] items-center gap-2 rounded-sm border border-line p-2 text-left hover:border-ink focus-visible:outline-2 focus-visible:outline-clay',
+                      on && 'border-ink bg-paper-raised',
+                    )}>
+                    <StartIcon id={p.design.start} className={cn('h-8 w-6', on ? 'text-clay' : 'text-ink-muted')} />
+                    <span className="min-w-0">
+                      <span className="block truncate text-sm font-medium">{p.design.name}</span>
+                      <span className="block text-[11px] text-ink-muted">{start?.name}</span>
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </>
+        )}
       </section>
     </div>
   )

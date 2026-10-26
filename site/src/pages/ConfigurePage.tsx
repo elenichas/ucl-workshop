@@ -137,8 +137,13 @@ export default function ConfigurePage() {
       <aside aria-label="Vase controls" className="px-4 pb-16 md:px-6 lg:overflow-y-auto">
         <Tabs value={tab} onValueChange={setTab} className="sticky top-0 z-10">
           <TabsList aria-label="Steps" className="bg-paper">
-            {[['start', '1 Start'], ['form', '2 Form'], ['surface', '3 Surface'], ['finish', '4 Finish'], ['make', '5 Make']].map(([id, label]) => (
-              <TabsTrigger key={id} value={id} className="px-1 text-[13px]">{label}</TabsTrigger>
+            {[['start', 'Start'], ['form', 'Form'], ['surface', 'Surface'], ['finish', 'Finish'], ['make', 'Make']].map(([id, label], i) => (
+              <TabsTrigger key={id} value={id} className="group flex items-center justify-center gap-1.5 px-0.5 text-[13px]">
+                <span aria-hidden className="grid size-5 shrink-0 place-items-center rounded-full border border-ink-muted/60 font-mono text-[11px] leading-none text-ink-muted group-data-[state=active]:border-clay group-data-[state=active]:bg-clay group-data-[state=active]:text-paper">
+                  {i + 1}
+                </span>
+                <span><span className="sr-only">Step {i + 1}: </span>{label}</span>
+              </TabsTrigger>
             ))}
           </TabsList>
 
