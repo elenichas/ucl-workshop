@@ -23,7 +23,7 @@ The agent works at **every** step — it thinks, plans and checks too. The diffe
 | Build one step | writes the code | keep the step small |
 | Check | runs checks, looks in the browser | judge: is it right, is it good? |
 | Note it | updates PROGRESS.md | read it, correct it |
-| Learn | forgets between chats | update the plan |
+| Learn | starts each chat without the last conversation | update the plan and your files |
 
 **The agent works at every step. The decisions stay yours.**
 
@@ -47,7 +47,7 @@ The agent works at **every** step — it thinks, plans and checks too. The diffe
 ## Habits worth keeping
 
 1. **Plan first, in a file.** Approve narrowly.
-2. **Small steps; keep track.** A PROGRESS.md and the rewind button make mistakes cheap.
+2. **Small steps; keep track.** A PROGRESS.md, rewind and a copy of the folder make mistakes cheap.
 3. **Read the steps the agent takes**, not just the final message.
 4. **Ask for explanations.** "Explain what you changed and why, as if to a first-year student."
 5. **Test what's expensive to get wrong.**

@@ -10,7 +10,7 @@ Five ways to start a project without typing "build me a…". Each one ends in a 
 | 4 | [`4-constraints-first.md`](4-constraints-first.md) | Start from printers, materials, limits | Fabrication-minded people |
 | 5 | [`5-write-it-yourself.md`](5-write-it-yourself.md) | You write the plan; Claude critiques it | People who want full control |
 
-**Tip:** use Claude Code's **plan mode** for all of these — it physically can't edit files until you approve.
+**Tip:** use Claude Code's **plan mode** for all of these — it can't edit files until you approve.
 
 **After the plan is approved**, always build narrowly:
 

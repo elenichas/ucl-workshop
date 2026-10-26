@@ -31,25 +31,33 @@ This is **the agent loop**: think → act → look → repeat. Every step uses t
 |---|---|
 | **Look** at and search your files | It learns *your* project instead of guessing |
 | **Write** — change or create files | This is where your website gets built |
-| **Run** things — start the site, run checks | It can try its own work; it asks you first |
+| **Run** things — start the site, run checks | It can try its own work; in Manual mode it asks you first |
 | **Look things up** online | For documentation it wasn't trained on |
 | **Hand off** a sub-task to a helper | Keeps the main conversation focused |
 
-### It asks first
+### Who approves what: permission modes
 
-By default Claude Code **asks before** changing files or running anything. You can approve once, approve for the session, or say no and explain why. Saying no is a valid and useful answer.
+Claude Code has a few **modes** that decide how often it asks you:
+
+- **Manual** — asks before it changes a file or runs a command (reading files doesn't ask). You can approve once, approve for the session, or say no and explain why.
+- **Auto** — a second model reviews each action and lets routine ones run without asking. Recent versions often **start in this mode**.
+- **Accept edits** — edits files without asking; still asks before most commands.
+- **Plan** — looks around and writes a plan, changes nothing (below).
+
+**For this workshop, choose Manual or Plan**, so you see and approve every step. Switch with `Shift+Tab` in the terminal, or with the mode selector under the prompt box in the desktop app and VS Code. Saying no is a valid and useful answer.
 
 ## Modes worth knowing
 
 - **Plan mode** — Claude thinks and proposes a plan but **changes nothing** until you approve. Use it for anything bigger than a small fix.
-- **Stop** — press `Esc` to stop it mid-way if it is going in the wrong direction. Then redirect.
-- **Rewind** — go back to an earlier point in the conversation, including earlier versions of the files. Mistakes are cheap.
+- **Stop** — press `Esc` (or the stop button in the app) to stop it mid-way if it is going in the wrong direction. Then redirect.
+- **Rewind** — `/rewind` (or `Esc` twice) goes back to an earlier point in the conversation, including earlier versions of the files Claude edited. It does **not** undo what commands did (installing packages, files a script created). Before a big change, also duplicate the folder.
 
 ## How you give it lasting knowledge
 
 | Mechanism | What it is | Our example |
 |---|---|---|
 | **CLAUDE.md** | A file of project instructions read at the start of every session. `/init` can draft one. | Our stack, folder structure, "units are mm" — see [`CLAUDE.md`](../../CLAUDE.md) |
+| **Auto memory** | Short notes Claude writes *itself* (on by default) and reads at the start of each session. See and edit them with `/memory`. | You don't decide what goes in — so keep real decisions in your own files |
 | **PLAN.md** (convention, not a feature) | The plan you agreed on, in a file both of you can read | [`PLAN.md`](../../PLAN.md) |
 | **DESIGN.md** (convention) | The visual language | [`DESIGN.md`](../../DESIGN.md) |
 | **Skills** | Folders of know-how (a `SKILL.md` + optional scripts/references) that Claude loads *only when relevant* | [`.claude/skills/printability-review`](../../.claude/skills/printability-review/SKILL.md) |
@@ -92,18 +100,20 @@ Type `/` in Claude Code to see the full, current list. A few you will use:
 | `/compact` | Summarises the conversation so far to free up context |
 | `/context` | Shows what is filling the context window |
 | `/model` | Switch model |
+| `/rewind` | Go back to an earlier point (conversation and Claude's file edits) |
+| `/memory` | See CLAUDE.md and Claude's own notes |
 | `/help` | Everything else |
 
 ## Key takeaways
 
 - You chat; the agent writes the code — in a loop: think → act → look → repeat.
 - Watch the steps, not just the final answer.
-- Plan mode first, small steps, approve or refuse actions.
+- Choose the mode (Manual or Plan today), small steps, approve or refuse actions.
 - CLAUDE.md, skills and connectors are how you give it lasting knowledge and new abilities.
 
 ## Go deeper
 
-- [Claude Code documentation](https://docs.claude.com/en/docs/claude-code/overview)
+- [Claude Code documentation](https://code.claude.com/docs/en/overview) · [Permission modes](https://code.claude.com/docs/en/permission-modes) · [Memory](https://code.claude.com/docs/en/memory)
 - [Agent Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview) · [anthropics/skills](https://github.com/anthropics/skills)
 - [Model Context Protocol](https://modelcontextprotocol.io)
 

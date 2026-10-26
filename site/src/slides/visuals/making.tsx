@@ -417,7 +417,7 @@ export function WhoDoesWhat({ step }: V) {
     ['Build one step', 'writes the code', 'keep the step small'],
     ['Check', 'runs checks, looks in the browser', 'judge: is it right, is it good?'],
     ['Note it', 'updates PROGRESS.md', 'read it, correct it'],
-    ['Learn', 'forgets between chats', 'update the plan'],
+    ['Learn', 'starts each chat without the last one', 'update the plan and files'],
   ]
   return (
     <div className="grid h-full content-center gap-8">

@@ -92,10 +92,10 @@ const sections: [string, Slide[]][] = [
     { kind: 'visual', title: 'Unchosen vs chosen', visual: 'slop-vs-designed', steps: 1, notes: 'AI sites look alike because nobody decided. Write a DESIGN.md with a direction and a list of don’ts. Design repos and skills: on the website, Files → Resources.' },
   ]],
   ['16-testing', [
-    { kind: 'visual', title: 'Three ways to test a website', visual: 'test-ways', steps: 2, notes: 'You can always test as a person and report back in plain words. The agent can also open the site in a browser and try it. And it can write small automatic checks that run after every change — optional, your choice.' },
+    { kind: 'visual', title: 'Three ways to test a website', visual: 'test-ways', steps: 2, notes: 'You can always test as a person and report back in plain words. The agent can also open the site in a browser and try it, once it has a browser tool connected (Playwright or the webapp-testing skill). And it can write small automatic checks that run after every change — optional, your choice.' },
   ]],
   ['17-shipping', [
-    { kind: 'visual', title: 'From localhost to a shareable link', visual: 'hosting', steps: 2, notes: 'Another option: ask Claude to publish it as an artifact — a claude.ai link, private until you share it. That is how the demo preview was shared. Not something we do today — just so you know it exists. Building the site and putting it on a host gives you a link anyone can open. Several services have free plans for small sites.' },
+    { kind: 'visual', title: 'From localhost to a shareable link', visual: 'hosting', steps: 2, notes: 'Another option, if you use the Claude app: ask Claude to publish it as an artifact — a claude.ai link, private until you share it. That is how the demo preview was shared. Not something we do today — just so you know it exists. Building the site and putting it on a host gives you a link anyone can open. Several services have free plans for small sites.' },
   ]],
 
   // ============================================================== PART 5
@@ -112,7 +112,7 @@ const sections: [string, Slide[]][] = [
       kind: 'table', title: 'Habits worth keeping', head: ['Habit', 'In practice'],
       rows: [
         ['Plan first, in a file', 'PLAN.md — approve narrowly'],
-        ['Small steps; keep track', 'PROGRESS.md and the rewind button make mistakes cheap'],
+        ['Small steps; keep track', 'PROGRESS.md, rewind and a copy of the folder make mistakes cheap'],
         ['Read the steps', 'not just the final message'],
         ['Ask for explanations', '“Explain what you changed, as if to a first-year student”'],
         ['Check what’s expensive to get wrong', 'printability, closed shapes, file orientation'],

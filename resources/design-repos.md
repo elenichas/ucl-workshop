@@ -19,7 +19,7 @@ A **DESIGN.md** is a plain-text design system: tokens (colours, type, spacing) p
 
 ```text
 Copy <brand>/DESIGN.md from the awesome-design-md collection into our project folder
-as DESIGN.alt.md. On a new branch "style-<brand>", restyle only the landing
+as DESIGN.alt.md. In a copy of the project folder, restyle only the landing
 page with it. Keep the configurator and all tests unchanged.
 ```
 

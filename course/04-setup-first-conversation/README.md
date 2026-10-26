@@ -11,14 +11,19 @@
 | Tool | Why | Check it works |
 |---|---|---|
 | **Claude Code** (desktop app, terminal or VS Code) | The agent | it opens and answers |
+| A **paid Claude plan** (Pro or higher) | Claude Code isn't included in the free plan | you can log in to Claude Code |
 | **Node.js 20+** | Runs the website on your laptop while you work | `node -v` |
 | A **code editor** (VS Code recommended) — optional | To peek at what the agent wrote | — |
 
-That's it. **No GitHub account and no Git needed today.** Installation instructions change; follow the official page: [Claude Code — quickstart](https://docs.claude.com/en/docs/claude-code/quickstart).
+That's it. **No GitHub account and no Git needed today.** Installation instructions change; follow the official page: [Claude Code — quickstart](https://code.claude.com/docs/en/quickstart).
+
+> **No paid plan?** You can still follow the thinking part of the course in a normal claude.ai chat. Ask for a **single, self-contained HTML file** (three.js loaded from a CDN, sliders, an STL download button), save it and double-click it to open it in a browser — no Node.js needed. Claude can't see or run your file in a chat, so *you* are the check step: open it, describe what's wrong, paste back the new version. The free plan's limits are tight, so small steps and fresh chats matter even more.
 
 ## Your project is a folder
 
 Make an empty folder — `my-vase-configurator` — and open Claude Code in it. Everything the agent writes will land in that folder. That folder *is* your project.
+
+Before your first prompt, set the mode to **Manual** or **Plan**, so it asks before changing anything (see [chapter 02](../02-what-is-claude-code/README.md)).
 
 ## Your first prompt: ask, don't order
 
@@ -59,11 +64,11 @@ Nothing changes, nothing breaks, and you learn the shape of the problem. When yo
 
 - **The chat is a log.** You can scroll back and see every request and every change.
 - **Better: a progress file.** At the start, ask: *"Keep a PROGRESS.md in this folder. After each step, write what I asked, what you changed and what we decided."*
-- **Undo:** Claude Code can rewind the conversation to an earlier point. Before a big change, you can also simply duplicate the folder.
+- **Undo:** Claude Code can rewind (`/rewind`) to an earlier point, including the files it edited. It doesn't undo what commands did (like installing packages), so before a big change, also duplicate the folder.
 
 ### Your own .md files
 
-Write your decisions down in your project folder, so Claude stays consistent from one chat to the next. A new chat starts with an empty memory; these files are its memory.
+Write your decisions down in your project folder, so Claude stays consistent from one chat to the next. A new chat doesn't carry over the conversation you had before. Claude Code keeps a few notes of its own (auto memory), but you don't choose what goes in them — your own files are the memory you control.
 
 | File | What goes in it | Our example |
 |---|---|---|
