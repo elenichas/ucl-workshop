@@ -101,3 +101,8 @@ body {
 .export-host .reveal, .export-host .reveal-svg, .export-host .reveal-row, .export-host * { transition: none !important; animation: none !important; }
 .export-host .motion-dot { display: none; }
 @media (prefers-reduced-motion: reduce) { .motion-dot { display: none; } }
+
+/* Height of the site footer on large screens: the home page fits header + hero + footer in one screen. */
+@media (min-width: 1024px) {
+  :root { --footer-h: 110px; }
+}
