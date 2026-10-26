@@ -27,7 +27,7 @@ Several services do this, most with free plans for small sites:
 | **Netlify** | Drag in a folder, get a link |
 | **GitHub Pages** | Free, lives next to your code on GitHub |
 | **Cloudflare Pages** | Fast, generous free plan |
-| **A Claude artifact** | Claude builds the site and publishes it as a claude.ai link — private until you share it from its Share menu. Quickest; it runs in a protected frame, so some things (like downloads) may not work there. |
+| **A Claude artifact** | If you use the Claude app: Claude builds the site and publishes it as a claude.ai link — private until you share it from its Share menu. Quickest; it runs in a protected frame, so some things (like downloads) may not work there. |
 
 Most need an account. (The preview of this course's demo was shared as a Claude artifact.) Some connect to GitHub, so that every change you save is published automatically.
 

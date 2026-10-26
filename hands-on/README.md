@@ -13,7 +13,8 @@ Time to build. You won't finish a whole website in 80 minutes — that's not the
 ## Before you start
 
 - [ ] `node -v` shows 20 or higher
-- [ ] `claude` starts in the project folder
+- [ ] `claude` starts in the project folder, and you can log in (a paid plan is needed)
+- [ ] The mode is set to **Manual** or **Plan** (`Shift+Tab` in the terminal, the mode selector in the app)
 - [ ] Route B/C only: `cd site && npm install && npm run dev` shows the vase
 - [ ] You've read the [prompt cheat sheet](prompt-cheat-sheet.md)
 - [ ] You've got the [stack card](stack-card.md) ready to paste
@@ -23,7 +24,7 @@ Time to build. You won't finish a whole website in 80 minutes — that's not the
 Your project is simply **a folder on your laptop**. You don't need a GitHub account or Git today.
 
 - **Keeping track:** the chat itself is a log. Even better, ask Claude at the start: *"Keep a PROGRESS.md in this folder: after each step, write what I asked, what you changed and what we decided."* There's a [template](progress-template.md).
-- **Undo:** Claude Code can rewind to an earlier point in the conversation. For extra safety, duplicate the folder before a big change.
+- **Undo:** Claude Code can rewind (`/rewind`) to an earlier point, including the files it edited — but not what commands did. Duplicate the folder before a big change.
 - **Starting from a stage (route B):** get the stage folder from the instructor.
 - **Your site is at `localhost`:** that link only works on your own laptop. Sharing it with others (building and hosting) is a next step for another day.
 

@@ -207,7 +207,7 @@ export function ContextWindow({ step }: V) {
         ))}
       </div>
       <Reveal step={step} at={5}>
-        <p className="mt-10 text-[30px] leading-snug">All of it is <span className="text-clay">re-read on every turn</span>. Long chats get slower, more expensive — and start to forget.</p>
+        <p className="mt-10 text-[30px] leading-snug">All of it is <span className="text-clay">sent again on every turn</span>. Long chats get slower, more expensive — and start to forget.</p>
       </Reveal>
     </div>
   )

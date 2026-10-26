@@ -6,7 +6,7 @@
 | [`references/`](references/) | Drop screenshots of websites, books or spaces you love here, then point Claude at them |
 
 ## Claude Code
-- [Documentation](https://docs.claude.com/en/docs/claude-code/overview) · [Quickstart](https://docs.claude.com/en/docs/claude-code/quickstart)
+- [Documentation](https://code.claude.com/docs/en/overview) · [Quickstart](https://code.claude.com/docs/en/quickstart) · [Permission modes](https://code.claude.com/docs/en/permission-modes) · [Memory](https://code.claude.com/docs/en/memory)
 - [Agent Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview) · [anthropics/skills](https://github.com/anthropics/skills)
 - [Model Context Protocol](https://modelcontextprotocol.io)
 - [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)

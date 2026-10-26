@@ -354,7 +354,7 @@ export function A11yBasics({ step }: V) {
 export function TestWays({ step }: V) {
   const ways = [
     ['You', 'Try it like a visitor — then report back in plain words:', '“I moved the height slider and nothing happens. Let’s fix it.”'],
-    ['The agent, in a browser', 'It opens your site, clicks and drags, takes screenshots and looks at them.', '“Open the site, try every slider, tell me what breaks.”'],
+    ['The agent, in a browser', 'With a browser tool connected, it opens your site, clicks and drags, takes screenshots and looks at them.', '“Open the site, try every slider, tell me what breaks.”'],
     ['The agent, with automatic tests', 'Small checks it writes once and re-runs after every change — your choice whether you want them.', '“Every vase must be closed.” “A 2 mm wall fails in clay.”'],
   ]
   return (
@@ -384,7 +384,7 @@ export function Hosting({ step }: V) {
     ['Netlify', 'drag in a folder, get a link'],
     ['GitHub Pages', 'free, lives next to your code on GitHub'],
     ['Cloudflare Pages', 'fast, generous free plan'],
-    ['A Claude artifact', 'Claude builds it and gives you a claude.ai link — private until you share it. How this course’s demo was previewed.'],
+    ['A Claude artifact', 'In the Claude app: Claude builds it and gives you a claude.ai link — private until you share it. How this course’s demo was previewed.'],
   ]
   return (
     <div className="flex h-full flex-col justify-center gap-12">

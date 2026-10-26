@@ -43,12 +43,14 @@ Show me the diff and walk me through it.
 
 | You want to… | Do |
 |---|---|
-| Stop it mid-way | `Esc` |
-| Plan without changes | Plan mode (`Shift+Tab` in the terminal) |
-| Undo a change | Rewind the conversation, or *"undo what you just changed"* |
+| Stop it mid-way | `Esc` (or the stop button in the app) |
+| Approve every step | Manual mode (`Shift+Tab` in the terminal, the mode selector in the app) |
+| Plan without changes | Plan mode (same switch) |
+| Undo a change | `/rewind` (or `Esc` twice) — restores files Claude edited, not what commands did. Or *"undo what you just changed"* |
 | Start a fresh conversation | `/clear` (decisions should be in files!) |
 | See what's using context | `/context` |
-| Make Claude remember a rule | Add a line to CLAUDE.md, or say *"add this to CLAUDE.md"* |
+| Make Claude remember a rule | Say *"add this to CLAUDE.md"* (just saying *"remember…"* goes into Claude's own notes instead) |
+| See what Claude remembers | `/memory` |
 | Save a workflow you repeat | Make it a skill (ask Claude: *"turn this into a skill"*) |
 
 ## Saving tokens

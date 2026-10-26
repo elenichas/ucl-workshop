@@ -80,7 +80,7 @@ Then build them: each check says pass, warn or fail, in one
 sentence with the numbers. Keep the sources in CHECKS.md.
 ```
 
-Then read the sources. A rule without a source is a guess — and the lab technician is the best source of all.
+Then read the sources — open each link: an agent can cite a real page that doesn't actually say what it claims. A rule without a source is a guess — and the lab technician is the best source of all.
 
 ## Try it
 

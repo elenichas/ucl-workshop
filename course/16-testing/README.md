@@ -22,14 +22,14 @@ You don't need to know *why* it's broken. Describe what you did, what you expect
 
 ## 2 · The agent, in a browser
 
-The agent can open your website in a real browser, click, drag sliders, take screenshots — and look at them.
+Once it has a browser tool connected, the agent can open your website in a real browser, click, drag sliders, take screenshots — and look at them.
 
 ```text
 Open the site, try every slider and button, and tell me
 what doesn't work. Don't fix anything yet.
 ```
 
-(Under the hood this uses tools such as Playwright, or Anthropic's *webapp-testing* skill.)
+(This needs a browser tool, such as Playwright or Anthropic's *webapp-testing* skill. If it isn't set up, ask Claude to set it up — or test it yourself and report back.)
 
 ## 3 · The agent, with automatic tests
 

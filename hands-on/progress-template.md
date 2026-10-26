@@ -8,7 +8,7 @@ what I asked, what you changed (in plain words), what we decided,
 and what's next. Read it at the start of every new chat.
 ```
 
-Why bother? A new chat starts with an empty memory. This file is how you, and Claude, remember what happened and why.
+Why bother? A new chat doesn't carry over the last conversation, and Claude's own notes are short and chosen by Claude. This file is how you, and Claude, remember what happened and why.
 
 ---
 

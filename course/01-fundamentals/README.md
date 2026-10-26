@@ -12,7 +12,7 @@
 
 A **large language model** (LLM) is a very large mathematical function trained on huge amounts of text and code. Given some text, it predicts what text should come next — one small piece at a time.
 
-That's it. No database of facts, no understanding in the human sense, no memory between conversations. But at enough scale, "predict the next piece" becomes surprisingly capable: it can explain, translate, reason through steps, and write code.
+That's it. No database of facts to look things up in, no understanding in the human sense, and the model itself remembers nothing between conversations (tools like Claude Code add memory by writing notes into files). But at enough scale, "predict the next piece" becomes surprisingly capable: it can explain, translate, reason through steps, and write code.
 
 | Term | Plain meaning |
 |---|---|
@@ -20,7 +20,7 @@ That's it. No database of facts, no understanding in the human sense, no memory 
 | **Prompt** | Everything you give the model as input. |
 | **Token** | The unit models read and write — roughly ¾ of an English word. "Parametric" might be 2–3 tokens. |
 | **Context window** | How much text the model can "see" at once (its working memory for this conversation). |
-| **Training** | Done once, by the lab, before you use it. Your chats don't change the model. |
+| **Training** | Done by the lab, before you use it. Talking to the model doesn't change it. (Whether your chats may be used to train *future* models is a setting in your account — check it.) |
 | **Hallucination** | When the model confidently produces something plausible but wrong. Prediction, not lookup. |
 
 ### Chat vs. agent
@@ -48,7 +48,7 @@ An agent is a model **in a loop**, with **tools** (read files, write files, run 
 
 ### Why this matters for you
 
-- The model only knows what is in its context. **If it's not in the prompt or the files, it's a guess.**
+- The model only knows your project through its context. **If it's not in the prompt or the files, it falls back on what it learned in training** — which may be outdated, or simply not what your project needs.
 - It is very good at the *average* answer — which is exactly why AI-made websites all look alike (chapter 15).
 - It can be wrong with total confidence. **You are the one who checks.**
 
