@@ -42,7 +42,7 @@ export default function NotesPage() {
       </div>
       <div className="flex gap-2">
         <button className="border border-line px-4 py-2 hover:border-ink" onClick={() => channel?.postMessage({ type: 'prev' })}>Back</button>
-        <button className="rounded-sm bg-filament px-4 py-2 text-on-filament hover:bg-ink hover:text-paper" onClick={() => channel?.postMessage({ type: 'next' })}>Next</button>
+        <button className="rounded-sm bg-filament px-4 py-2 text-on-filament hover:bg-filament-hover hover:text-on-filament-hover" onClick={() => channel?.postMessage({ type: 'next' })}>Next</button>
       </div>
       <p className="text-sm text-ink-muted">Keep this window on your laptop screen and share only the presentation window. Arrow keys work here too.</p>
     </div>

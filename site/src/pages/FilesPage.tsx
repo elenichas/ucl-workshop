@@ -109,10 +109,10 @@ function FileActions({ path, text }: { path: string; text: string }) {
   }
   return (
     <div className="flex flex-wrap gap-2">
-      <button type="button" onClick={copy} className="flex items-center gap-2 border border-ink px-3 py-1.5 text-sm font-medium hover:bg-ink hover:text-paper">
+      <button type="button" onClick={copy} className="flex items-center gap-2 rounded-sm border border-ink px-3 py-1.5 text-sm font-medium hover:bg-ink hover:text-paper">
         {copied ? <Check className="size-4" aria-hidden /> : <Copy className="size-4" aria-hidden />} {copied ? 'Copied' : 'Copy text'}
       </button>
-      <button type="button" onClick={download} className="flex items-center gap-2 border border-ink px-3 py-1.5 text-sm font-medium hover:bg-ink hover:text-paper">
+      <button type="button" onClick={download} className="flex items-center gap-2 rounded-sm border border-ink px-3 py-1.5 text-sm font-medium hover:bg-ink hover:text-paper">
         <Download className="size-4" aria-hidden /> Download
       </button>
     </div>

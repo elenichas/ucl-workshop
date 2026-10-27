@@ -7,6 +7,7 @@ const md = import.meta.glob(
     '../../../CLAUDE.md',
     '../../../PLAN.md',
     '../../../DESIGN.md',
+    '../../../DESIGN.*.md',
     '../../../.claude/skills/*/SKILL.md',
     '../../../hands-on/**/*.md',
     '../../../prompts/*.md',
@@ -37,7 +38,7 @@ export const GROUPS: FileGroup[] = [
   {
     title: 'The files Claude reads',
     intro: 'Decisions written down so they survive a fresh chat. Make your own versions of these in your project folder.',
-    paths: ['CLAUDE.md', 'PLAN.md', 'DESIGN.md'].filter((p) => p in MD_FILES),
+    paths: ['CLAUDE.md', 'PLAN.md', 'DESIGN.md', 'DESIGN.original.md', 'DESIGN.apple.md'].filter((p) => p in MD_FILES),
   },
   { title: 'Hands-on', intro: 'Starting prompts, the system-map worksheet, challenge cards and a template for your progress log.', paths: sorted('hands-on/') },
   { title: 'Skills', intro: 'Know-how packaged for Claude. Each one is just a folder with a SKILL.md.', paths: sorted('.claude/skills/') },

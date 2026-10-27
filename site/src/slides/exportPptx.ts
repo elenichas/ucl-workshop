@@ -5,6 +5,7 @@ import { toPng } from 'html-to-image'
 import { SlideView, SLIDE_W, vaseImage } from './SlideView'
 import { stepsOf, type Slide } from './types'
 import { contextOf } from './deck'
+import { currentTheme } from '@/theme/themes'
 
 /**
  * POWERPOINT EXPORT — built in the browser with PptxGenJS.
@@ -14,12 +15,20 @@ import { contextOf } from './deck'
  */
 // The site's palette (DESIGN.md). Archivo isn't installed with Office, so PowerPoint gets close system fonts:
 // Arial Black for the wide headlines, Arial for text, Arial Narrow for numbers, Courier New for code.
-const C = { paper: 'E9EBE8', raised: 'F7F8F6', ink: '000000', muted: '4F5652', line: 'C9CDC9', accent: '7A5300', filament: 'FFC21A', night: 'F2F3F1', nightMuted: 'A3AAA6' }
-const DISPLAY = 'Arial Black', BODY = 'Arial', MONO = 'Arial Narrow', CODE = 'Courier New'
+// Set at the start of each export from the current site style (theme/themes.ts).
+let C = { paper: 'E9EBE8', raised: 'F7F8F6', ink: '000000', muted: '4F5652', line: 'C9CDC9', accent: '7A5300', filament: 'FFC21A', night: 'F2F3F1', nightMuted: 'A3AAA6', partBg: '000000' }
+let DISPLAY = 'Arial Black', BODY = 'Arial', MONO = 'Arial Narrow', CODE = 'Courier New'
+function applyThemeForExport() {
+  const t = currentTheme()
+  const p = t.pptx, hex = (c: string) => c.replace('#', '')
+  C = { paper: p.paper, raised: p.raised, ink: p.ink, muted: p.muted, line: p.line, accent: p.accent, filament: p.fill, night: hex(t.partSlide.text), nightMuted: hex(t.partSlide.muted), partBg: hex(t.partSlide.bg) }
+  DISPLAY = p.display; BODY = p.body; MONO = p.numbers; CODE = p.code
+}
 const inch = (px: number) => px / (SLIDE_W / 13.333)
 const pt = (px: number) => Math.round(px * 0.6)
 
 export async function exportDeck(deck: Slide[], progress: (msg: string) => void) {
+  applyThemeForExport()
   const pptx = new PptxGenJS()
   pptx.layout = 'LAYOUT_WIDE'
   pptx.title = 'Prompt to Print'
@@ -32,7 +41,7 @@ export async function exportDeck(deck: Slide[], progress: (msg: string) => void)
     slide.background = { color: C.paper }
     if (s.notes) slide.addNotes(s.notes)
     const ctx = contextOf(i)
-    if (s.kind === 'part') slide.background = { color: C.ink }
+    if (s.kind === 'part') slide.background = { color: C.partBg }
     else if (s.kind !== 'title') {
       // the small "Part · chapter" label at the top of every content slide
       slide.addText(
@@ -64,7 +73,7 @@ async function addContent(slide: PSlide, s: Slide) {
       return
     }
     case 'part':
-      slide.addText(`Part ${s.number}`, { x: inch(96), y: inch(250), w: inch(700), h: inch(60), fontFace: MONO, fontSize: pt(40), color: C.filament })
+      slide.addText(`Part ${s.number}`, { x: inch(96), y: inch(250), w: inch(700), h: inch(60), fontFace: MONO, fontSize: pt(40), color: hexAccent() })
       slide.addText(s.title, { x: inch(96), y: inch(320), w: inch(820), h: inch(300), fontFace: DISPLAY, fontSize: pt(90), color: C.night, valign: 'top', fit: 'shrink' })
       slide.addText(s.question, { x: inch(96), y: inch(650), w: inch(760), h: inch(140), fontFace: BODY, fontSize: pt(36), color: C.nightMuted, valign: 'top' })
       slide.addText(
@@ -193,3 +202,6 @@ async function urlToDataUrl(url: string): Promise<string | null> {
     return null
   }
 }
+
+/** The accent used on the dark part slides. */
+function hexAccent() { return currentTheme().partSlide.accent.replace('#', '') }

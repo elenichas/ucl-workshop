@@ -11,7 +11,7 @@ export default function CoursePage() {
         how to start systematically, and how to build — and judge — a 3D tool step by step.
       </p>
       <div className="mt-8 flex flex-wrap items-center gap-3">
-        <Link to="/present" className="flex items-center gap-2 rounded-sm bg-filament px-5 py-3 font-medium text-on-filament hover:bg-ink hover:text-paper">
+        <Link to="/present" className="flex items-center gap-2 rounded-sm bg-filament px-5 py-3 font-medium text-on-filament hover:bg-filament-hover hover:text-on-filament-hover">
           <Presentation className="size-4" aria-hidden /> Present the course
         </Link>
         <p className="text-sm text-ink-muted">The slides have live 3D and step-by-step reveals. Press N for speaker notes, or download a PowerPoint from inside the presentation.</p>

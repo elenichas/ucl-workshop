@@ -42,6 +42,8 @@ radius:
 
 # Vessel — design language
 
+> The site's main style, **Design skill** in the style switch at the top of the website. It replaced the first look (`DESIGN.original.md`) after a review with Anthropic's frontend-design skill. A third style follows Apple's guidelines (`DESIGN.apple.md`).
+
 ## Subject
 A tool for designing an object that a machine will build **layer by layer**. The vernacular is the print lab, not the gallery: the grey of a print bed, the bright spool of filament, the stack of layer lines on every printed part, numbers with units on the machine's screen.
 

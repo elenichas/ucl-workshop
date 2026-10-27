@@ -32,7 +32,7 @@ export default function ChapterPage() {
     <article className="mx-auto max-w-[760px] px-4 py-12 md:px-6 md:py-16">
       <div className="flex items-center justify-between gap-4">
         <Link to="/course" className="text-sm font-semibold text-ink-muted underline decoration-line underline-offset-4 hover:text-ink">All chapters</Link>
-        <Link to={`/present?s=${firstSlideOf(chapter.slug)}`} className="flex items-center gap-2 border border-ink px-3 py-1.5 text-sm font-medium hover:bg-ink hover:text-paper">
+        <Link to={`/present?s=${firstSlideOf(chapter.slug)}`} className="flex items-center gap-2 rounded-sm border border-ink px-3 py-1.5 text-sm font-medium hover:bg-ink hover:text-paper">
           <Presentation className="size-4" aria-hidden /> Present this chapter
         </Link>
       </div>

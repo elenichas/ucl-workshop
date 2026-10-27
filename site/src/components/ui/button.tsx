@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-filament text-on-filament hover:bg-ink hover:text-paper',
+        primary: 'bg-filament text-on-filament hover:bg-filament-hover hover:text-on-filament-hover',
         outline: 'border border-line bg-transparent text-ink hover:border-ink',
         ghost: 'text-ink hover:bg-line/50',
         chip: 'border border-line text-ink-muted hover:text-ink hover:border-ink aria-pressed:border-ink aria-pressed:text-ink aria-pressed:bg-paper-raised',

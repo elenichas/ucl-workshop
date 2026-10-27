@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Html, Line } from '@react-three/drei'
 import type { VaseMesh } from '@/geometry/types'
 import { usePrefersDark } from '@/state/usePrefersDark'
+import { useTheme } from '@/theme/ThemeProvider'
 
 type V3 = [number, number, number]
 
@@ -11,7 +12,8 @@ type V3 = [number, number, number]
  * plan diagonal (boxes, polygons, stars). All values in millimetres.
  */
 export function Dimensions({ mesh }: { mesh: VaseMesh }) {
-  const pal = usePrefersDark() ? DARK : LIGHT
+  const { theme } = useTheme()
+  const pal: Palette = usePrefersDark() ? theme.dims.dark : theme.dims.light
   const m = useMemo(() => measure(mesh.positions), [mesh])
   const size = Math.max(m.maxY - m.minY, m.maxX - m.minX, m.maxZ - m.minZ)
   const gap = size * 0.08 // distance between the object and its dimension lines
@@ -49,9 +51,8 @@ export function Dimensions({ mesh }: { mesh: VaseMesh }) {
 }
 
 // Each line gets a thin halo in the opposite tone, so it reads over the background and over a dark or light vase.
+// Colours per site style live in theme/themes.ts.
 type Palette = { ink: string; accent: string; axis: string; halo: string }
-const LIGHT: Palette = { ink: '#000000', accent: '#7A5300', axis: '#4F5652', halo: '#F7F8F6' }
-const DARK: Palette = { ink: '#F2F3F1', accent: '#FFC21A', axis: '#A3AAA6', halo: '#1A1D1C' }
 const fmt = (mm: number) => `${mm.toFixed(0)} mm`
 
 function Dim({ from, to, tick, tickDir = [0, 0, 1], label, accent, pal }: { from: V3; to: V3; tick: number; tickDir?: V3; label: string; accent?: boolean; pal: Palette }) {

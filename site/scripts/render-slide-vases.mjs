@@ -1,4 +1,4 @@
-// Renders the vases on the "vase" slides to pictures in public/slides/.
+// Renders the vases on the "vase" slides to pictures in public/slides/, once per site style.
 // The slides show these pictures (no live 3D), so stepping is a clean cut.
 // Usage (inside site/): npm run build && npx vite preview --port 4173 &  then  node scripts/render-slide-vases.mjs
 import { chromium } from '@playwright/test'
@@ -6,9 +6,11 @@ import { chromium } from '@playwright/test'
 const BASE = process.env.BASE_URL ?? 'http://localhost:4173'
 const slides = [{ id: 'starts', count: 5 }, { id: 'twist', count: 4 }]
 
+const THEMES = (process.env.THEMES ?? 'original,printlab,apple').split(',')
 const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM_PATH, args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader'] })
-const page = await browser.newPage({ viewport: { width: 1600, height: 900 }, deviceScaleFactor: 2 })
-await page.addInitScript(() => { window.__LIVE_VASE__ = true })
+for (const theme of THEMES) {
+const page = await browser.newPage({ viewport: { width: 1600, height: 900 }, deviceScaleFactor: 2, colorScheme: 'light' })
+await page.addInitScript((t) => { window.__LIVE_VASE__ = true; try { localStorage.setItem('vessel-theme', t) } catch {} }, theme)
 await page.goto(`${BASE}/#/present`)
 await page.waitForTimeout(1000)
 const total = await page.evaluate(() => document.body.innerText.match(/\d+\s*\/\s*(\d+)/)?.[1])
@@ -25,8 +27,10 @@ for (let s = 0; s < Number(total); s++) {
   for (let i = 0; i < spec.count; i++) {
     if (i > 0) await page.keyboard.press('ArrowRight')
     await page.waitForTimeout(2500)
-    await page.screenshot({ path: `public/slides/vase-${spec.id}-${i}.png`, clip: await el.locator('canvas').boundingBox() })
-    console.log(`vase-${spec.id}-${i}.png`)
+    await page.screenshot({ path: `public/slides/vase-${theme}-${spec.id}-${i}.png`, clip: await el.locator('canvas').boundingBox() })
+    console.log(`vase-${theme}-${spec.id}-${i}.png`)
   }
+}
+await page.close()
 }
 await browser.close()

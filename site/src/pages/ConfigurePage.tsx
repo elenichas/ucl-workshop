@@ -26,6 +26,7 @@ import { Button } from '@/components/ui/button'
 import { NativeSelect } from '@/components/ui/native-select'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
+import { useTheme } from '@/theme/ThemeProvider'
 
 const VIEWS: { id: CameraView; label: string }[] = [
   { id: 'three-quarter', label: '3/4' },
@@ -73,6 +74,7 @@ export default function ConfigurePage() {
   const verdict = overall(results)
   const est = estimates({ mesh, printer, material })
   const dark = usePrefersDark()
+  const { theme } = useTheme()
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setShowMap(false)
@@ -96,12 +98,12 @@ export default function ConfigurePage() {
           mesh={mesh}
           height={mesh.stats.height}
           // Layer lines at roughly the printer's layer height (drawn a little coarser for fine nozzles so they stay visible).
-          look={{ ...finishLook(design.finish), metalness: 0, layer: Math.max(printer.nozzle * 0.6, 1) }}
+          look={{ ...finishLook(design.finish), metalness: 0, layer: theme.layerLines ? Math.max(printer.nozzle * 0.6, 1) : 0 }}
           showSection={section}
           showDimensions={dims}
           view={view}
           viewNonce={viewNonce}
-          stage={dark ? '#2B302E' : '#DCDFDB'}
+          stage={dark ? theme.stage.dark : theme.stage.light}
           description={description}
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 flex flex-col gap-3 p-4 sm:flex-row sm:items-start sm:justify-between sm:gap-4 md:p-6">

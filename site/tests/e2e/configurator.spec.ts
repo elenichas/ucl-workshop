@@ -119,3 +119,17 @@ test('dimensions can be shown in the 3D view', async ({ page }) => {
   await page.getByRole('button', { name: /^Box$/ }).click()
   await expect(page.getByText(/^Diagonal \d+ mm$/)).toBeVisible()
 })
+
+test('the style switch changes the whole site and is remembered', async ({ page }) => {
+  await page.goto('/#/')
+  const radio = (name: string) => page.getByRole('radio', { name }).locator('visible=true')
+  await radio('Apple HIG').click()
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'apple')
+  await expect(radio('Apple HIG')).toHaveAttribute('aria-checked', 'true')
+  await page.reload()
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'apple')
+  await radio('Original').click()
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'original')
+  await radio('Design skill').click()
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'printlab')
+})

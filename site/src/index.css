@@ -11,6 +11,8 @@
   --color-line: #C9CDC9;
   --color-filament: #FFC21A;
   --color-on-filament: #000000;
+  --color-filament-hover: #000000;
+  --color-on-filament-hover: #E9EBE8;
   --color-accent: #7A5300;
   --color-ok: #2F6B45;
   --color-warn: #A84A00;
@@ -26,23 +28,82 @@
   --radius-md: 6px;
 }
 
-/* Dark mode: same names, different values. Every component follows automatically. */
+/* ---------------------------------------------------------------------------
+   Three site styles, chosen with the switch in the header (html[data-theme]):
+   - printlab: the current look, from the frontend-design review (DESIGN.md)
+   - original: the first look (DESIGN.original.md)
+   - apple:    following Apple's Human Interface Guidelines (DESIGN.apple.md)
+   Same token names everywhere, so every component follows automatically.
+   Dark blocks come after light ones so they win when both match.
+   --------------------------------------------------------------------------- */
+:root, :root[data-theme="printlab"] {
+  --display-stretch: 125%; --display-weight: 700; --display-tracking: -0.025em;
+  --mono-stretch: 82%;
+  --label-transform: none; --label-tracking: 0; --label-size: 0.875rem; --label-weight: 600;
+  --link-line: var(--color-filament); --link-thickness: 3px;
+}
+:root[data-theme="original"] {
+  --color-paper: #F3EFE7; --color-paper-raised: #FBF9F4; --color-stage: #EAE5DB;
+  --color-ink: #1C1A17; --color-ink-muted: #5E5850; --color-line: #D9D2C5;
+  --color-filament: #1C1A17; --color-on-filament: #F3EFE7;
+  --color-filament-hover: #A6482A; --color-on-filament-hover: #FBF9F4;
+  --color-accent: #A6482A; --color-ok: #2F6B45; --color-warn: #8A5F00; --color-fail: #A3291B;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "Instrument Sans Variable", "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
+  --radius-sm: 2px; --radius-md: 4px;
+  --display-stretch: 100%; --display-weight: 400; --display-tracking: -0.01em;
+  --mono-stretch: 100%;
+  --label-transform: uppercase; --label-tracking: 0.14em; --label-size: 0.75rem; --label-weight: 500;
+  --link-line: var(--color-accent); --link-thickness: 1px;
+}
+:root[data-theme="apple"] {
+  --color-paper: #F2F2F7; --color-paper-raised: #FFFFFF; --color-stage: #FFFFFF;
+  --color-ink: #000000; --color-ink-muted: #6C6C70; --color-line: #C6C6C8;
+  --color-filament: #0071E3; --color-on-filament: #FFFFFF;
+  --color-filament-hover: #0077ED; --color-on-filament-hover: #FFFFFF;
+  --color-accent: #0066CC; --color-ok: #1E7A35; --color-warn: #C93400; --color-fail: #D70015;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --font-mono: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --font-code: ui-monospace, "SF Mono", Menlo, "JetBrains Mono Variable", monospace;
+  --radius-sm: 10px; --radius-md: 12px;
+  --display-stretch: 100%; --display-weight: 700; --display-tracking: -0.022em;
+  --mono-stretch: 100%;
+  --label-transform: none; --label-tracking: 0; --label-size: 0.8125rem; --label-weight: 600;
+  --link-line: var(--color-accent); --link-thickness: 1px;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-paper: #1A1D1C;
-    --color-paper-raised: #242827;
-    --color-stage: #2B302E;
-    --color-ink: #F2F3F1;
-    --color-ink-muted: #A3AAA6;
-    --color-line: #343936;
-    --color-filament: #FFC21A;
-    --color-on-filament: #000000;
-    --color-accent: #FFC21A;
-    --color-ok: #6FB58A;
-    --color-warn: #FF9A3D;
-    --color-fail: #FF7A6B;
+  :root, :root[data-theme="printlab"] {
+    --color-paper: #1A1D1C; --color-paper-raised: #242827; --color-stage: #2B302E;
+    --color-ink: #F2F3F1; --color-ink-muted: #A3AAA6; --color-line: #343936;
+    --color-filament: #FFC21A; --color-on-filament: #000000;
+    --color-filament-hover: #F2F3F1; --color-on-filament-hover: #000000;
+    --color-accent: #FFC21A; --color-ok: #6FB58A; --color-warn: #FF9A3D; --color-fail: #FF7A6B;
+  }
+  :root[data-theme="original"] {
+    --color-paper: #171512; --color-paper-raised: #221F1B; --color-stage: #26221E;
+    --color-ink: #EEE8DD; --color-ink-muted: #A79F92; --color-line: #3A352E;
+    --color-filament: #EEE8DD; --color-on-filament: #171512;
+    --color-filament-hover: #D2714B; --color-on-filament-hover: #171512;
+    --color-accent: #D2714B; --color-ok: #6FB58A; --color-warn: #D9A640; --color-fail: #E0705F;
+  }
+  :root[data-theme="apple"] {
+    --color-paper: #000000; --color-paper-raised: #1C1C1E; --color-stage: #1C1C1E;
+    --color-ink: #FFFFFF; --color-ink-muted: #98989F; --color-line: #38383A;
+    --color-filament: #0071E3; --color-on-filament: #FFFFFF;
+    --color-filament-hover: #0A84FF; --color-on-filament-hover: #FFFFFF;
+    --color-accent: #409CFF; --color-ok: #30D158; --color-warn: #FF9F0A; --color-fail: #FF453A;
   }
   html { color-scheme: dark; }
+}
+
+/* Apple style: navigation sits on a translucent material over the content. */
+:root[data-theme="apple"] .site-header {
+  background: color-mix(in srgb, var(--color-paper) 72%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 body {
@@ -56,13 +117,15 @@ body {
 @layer components {
   /* A section heading: sentence case, normal width — no uppercase tracked eyebrow. */
   .section-label {
-    @apply text-sm font-semibold text-ink-muted;
+    @apply text-ink-muted;
+    font-size: var(--label-size); font-weight: var(--label-weight);
+    text-transform: var(--label-transform); letter-spacing: var(--label-tracking);
   }
 }
 
 /* Archivo is variable in width: wide for headlines, narrow with tabular figures for numbers. */
-.font-display { font-stretch: 125%; font-weight: 700; letter-spacing: -0.025em; }
-.font-mono { font-stretch: 82%; font-variant-numeric: tabular-nums; letter-spacing: 0; }
+.font-display { font-stretch: var(--display-stretch); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); }
+.font-mono { font-stretch: var(--mono-stretch); font-variant-numeric: tabular-nums; letter-spacing: 0; }
 .font-code { font-family: var(--font-code); font-stretch: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -72,12 +135,12 @@ body {
 /* Long-form text for the course chapters (rendered from Markdown). */
 .prose { font-size: 1.0625rem; line-height: 1.7; }
 .prose > * + * { margin-top: 1.1em; }
-.prose h1 { font-family: var(--font-display); font-stretch: 125%; font-weight: 700; letter-spacing: -0.025em; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.02; }
-.prose h2 { font-family: var(--font-display); font-stretch: 125%; font-weight: 700; letter-spacing: -0.02em; font-size: 1.6rem; line-height: 1.15; margin-top: 2.4em; padding-top: 0.6em; border-top: 1px solid var(--color-line); }
+.prose h1 { font-family: var(--font-display); font-stretch: var(--display-stretch); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.02; }
+.prose h2 { font-family: var(--font-display); font-stretch: var(--display-stretch); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); font-size: 1.6rem; line-height: 1.15; margin-top: 2.4em; padding-top: 0.6em; border-top: 1px solid var(--color-line); }
 .prose h3 { font-weight: 600; font-size: 1.1rem; margin-top: 2em; }
 .prose h4 { font-weight: 600; margin-top: 1.6em; }
 .prose p, .prose li { color: var(--color-ink); }
-.prose a { text-decoration: underline; text-decoration-color: var(--color-filament); text-decoration-thickness: 3px; text-underline-offset: 3px; }
+.prose a { text-decoration: underline; text-decoration-color: var(--link-line); text-decoration-thickness: var(--link-thickness); text-underline-offset: 3px; }
 .prose a:hover { background: var(--color-filament); color: var(--color-on-filament); }
 .prose strong { font-weight: 600; }
 .prose ul { list-style: disc; padding-left: 1.3em; }

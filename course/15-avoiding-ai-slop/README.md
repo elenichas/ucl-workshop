@@ -31,6 +31,8 @@ A sentence with a point of view beats "modern and clean". Start from the **subje
 *"A tool for an object that a machine builds layer by layer. The grey of a print bed, the bright spool of filament, layer lines on every part."*
 
 > **A real story from this demo.** Our first direction was *"a ceramics studio's catalogue crossed with a technical drawing: calm, warm, precise."* It sounded specific, and the result had a cream background, a serif headline, a terracotta accent, thin rules, small uppercase labels and phrases joined with middle dots. When we checked it with Anthropic's *frontend-design* skill, every one of those turned out to be on its list of what AI-generated design looks like right now. The brief had a point of view, but not one taken from the subject, so the agent filled it with the most common "tasteful" look. We rewrote the brief from the print lab instead, and the site changed.
+>
+> **See it yourself:** the switch at the top of the website shows the site in three styles: **Original** (the first brief), **Design skill** (the print-lab brief) and **Apple HIG** (the same site following Apple's Human Interface Guidelines, applied with a community skill). Same content, same code, three briefs. All three are on the Files page: [DESIGN.original.md](../../DESIGN.original.md), [DESIGN.md](../../DESIGN.md) and [DESIGN.apple.md](../../DESIGN.apple.md).
 
 ### 2 · Write a DESIGN.md
 Our [`DESIGN.md`](../../DESIGN.md) has:

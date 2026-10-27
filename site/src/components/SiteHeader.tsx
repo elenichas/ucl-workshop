@@ -1,5 +1,6 @@
 import { NavLink, Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
+import { ThemeSwitch } from './ThemeSwitch'
 
 const nav = [
   { to: '/configure', label: 'Configure' },
@@ -9,7 +10,7 @@ const nav = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-20 border-b border-line bg-paper/95 backdrop-blur-none">
+    <header className="site-header sticky top-0 z-20 border-b border-line bg-paper/95">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:bg-ink focus:px-3 focus:py-2 focus:text-paper">
         Skip to content
       </a>
@@ -17,6 +18,7 @@ export function SiteHeader() {
         <Link to="/" className="font-display text-2xl leading-none tracking-tight">
           Vessel
         </Link>
+        <ThemeSwitch className="hidden md:flex" />
         <nav aria-label="Main">
           <ul className="flex items-center gap-1">
             {nav.map((n) => (
@@ -33,6 +35,10 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
+      </div>
+      {/* On phones the style switch gets its own row under the navigation. */}
+      <div className="border-t border-line px-4 py-2 md:hidden">
+        <ThemeSwitch />
       </div>
     </header>
   )

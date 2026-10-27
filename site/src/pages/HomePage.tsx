@@ -4,6 +4,7 @@ import { buildDesign } from '@/geometry/buildDesign'
 import { VaseViewer } from '@/viewer/VaseViewer'
 import { usePrefersDark } from '@/state/usePrefersDark'
 import { Button } from '@/components/ui/button'
+import { useTheme } from '@/theme/ThemeProvider'
 
 const hero = getPreset('tulip')
 const heroMesh = buildDesign(hero, 'full', { radial: 160, vertical: 120 })
@@ -16,6 +17,7 @@ const FLOW = [
 
 export default function HomePage() {
   const dark = usePrefersDark()
+  const { theme } = useTheme()
   return (
     // On large screens the hero and "How it works" share one screen (minus header and footer), no scrolling.
     <div className="mx-auto flex max-w-[1600px] flex-col lg:min-h-[calc(100dvh-3.5rem-var(--footer-h,0px)-1px)]">
@@ -44,8 +46,8 @@ export default function HomePage() {
           <VaseViewer
             mesh={heroMesh}
             height={heroMesh.stats.height}
-            look={{ color: '#B5532F', roughness: 0.8, metalness: 0, clearcoat: 0.1, layer: 2 }}
-            stage={dark ? '#2B302E' : '#DCDFDB'}
+            look={{ color: '#B5532F', roughness: 0.8, metalness: 0, clearcoat: 0.1, layer: theme.layerLines ? 2 : 0 }}
+            stage={dark ? theme.stage.dark : theme.stage.light}
             description="A terracotta tulip-shaped vase with six twisting ribs, shown in 3D. Drag to rotate."
           />
           </div>

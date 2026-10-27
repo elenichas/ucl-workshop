@@ -8,6 +8,8 @@ import { usePrefersDark } from '@/state/usePrefersDark'
 import { Reveal } from './visuals/common'
 import { VISUALS } from './visuals'
 import type { Slide } from './types'
+import { useTheme } from '@/theme/ThemeProvider'
+import { currentTheme, type ThemeId } from '@/theme/themes'
 
 export const SLIDE_W = 1600
 export const SLIDE_H = 900
@@ -21,7 +23,9 @@ export interface SlideContext {
   chapter: string
 }
 
+
 export function SlideView({ slide, step, exporting = false, context }: { slide: Slide; step: number; exporting?: boolean; context?: SlideContext }) {
+  useTheme() // re-render when the site style changes; colours are read with currentTheme(), which also works in the PowerPoint export
   const showLabel = context && slide.kind !== 'title' && slide.kind !== 'part'
   return (
     <div className="slide relative flex flex-col overflow-hidden bg-paper text-ink" style={{ width: SLIDE_W, height: SLIDE_H }}>
@@ -41,10 +45,11 @@ export function SlideView({ slide, step, exporting = false, context }: { slide: 
 
 /** Five small marks: where we are in the five parts. */
 function PartTicks({ current, dark = false }: { current: number; dark?: boolean }) {
+  const ps = currentTheme().partSlide
   return (
     <span className="flex gap-1.5" aria-hidden>
       {[1, 2, 3, 4, 5].map((n) => (
-        <span key={n} className="h-1.5 w-8" style={{ background: n === current ? (dark ? '#FFC21A' : 'var(--color-ink)') : n < current ? (dark ? '#A3AAA6' : 'var(--color-ink-muted)') : (dark ? '#343936' : 'var(--color-line)') }} />
+        <span key={n} className="h-1.5 w-8" style={{ background: n === current ? (dark ? ps.accent : 'var(--color-ink)') : n < current ? (dark ? ps.muted : 'var(--color-ink-muted)') : (dark ? ps.line : 'var(--color-line)') }} />
       ))}
     </span>
   )
@@ -63,28 +68,31 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
           <p className="mt-12 text-[40px] text-ink-muted">{slide.subtitle}</p>
         </div>
       )
-    case 'part':
+    case 'part': {
       // A dark divider, the same in light and dark mode, so a change of subject is unmistakable.
+      // Its colours depend on the site style (theme/themes.ts).
+      const ps = currentTheme().partSlide
       return (
-        <div className="grid h-full grid-cols-[1.25fr_1fr] gap-16 p-24" style={{ background: '#000000', color: '#F2F3F1' }}>
+        <div className="grid h-full grid-cols-[1.25fr_1fr] gap-16 p-24" style={{ background: ps.bg, color: ps.text }}>
           <div className="flex flex-col justify-between">
             <PartTicks current={slide.number} dark />
             <div>
-              <p className="font-mono text-[40px]" style={{ color: '#FFC21A' }}>Part {slide.number}</p>
+              <p className="font-mono text-[40px]" style={{ color: ps.accent }}>Part {slide.number}</p>
               <h2 className="mt-4 font-display text-[108px] leading-[0.95] tracking-tight [text-wrap:balance]">{slide.title}</h2>
-              <p className="mt-10 max-w-[26ch] text-[40px] leading-tight" style={{ color: '#A3AAA6' }}>{slide.question}</p>
+              <p className="mt-10 max-w-[26ch] text-[40px] leading-tight" style={{ color: ps.muted }}>{slide.question}</p>
             </div>
           </div>
-          <ol className="grid content-end gap-0 border-t" style={{ borderColor: '#343936' }}>
+          <ol className="grid content-end gap-0 border-t" style={{ borderColor: ps.line }}>
             {slide.chapters.map((c) => (
-              <li key={c.number} className="flex items-baseline gap-6 border-b py-4" style={{ borderColor: '#343936' }}>
-                <span className="font-mono text-[24px]" style={{ color: '#FFC21A' }}>{c.number}</span>
+              <li key={c.number} className="flex items-baseline gap-6 border-b py-4" style={{ borderColor: ps.line }}>
+                <span className="font-mono text-[24px]" style={{ color: ps.accent }}>{c.number}</span>
                 <span className="text-[30px] leading-snug">{c.title}</span>
               </li>
             ))}
           </ol>
         </div>
       )
+    }
     case 'chapter':
       return (
         <div className="flex h-full flex-col justify-between p-24">
@@ -210,8 +218,8 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
   }
 }
 
-/** Path of the pre-rendered picture of one vase on a vase slide. */
-export const vaseImage = (id: string, i: number) => `slides/vase-${id}-${i}.png`
+/** Path of the pre-rendered picture of one vase on a vase slide (one set per site style). */
+export const vaseImage = (id: string, i: number, theme: ThemeId = currentTheme().id) => `slides/vase-${theme}-${id}-${i}.png`
 
 /** Set by scripts/render-slide-vases.mjs to render the live 3D version, which it then saves as pictures. */
 const liveVase = () => typeof window !== 'undefined' && (window as unknown as { __LIVE_VASE__?: boolean }).__LIVE_VASE__ === true
@@ -234,11 +242,12 @@ function StaticVase({ id, count, step, labels }: { id: string; count: number; st
 /** A real 3D vase on the slide — built by the same code as the configurator. */
 function LiveVase({ presetDesigns, step, exporting }: { presetDesigns: { label: string; design?: Design }[]; step: number; exporting: boolean }) {
   const dark = usePrefersDark()
+  const theme = currentTheme()
   const design = presetDesigns[Math.min(step, presetDesigns.length - 1)]?.design ?? TITLE_DESIGN
   const mesh = useMemo(() => buildDesign(design, 'full', design.start === 'carve' ? { radial: 140, vertical: 100 } : { radial: 200, vertical: 140 }), [design])
   return (
     <div className="h-full border-l border-line" data-export="vase">
-      <VaseViewer key={step} mesh={mesh} height={mesh.stats.height} look={{ ...finishLook(design.finish), metalness: 0, layer: 1.2 }} stage={dark && !exporting ? '#2B302E' : '#DCDFDB'} description={`3D view: ${design.name}`} />
+      <VaseViewer key={step} mesh={mesh} height={mesh.stats.height} look={{ ...finishLook(design.finish), metalness: 0, layer: theme.layerLines ? 1.2 : 0 }} stage={dark && !exporting ? theme.stage.dark : theme.stage.light} description={`3D view: ${design.name}`} />
     </div>
   )
 }
