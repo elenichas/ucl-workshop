@@ -31,6 +31,16 @@ The numbers come from **profiles** (chapter 06), so the same vase can pass in PL
 
 And every result has **one sentence with numbers**: *"The wall leans 38° outward at 62 mm high; Stoneware clay manages about 25°. It may sag or collapse."* A designer can act on that. A red cross alone teaches nothing.
 
+## Say how to fix it
+
+A verdict tells you *what* is wrong. The next question is always *what do I change?* So every warning and failure also has **How to fix**: hover it (or tap it on a phone) and you get two or three concrete moves, with numbers and the name of the control:
+
+- *"On the Make step, raise Wall thickness to at least 5.0 mm."*
+- *"On the Form step, lower Height to 220 mm or less."*
+- *"Or choose a bigger printer: Large-format plastic printer (400×400×450 mm)."*
+
+The suggestions live in their own file, [`fixes.ts`](../../site/src/checks/fixes.ts), next to the rules. Each one is worked out from the same numbers the rule used, so it never says "make it thicker" without saying how much.
+
 ## Rules are small on purpose
 
 Each rule is a little function: input → verdict + sentence. That makes them:
@@ -87,7 +97,8 @@ Then read the sources — open each link: an agent can cite a real page that doe
 ```text
 Add a printability rule "Opening big enough": warn if the top diameter is
 smaller than 25 mm (you can't clean it or put flowers in), fail below 12 mm.
-Add a test for it. Follow the style of the existing rules.
+Add a test for it. Follow the style of the existing rules,
+and add a "How to fix" suggestion for it in fixes.ts.
 ```
 
 ---

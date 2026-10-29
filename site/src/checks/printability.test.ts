@@ -46,3 +46,29 @@ describe('printability', () => {
     for (const p of PRINTERS) for (const m of p.materials) expect(ids).toContain(m)
   })
 })
+
+describe('how to fix', () => {
+  it('a passing check has no suggestions', () => {
+    expect(check().every((r) => r.fixes?.length === 0)).toBe(true)
+  })
+
+  it('every warning or failure comes with at least one suggestion', () => {
+    const cases = [
+      check(withStartValues(newDesign(), 'round', { height: 300, baseDiameter: 35 })),
+      check(newDesign(), 'clay', 'stoneware'),
+      check({ ...newDesign(), finish: { ...newDesign().finish, mode: 'gradient' as const } }, 'fdm-desktop'),
+    ]
+    for (const r of cases.flat().filter((r) => r.verdict !== 'pass')) expect(r.fixes?.length, r.id).toBeGreaterThan(0)
+  })
+
+  it('a too-thin clay wall suggests the thickness it needs', () => {
+    const wall = check(newDesign(), 'clay', 'stoneware').find((r) => r.id === 'wall')!
+    expect(wall.fixes![0]).toMatch(/raise Wall thickness to at least \d+\.\d mm/)
+  })
+
+  it('a vase too tall for the printer suggests a height that fits and a bigger printer', () => {
+    const fixes = check(withStartValues(newDesign(), 'round', { height: 300 })).find((r) => r.id === 'build-volume')!.fixes!.join(' ')
+    expect(fixes).toMatch(/lower Height to \d+ mm or less/)
+    expect(fixes).toMatch(/Large-format plastic printer/)
+  })
+})

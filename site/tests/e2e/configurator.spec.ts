@@ -133,3 +133,13 @@ test('the style switch changes the whole site and is remembered', async ({ page 
   await radio('Design skill').click()
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'printlab')
 })
+
+test('a failing check suggests how to fix it', async ({ page, isMobile }) => {
+  await page.goto('/#/configure')
+  await page.getByRole('tab', { name: /Make/ }).click()
+  await page.getByLabel('Printer').selectOption('clay')
+  const fix = page.getByRole('button', { name: 'How to fix' }).first()
+  if (isMobile) await fix.click()
+  else await fix.hover()
+  await expect(page.getByText(/raise Wall thickness to at least 5\.0 mm/)).toBeVisible()
+})

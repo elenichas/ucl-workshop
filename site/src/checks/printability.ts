@@ -3,6 +3,7 @@ import type { MaterialProfile } from '@/config/materials'
 import type { PrinterProfile } from '@/config/printers'
 import type { Design } from '@/design/design'
 import { getPattern } from '@/geometry/patterns'
+import { fixesFor } from './fixes'
 
 /**
  * PRINTABILITY CHECKS
@@ -22,6 +23,8 @@ export interface CheckResult {
   verdict: Verdict
   /** One sentence explaining why, with numbers */
   detail: string
+  /** For a warning or a failure: concrete things to try (see fixes.ts) */
+  fixes?: string[]
 }
 
 export interface CheckInput {
@@ -157,7 +160,10 @@ export const closedShape: Rule = ({ mesh }) => ({
 export const RULES: Rule[] = [materialMatchesPrinter, fitsBuildVolume, wallThickness, overhang, stability, detailSize, colours, closedShape]
 
 export function runChecks(input: CheckInput): CheckResult[] {
-  return RULES.map((rule) => rule(input))
+  return RULES.map((rule) => {
+    const result = rule(input)
+    return { ...result, fixes: fixesFor(result, input) }
+  })
 }
 
 export function overall(results: CheckResult[]): Verdict {
