@@ -63,7 +63,7 @@ Thursday 29 October, 17:30–20:00.
 |---|---|---|
 | 1 · Foundations | 00–04 | What are AI models, agents, websites? What is Claude Code doing? |
 | 2 · Thinking before building | 05–06 | How do I start? What exactly do I control? |
-| 3 · Building it, prompt by prompt | 07–10 | Algorithm, 3D viewer, printability, exports |
+| 3 · Building the app | 07–10 | Algorithm, 3D viewer, printability, exports |
 | 4 · Craft and quality | 11–17 | UI, responsiveness, accessibility, 3D interaction, avoiding AI slop, testing, shipping |
 | 5 · Reflection | 18 | What does it mean to work with an agent? |
 

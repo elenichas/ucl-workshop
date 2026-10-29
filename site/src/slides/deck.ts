@@ -70,12 +70,11 @@ const sections: [string, Slide[]][] = [
     { kind: 'visual', title: 'The system map', visual: 'system-map', steps: 5, notes: 'Start from → the controls it exposes → how it describes the form. Live version: “How it works” in the configurator.' },
     { kind: 'visual', title: 'The system map: one shared pipeline', visual: 'system-map-flow', steps: 4, notes: 'Each start adds its own steps, then all join the same pipeline and the same outputs. Carve is the only branch.' },
     { kind: 'bullets', title: 'Constraints are inputs too', reveal: true, points: ['The printer: build volume, nozzle, one colour or many', 'The material: thinnest wall, steepest overhang, shrinkage', 'Kept in two small editable files — “profiles”', 'When the lab says “we only have X”, the app changes'], notes: 'Real-world limits shaping the app are not a failure — they are the brief.' },
-    { kind: 'bullets', title: 'Exercise: map your vase configurator', points: ['Choose your ways to start — round, box, a drawn profile, an image…', 'For each start: which controls does it give the user?', 'Write the steps every vase shares, and what comes out at the end', 'Then ask Claude: “Read my code and draw the system map. Where does it differ from my plan?”'], aside: 'Worksheet on the website: Files → Hands-on', notes: 'Everyone builds a vase configurator — the exercise is to decide what YOUR configurator offers. Ten minutes on paper before any prompt.' },
   ]],
 
   // ============================================================== PART 3 · CORE
   ['07-the-algorithm', [
-    part(3, 'Building it, prompt by prompt', 'How do numbers become a printable object?', 7, 10),
+    part(3, 'Building the app', 'How do numbers become a printable object?', 7, 10),
     { kind: 'visual', title: 'One step at a time, one prompt per step', visual: 'build-steps', steps: 4, notes: 'The demo was built in these stages, in this order. You don’t need Git today: your project is a local folder, and your log can be the chat itself — or ask Claude to keep a PROGRESS.md as you go.' },
     { kind: 'code', title: 'Prompt: the algorithm, before any 3D', lang: 'prompt', code: 'Implement step 2 of PLAN.md: the vase algorithm, as plain\nfunctions — no 3D yet. Parameters in, a closed triangle mesh out,\nplus measurements: widest point, steepest overhang, thinnest wall.\nUnits mm. Write tests first: every preset is watertight, a plain\ncylinder has the volume a hand calculation gives.', caption: 'Prove it works with numbers before you make it pretty.' },
     { kind: 'visual', title: 'From numbers to a mesh', visual: 'algorithm', steps: 4, notes: 'Like Grasshopper: a profile, revolve, decorate, offset a wall, close it.' },

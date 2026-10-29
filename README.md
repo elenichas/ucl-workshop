@@ -34,7 +34,7 @@ Our case study is a web app where anyone can design their own 3D-printable vase:
 **Part 2 — Thinking before building**
 05 Starting systematically: from idea to plan · 06 Parameters: what do we control?
 
-**Part 3 — Building it, prompt by prompt**
+**Part 3 — Building the app**
 07 The algorithm · 08 The 3D viewer · 09 Is it printable? · 10 Exports
 
 **Part 4 — Craft and quality**
