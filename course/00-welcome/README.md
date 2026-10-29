@@ -44,6 +44,19 @@ You would get *something*. It would look like every other AI-generated website, 
 
 The process is the point. The website is the excuse.
 
+## Plan for today
+
+Thursday 29 October, 17:30–20:30.
+
+| Time | What we do | Length |
+|---|---|---|
+| 17:30 | Welcome: who I am, and a walk around the course website | 15 min |
+| 17:45 | Presentation: how to think about and build a configurator | 45 min |
+| 18:30 | Break | 10 min |
+| 18:40 | Demo and discussion: the configurator prototype | 30 min |
+| 19:10 | Walk-through: working in Claude Code | 30 min |
+| 19:40 | Hands-on: choose a way to work and start building your configurator, with an open floor for questions | 50 min |
+
 ## How the course is organised
 
 | Part | Chapters | Question it answers |

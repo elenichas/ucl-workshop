@@ -6,28 +6,25 @@ Legend: **▶ present** · **↷ flip through** (show one slide/table, 1 min) ·
 
 ## Timeline
 
-The deck has **42 slides**. The weight is on **Part 2 (how to think about a configurator)** and **Part 3 (building it, prompt by prompt)**. Parts 1 and 4 are context: a few slides each, details on the chapter pages.
+Thursday 29 October, 17:30–20:30. The deck has **43 slides** (slide 2 is the plan for today). The weight is on **Part 2 (how to think about a configurator)** and **Part 3 (building it, prompt by prompt)**. Parts 1 and 4 are context.
 
 | Time | Block | Slides | Notes |
 |---|---|---|---|
-| 0:00 | Welcome — what we build, the one rule | 1–3 | 5 min. Click through the four vases, open the real configurator for 30 seconds. |
-| 0:05 | Part 1 · Context — the agent writes the code, the stack, files over chat, the first prompt, localhost | 3–9 | 10 min. Keep it light; enjoy the localhost joke. |
-| 0:15 | **Part 2 · Thinking before building** ⭐ | 10–20 | 25 min. Inputs → process → outputs; the start decides the controls; the system map (show **How it works** live); constraints as inputs; the exercise. |
-| 0:40 | **Part 3 · Building it, prompt by prompt** ⭐ | 21–30 | 20 min. Read the prompts aloud. The inside-out vase; same vase PLA ✓ / clay ✗. |
-| 0:58 | Part 4 · Context — craft and quality | 31–36 | 7 min. Work first, design second · readable for everyone · chosen vs unchosen · three ways to test · how a site gets a public link. |
-| 1:05 | Part 5 · Reflection (short) | 37–40 | 4 min: who did what, good at / fail, habits. Save the discussion for the end. |
-| 1:05 | **Break + setup check** | — | 10 min |
-| 1:15 | **Hands-on** — start with the system-map worksheet, then a starting point or challenge card | `hands-on/` | 87 min — you walk around |
-| 2:42 | Show and tell | — | 10 min — 3–4 screens |
-| 2:52 | Reflection discussion | 41–42 | 8 min — pick **two** themes |
+| 17:30 | Welcome: instructor intro and a walk around the course website | 1–2 | 15 min. Show Course, a chapter, Files, the configurator and the style switch. |
+| 17:45 | Presentation | 3–43 | 45 min, see the split below |
+| 18:30 | **Break + setup check** | — | 10 min: everyone has Claude Code open on an empty folder |
+| 18:40 | Demo and discussion: the configurator prototype | — | 30 min: live in the configurator (start choices, Dimensions, Make tab, How it works, a download) |
+| 19:10 | Walk-through: working in Claude Code | — | 30 min: open a folder, plan mode, a first prompt, PROGRESS.md, localhost |
+| 19:40 | **Hands-on** + open floor for questions | `hands-on/` | 50 min: students pick a starting point or challenge card; you walk around |
+| 20:30 | End | | |
 
-If you're running late: shorten Parts 1 and 4 to their dividers. Never skip Parts 2 and 3.
+Presentation split (45 min): welcome loop and Part 1 (slides 3–10) 7 min · **Part 2** (11–21) 15 min · **Part 3** (22–31) 13 min · Part 4 (32–37) 5 min · Part 5 (38–43) 5 min. If you're running late, shorten Parts 1 and 4 to their dividers and save the discussion slides for the open floor. Never skip Parts 2 and 3.
 
 ## Presenting from the site
 
 **Course → Present the course.** Arrow keys / clicker: next reveal or slide · **O** overview (jump anywhere) · **N** speaker notes window (keep it on your laptop, share only the slides) · **F** full screen · **PowerPoint** button for a .pptx backup (takes about a minute; diagrams and 3D become images, notes are kept).
 
-Key slides: first prompt **7** · localhost **9** · five ways to start **12** · inputs → process → outputs **14** · system map **17–18** · build prompts **23, 27, 30** · inside-out vase **26** · same vase, two printers **28**. Use **O** rather than memorising.
+Key slides: plan for today **2** · first prompt **8** · localhost **10** · five ways to start **13** · inputs → process → outputs **15** · system map **18–19** · build prompts **24, 28, 31** · inside-out vase **27** · same vase, two printers **29**. Use **O** rather than memorising.
 
 The reading version of every chapter (on the site and on GitHub) is longer than the slides on purpose — point students there for details.
 

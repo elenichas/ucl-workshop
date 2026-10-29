@@ -1,6 +1,6 @@
 # Worksheet · map your vase configurator
 
-Everyone builds a vase configurator; this is where you decide what *yours* offers. Draw this **before** you build, on paper or in a file. Then compare it with ours (the **How it works** button in the configurator, or slides 17–18 of the course deck; slide 20 is the exercise), and finally ask Claude to draw the map from your code.
+Everyone builds a vase configurator; this is where you decide what *yours* offers. Draw this **before** you build, on paper or in a file. Then compare it with ours (the **How it works** button in the configurator, or slides 18–19 of the course deck; slide 21 is the exercise), and finally ask Claude to draw the map from your code.
 
 ## 1 · The columns
 

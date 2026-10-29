@@ -165,7 +165,7 @@ function SlideBody({ slide, step, exporting }: { slide: Slide; step: number; exp
             <tbody>
               {slide.rows.map((r, i) => (
                 <tr key={i} className="reveal-row border-b border-line" data-on={!slide.reveal || step >= i}>
-                  {r.map((c, j) => <td key={j} className={cn('py-4 pr-8 align-top text-[28px] leading-snug', j === 0 && 'font-medium', j > 0 && 'text-ink-muted')}>{c}</td>)}
+                  {r.map((c, j) => <td key={j} className={cn('py-4 pr-8 align-top text-[28px] leading-snug', j === 0 && 'font-medium', j > 0 && 'text-ink-muted', c.length <= 8 && 'whitespace-nowrap')}>{c}</td>)}
                 </tr>
               ))}
             </tbody>
