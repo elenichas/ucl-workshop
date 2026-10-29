@@ -1,6 +1,6 @@
 # Instructor notes
 
-- [`run-sheet.md`](run-sheet.md) — the 3-hour timeline, what to present / flip through / skip, a pre-session checklist, and what to watch for during the hands-on.
+- [`run-sheet.md`](run-sheet.md) — the timeline, what to present / flip through / skip, a pre-session checklist, and what to watch for during the hands-on.
 
 ## Adapting to the real lab
 

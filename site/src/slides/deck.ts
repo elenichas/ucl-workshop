@@ -24,14 +24,14 @@ const sections: [string, Slide[]][] = [
   ['00-welcome', [
     { kind: 'title', title: 'Prompt to Print', subtitle: 'Eleni Chasioti', notes: 'Today is about how to think when you build a digital tool with an AI agent. The vase configurator is our case study — open it for 30 seconds before the next slide.' },
     {
-      kind: 'table', title: 'Plan for today, 17:30–20:30', head: ['Time', 'What we do', 'Length'],
+      kind: 'table', title: 'Plan for today, 17:30–20:00', head: ['Time', 'What we do', 'Length'],
       rows: [
         ['17:30', 'Welcome: who I am, and a walk around the course website', '15 min'],
         ['17:45', 'Presentation: how to think about and build a configurator', '45 min'],
         ['18:30', 'Break', '10 min'],
         ['18:40', 'Demo and discussion: the configurator prototype', '30 min'],
-        ['19:10', 'Walk-through: working in Claude Code', '30 min'],
-        ['19:40', 'Hands-on: choose a way to work and start building your configurator. Open floor for questions', '50 min'],
+        ['19:10', 'Claude Code walk-through, then choose a way to work and start building your configurator', '30 min'],
+        ['19:40', 'Open floor for questions', '20 min'],
       ],
       notes: 'Introduce yourself, then open the course website: Course, the chapters, Files, the configurator and the style switch at the top. Point out that everything stays online after today.',
     },

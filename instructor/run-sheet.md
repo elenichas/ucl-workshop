@@ -1,4 +1,4 @@
-# Run sheet — 3 hours
+# Run sheet — 2 hours 30 minutes
 
 You present, students play, you walk around. There is more material than time **on purpose**: skip freely, and point students to the repo for the rest.
 
@@ -6,7 +6,7 @@ Legend: **▶ present** · **↷ flip through** (show one slide/table, 1 min) ·
 
 ## Timeline
 
-Thursday 29 October, 17:30–20:30. The deck has **43 slides** (slide 2 is the plan for today). The weight is on **Part 2 (how to think about a configurator)** and **Part 3 (building it, prompt by prompt)**. Parts 1 and 4 are context.
+Thursday 29 October, 17:30–20:00. The deck has **43 slides** (slide 2 is the plan for today). The weight is on **Part 2 (how to think about a configurator)** and **Part 3 (building it, prompt by prompt)**. Parts 1 and 4 are context.
 
 | Time | Block | Slides | Notes |
 |---|---|---|---|
@@ -14,9 +14,9 @@ Thursday 29 October, 17:30–20:30. The deck has **43 slides** (slide 2 is the p
 | 17:45 | Presentation | 3–43 | 45 min, see the split below |
 | 18:30 | **Break + setup check** | — | 10 min: everyone has Claude Code open on an empty folder |
 | 18:40 | Demo and discussion: the configurator prototype | — | 30 min: live in the configurator (start choices, Dimensions, Make tab, How it works, a download) |
-| 19:10 | Walk-through: working in Claude Code | — | 30 min: open a folder, plan mode, a first prompt, PROGRESS.md, localhost |
-| 19:40 | **Hands-on** + open floor for questions | `hands-on/` | 50 min: students pick a starting point or challenge card; you walk around |
-| 20:30 | End | | |
+| 19:10 | Claude Code walk-through, then **hands-on** | `hands-on/` | 30 min: show a folder, plan mode, a first prompt, PROGRESS.md and localhost, then students pick a starting point or challenge card and start building |
+| 19:40 | Open floor for questions | | 20 min |
+| 20:00 | End | | |
 
 Presentation split (45 min): welcome loop and Part 1 (slides 3–10) 7 min · **Part 2** (11–21) 15 min · **Part 3** (22–31) 13 min · Part 4 (32–37) 5 min · Part 5 (38–43) 5 min. If you're running late, shorten Parts 1 and 4 to their dividers and save the discussion slides for the open floor. Never skip Parts 2 and 3.
 

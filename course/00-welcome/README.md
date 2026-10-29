@@ -2,7 +2,7 @@
 
 > **Part 1 · Foundations**
 
-**In one sentence:** in three hours we will not become web developers. We will learn to *think* like people who build digital tools with an AI agent, and we will use a vase configurator to practise.
+**In one sentence:** in two and a half hours we will not become web developers. We will learn to *think* like people who build digital tools with an AI agent, and we will use a vase configurator to practise.
 
 ---
 
@@ -46,7 +46,7 @@ The process is the point. The website is the excuse.
 
 ## Plan for today
 
-Thursday 29 October, 17:30–20:30.
+Thursday 29 October, 17:30–20:00.
 
 | Time | What we do | Length |
 |---|---|---|
@@ -54,8 +54,8 @@ Thursday 29 October, 17:30–20:30.
 | 17:45 | Presentation: how to think about and build a configurator | 45 min |
 | 18:30 | Break | 10 min |
 | 18:40 | Demo and discussion: the configurator prototype | 30 min |
-| 19:10 | Walk-through: working in Claude Code | 30 min |
-| 19:40 | Hands-on: choose a way to work and start building your configurator, with an open floor for questions | 50 min |
+| 19:10 | Claude Code walk-through, then choose a way to work and start building your configurator | 30 min |
+| 19:40 | Open floor for questions | 20 min |
 
 ## How the course is organised
 
@@ -67,7 +67,7 @@ Thursday 29 October, 17:30–20:30.
 | 4 · Craft and quality | 11–17 | UI, responsiveness, accessibility, 3D interaction, avoiding AI slop, testing, shipping |
 | 5 · Reflection | 18 | What does it mean to work with an agent? |
 
-We will not cover everything in three hours. That is fine — this website, with all its chapters and files, stays with you.
+We will not cover everything in one evening. That is fine — this website, with all its chapters and files, stays with you.
 
 ## How to follow along
 

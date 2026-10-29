@@ -1,7 +1,7 @@
 # Prompt to Print
 
 **Building a parametric vase configurator with Claude Code**
-A 3-hour workshop for architecture students · UCL
+A two-and-a-half-hour workshop for architecture students · UCL
 
 > This course is not about building the best website ever.
 > It is about learning **how to think** when you build a digital tool with an AI agent:
@@ -16,7 +16,7 @@ Our case study is a web app where anyone can design their own 3D-printable vase:
 | Folder | What it is |
 |---|---|
 | [`course/`](course/) | The 19 chapters of the course, one folder each. Start at [00 — Welcome](course/00-welcome/README.md). |
-| [`instructor/`](instructor/) | The 3-hour run sheet: what to present, what to skip, when to stop talking. |
+| [`instructor/`](instructor/) | The run sheet: what to present, what to skip, when to stop talking. |
 | [`hands-on/`](hands-on/) | Starting-point prompts, challenge cards, a prompt cheat sheet and the stack card. |
 | [`prompts/`](prompts/) | The real conversation behind the demo: every step, the prompt used and what we learned. |
 | [`resources/`](resources/) | Curated links: design repos, skills, 3D, web fundamentals. |

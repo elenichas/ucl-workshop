@@ -4,7 +4,7 @@ Claude Code reads this file at the start of every session in this folder.
 Keep it short: everything here costs tokens every time.
 
 ## What this project is
-A teaching repo for a 3-hour workshop ("Prompt to Print"). It contains:
+A teaching repo for a two-and-a-half-hour workshop ("Prompt to Print"). It contains:
 - `course/` — chapters in Markdown (the course content)
 - `site/` — the demo web app: a 3D-printable vase configurator that also renders the course
 - `hands-on/`, `prompts/`, `resources/`, `instructor/` — supporting material
