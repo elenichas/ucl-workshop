@@ -87,7 +87,6 @@ const sections: [string, Slide[]][] = [
   ]],
   ['10-exports', [
     { kind: 'visual', title: 'Outputs: from screen to object', visual: 'fab-path', steps: 3, notes: 'STL: the shape as a skin of triangles, the file every printer software reads. Slicer: software (PrusaSlicer, Cura, Bambu Studio) that cuts the shape into layers and plans the nozzle path — you choose layer height, speed and supports there — and saves G-code. The printer follows the G-code layer by layer. 3DM if you want to keep editing in Rhino.' },
-    { kind: 'code', title: 'Prompt: add another way to start', lang: 'prompt', code: 'My configurator starts every vase from a round profile.\nAdd a second way to start: from a box with rounded corners.\nWhich controls should it have that the round one doesn’t?\nPropose them first, wait for my OK, then build it.\nThe 3D view and the print check must still work.', caption: 'Each way to start asks different questions — let the agent propose them, you decide.' },
   ]],
 
   // ============================================================== PART 4 · context
@@ -132,19 +131,6 @@ const sections: [string, Slide[]][] = [
       ],
       notes: 'The eight habits from chapter 18. If short on time, point at three: plan in a file, small steps, say no.',
     },
-    {
-      kind: 'table', title: 'For discussion', head: ['Theme', 'Question'], reveal: true,
-      rows: [
-        ['Authorship', 'If the agent wrote every line, who designed the configurator? What did you contribute?'],
-        ['Understanding', 'How much code do you need to understand? Do you need to calculate the beam yourself?'],
-        ['Taste and sameness', 'If everyone uses the same models, will every website — and every vase — converge?'],
-        ['Responsibility', 'The checks said “ready to print” and it collapsed in the kiln. Whose fault is it?'],
-        ['Skills and labour', 'What should an architecture student learn now? What becomes more valuable?'],
-        ['Cost', 'Tokens are energy and money. When is it worth it?'],
-      ],
-      notes: 'Pick two or three themes and let the room talk. The architecture analogy for understanding: you don’t calculate the beam, but you must know when the engineer’s answer is wrong.',
-    },
-    { kind: 'statement', text: 'The best prompt you’ll write is the one you thought about before typing.', sub: 'Where next: a challenge card at home · another configurator — a chair, a brick, a lamp · the real prompts on the Files page.' },
   ]],
 ]
 
