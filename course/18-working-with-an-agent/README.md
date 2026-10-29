@@ -35,7 +35,7 @@ The agent works at **every** step — it thinks, plans and checks too. The diffe
 - Following written rules (CLAUDE.md, DESIGN.md, skills) consistently
 - Running tests and fixing what they reveal
 
-## Where they fail
+## Where they might struggle
 
 - **Vague goals** → average results (chapters 05 and 15)
 - **Confident mistakes** — plausible code that is subtly wrong (our inside-out vase)

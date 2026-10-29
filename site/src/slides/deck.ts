@@ -113,9 +113,9 @@ const sections: [string, Slide[]][] = [
     part(5, 'Reflection', 'What did we do — and what did the agent do?', 18, 18),
     { kind: 'visual', title: 'Who did what', visual: 'who-does-what', steps: 2, notes: 'The agent also thinks, plans and checks — it works at every step. The difference is who decides: it proposes, drafts and runs checks; you decide what it’s for, approve the plan, judge whether it’s right and good, and update the plan. The agent writes the code; you stay responsible for what it means.' },
     {
-      kind: 'compare', title: 'What agents are good at — and where they fail', reveal: true,
+      kind: 'compare', title: 'What agents are good at — and where they might struggle', reveal: true,
       left: { label: 'Good at', points: ['A clear description → working code, fast', 'Explaining code and error messages', 'Boilerplate: the hundredth slider', 'Following written rules: CLAUDE.md, DESIGN.md, skills', 'Running checks and fixing what they find'] },
-      right: { label: 'Where they fail', points: ['Vague goals → average results', 'Confident mistakes: our inside-out vase', 'Long chats → forgotten decisions', 'Taste: only the taste you give them', 'The physical world: your lab’s printer', 'Over-building: things nobody asked for'] },
+      right: { label: 'Where they might struggle', points: ['Vague goals → average results', 'Confident mistakes: our inside-out vase', 'Long chats → forgotten decisions', 'Taste: only the taste you give them', 'The physical world: your lab’s printer', 'Over-building: things nobody asked for'] },
       notes: 'Chapter 18. Each failure links back to something we did today: the plan (vague goals), the checks (confident mistakes), files instead of long chats, DESIGN.md (taste), the printer and material profiles (physical world).',
     },
     {
