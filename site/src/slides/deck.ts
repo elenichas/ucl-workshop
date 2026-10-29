@@ -50,7 +50,6 @@ const sections: [string, Slide[]][] = [
   ['04-setup-first-conversation', [
     { kind: 'code', title: 'Your first prompt: ask, don’t order', lang: 'prompt', code: 'I want to make a website where people can design their own\n3D-printable vase. I have never built a website.\nBefore we build anything: how should I think about it?\nWhat are the inputs, the process and the outputs?\nExplain it with an analogy from architecture or Grasshopper.\nDon’t write any code yet.', caption: 'You start from an empty folder. The first conversation is about thinking, not building.', notes: 'Most of you start from a blank folder. Ask questions first — it costs nothing, changes nothing, and you learn the shape of the problem.' },
     { kind: 'visual', title: 'The whole loop, once', visual: 'first-loop', steps: 3, notes: 'Ask, act, check, note it. No Git needed today: your project is a folder, and the chat (or a PROGRESS.md) is your log.' },
-    { kind: 'visual', title: 'Your site lives at localhost', visual: 'localhost', steps: 3, notes: 'The classic beginner moment: sharing a localhost link. localhost is your own computer — the link only works on your laptop while the dev server is running. Making a shareable link (building and hosting the site) is a next step, not for today.' },
   ]],
 
   // ============================================================== PART 2 · CORE
@@ -76,6 +75,7 @@ const sections: [string, Slide[]][] = [
   ['07-the-algorithm', [
     part(3, 'Building the app', 'How do numbers become a printable object?', 7, 10),
     { kind: 'visual', title: 'One step at a time, one prompt per step', visual: 'build-steps', steps: 4, notes: 'The demo was built in these stages, in this order. You don’t need Git today: your project is a local folder, and your log can be the chat itself — or ask Claude to keep a PROGRESS.md as you go.' },
+    { kind: 'visual', title: 'Your site lives at localhost', visual: 'localhost', steps: 3, notes: 'The classic beginner moment: sharing a localhost link. localhost is your own computer — the link only works on your laptop while the dev server is running. Making a shareable link (building and hosting the site) is a next step, not for today.' },
     { kind: 'code', title: 'Prompt: the algorithm, before any 3D', lang: 'prompt', code: 'Implement step 2 of PLAN.md: the vase algorithm, as plain\nfunctions — no 3D yet. Parameters in, a closed triangle mesh out,\nplus measurements: widest point, steepest overhang, thinnest wall.\nUnits mm. Write tests first: every preset is watertight, a plain\ncylinder has the volume a hand calculation gives.', caption: 'Prove it works with numbers before you make it pretty.' },
     { kind: 'visual', title: 'From numbers to a mesh', visual: 'algorithm', steps: 4, notes: 'Like Grasshopper: a profile, revolve, decorate, offset a wall, close it.' },
     { kind: 'vase', id: 'twist', title: 'A parameter: twist', caption: '“A bit more angle the higher you go.” One number — 0°, 60°, 180°, 360° — changes the whole character.', designs: [0, 60, 180, 360].map((d) => ({ label: `${d}°`, design: twist(d) })) },

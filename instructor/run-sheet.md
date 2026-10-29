@@ -18,13 +18,13 @@ Thursday 29 October, 17:30–20:00. The deck has **38 slides** (slide 2 is the p
 | 19:40 | Open floor for questions | | 20 min |
 | 20:00 | End | | |
 
-Presentation split (45 min): welcome loop and Part 1 (slides 3–10) 7 min · **Part 2** (11–19) 15 min · **Part 3** (20–28) 13 min · Part 4 (29–34) 5 min · Part 5 (35–38) 5 min. If you're running late, shorten Parts 1 and 4 to their dividers and save the discussion slides for the open floor. Never skip Parts 2 and 3.
+Presentation split (45 min): welcome loop and Part 1 (slides 3–9) 7 min · **Part 2** (10–18) 15 min · **Part 3** (19–28) 13 min · Part 4 (29–34) 5 min · Part 5 (35–38) 5 min. If you're running late, shorten Parts 1 and 4 to their dividers and save the discussion slides for the open floor. Never skip Parts 2 and 3.
 
 ## Presenting from the site
 
 **Course → Present the course.** Arrow keys / clicker: next reveal or slide · **O** overview (jump anywhere) · **N** speaker notes window (keep it on your laptop, share only the slides) · **F** full screen · **PowerPoint** button for a .pptx backup (takes about a minute; diagrams and 3D become images, notes are kept).
 
-Key slides: plan for today **2** · first prompt **8** · localhost **10** · five ways to start **13** · inputs → process → outputs **14** · system map **17–18** · build prompts **22, 26** · inside-out vase **25** · same vase, two printers **27**. Use **O** rather than memorising.
+Key slides: plan for today **2** · first prompt **8** · five ways to start **12** · inputs → process → outputs **13** · system map **16–17** · localhost **21** · build prompts **22, 26** · inside-out vase **25** · same vase, two printers **27**. Use **O** rather than memorising.
 
 The reading version of every chapter (on the site and on GitHub) is longer than the slides on purpose — point students there for details.
 
